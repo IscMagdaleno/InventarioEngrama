@@ -1,0 +1,46 @@
+﻿@using InventarioEngrama.PWA.Shared.Common
+
+@inherits EngramaComponent
+<EditForm Model="@Data.ArticuloSelected"
+		  OnValidSubmit="OnSubmint">
+	<DataAnnotationsValidator />
+
+	<MudFocusTrap>
+
+		<MudGrid>
+			<MudItem sm="6">
+
+				<MudTextField @bind-Value="@Data.ArticuloSelected.nvchNombre"
+							  Label="Nombre"
+							  MaxLength="200"
+							  Variant="Variant.Outlined" />
+
+
+				<MudTextField @bind-Value="@Data.ArticuloSelected.vchCodigo"
+							  Label="Codigo"
+							  MaxLength="50"
+							  Variant="Variant.Outlined" />
+
+
+			</MudItem>
+			<MudItem sm="6">
+				<MudNumericField @bind-Value="Data.ArticuloSelected.mPrecioCompra"
+								 Label="PrecioCopra"
+								 Variant="Variant.Outlined" />
+
+
+				<MudNumericField @bind-Value="Data.ArticuloSelected.mPrecioVenta"
+								 Label="PrecioVenta"
+								 Variant="Variant.Outlined" />
+
+
+			</MudItem>
+			<MudItem sm="12">
+				<MudButton Variant="Variant.Filled"
+						   ButtonType="ButtonType.Submit"
+						   Color="Color.Secondary">Save Articulo</MudButton>
+			</MudItem>
+		</MudGrid>
+	</MudFocusTrap>
+</EditForm>
+

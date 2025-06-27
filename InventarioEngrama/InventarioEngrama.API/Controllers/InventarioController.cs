@@ -50,6 +50,11 @@ namespace InventarioEngrama.API.Controllers
 		}
 
 
+		/// <summary>
+		/// Guardar provedores en base de datos
+		/// </summary>
+		/// <param name="postModel"></param>
+		/// <returns></returns>
 		[HttpPost("PostSaveProveedor")]
 		public async Task<IActionResult> PostSaveProveedor([FromBody] PostSaveProveedor postModel)
 		{
@@ -62,6 +67,11 @@ namespace InventarioEngrama.API.Controllers
 		}
 
 
+		/// <summary>
+		/// Obtener los provedores de la base de datos
+		/// </summary>
+		/// <param name="postModel"></param>
+		/// <returns></returns>
 		[HttpPost("PostGetProveedor")]
 		public async Task<IActionResult> PostGetProveedor([FromBody] PostGetProveedor postModel)
 		{

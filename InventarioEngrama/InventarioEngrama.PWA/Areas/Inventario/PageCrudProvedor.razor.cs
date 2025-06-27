@@ -3,7 +3,7 @@ using InventarioEngrama.PWA.Shared.Common;
 
 namespace InventarioEngrama.PWA.Areas.Inventario
 {
-	public partial class PageCrudArticulos : EngramaPage
+	public partial class PageCrudProvedor : EngramaPage
 	{
 		public MainInventario Data { get; set; }
 		protected override void OnInitialized()
@@ -17,6 +17,6 @@ namespace InventarioEngrama.PWA.Areas.Inventario
 			await Task.Delay(1);
 			StateHasChanged();
 		}
-	}
 
+	}
 }

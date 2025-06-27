@@ -2,23 +2,25 @@
 @using InventarioEngrama.PWA.Shared.Common
 @inherits EngramaPage
 
-@page "/PageCrudArticulos"
+
+
+@page "/PageCrudProvedor"
 
 
 <MudCard>
 	<MudCardHeader>
 		<CardHeaderContent>
-			<MudText Typo="Typo.h6">Articulos</MudText>
+			<MudText Typo="Typo.h6">Provedores</MudText>
 		</CardHeaderContent>
 
 	</MudCardHeader>
 	<MudCardContent>
         <MudExpansionPanels MultiExpansion="true">
             <MudExpansionPanel Text="Formulario">
-                <FormArticulos Data="Data" OnDataSaved="OnDataSaved"></FormArticulos>
+                <FormProvedores Data="Data" OnSaveProvedor="OnDataSaved"></FormProvedores>
             </MudExpansionPanel>
-            <MudExpansionPanel Text="Lista Articulos">
-                <TablaArticulos Data="Data"></TablaArticulos>
+            <MudExpansionPanel Text="Lista Provedores">
+                <TableProvedor Data="Data"></TableProvedor>
             </MudExpansionPanel>
            
         </MudExpansionPanels>
