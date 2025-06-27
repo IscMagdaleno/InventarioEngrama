@@ -1,0 +1,16 @@
+﻿@using InventarioEngrama.PWA.Areas.TestModul.Components
+@using InventarioEngrama.PWA.Shared.Common
+@inherits EngramaPage
+@page "/PageTestModule"
+
+<MudCard>
+	<MudCardHeader>
+		<CardHeaderContent>
+			<MudText Typo="Typo.h6">Test Page</MudText>
+		</CardHeaderContent>
+
+	</MudCardHeader>
+	<MudCardContent>
+		<TableTestTable Data="@Data"></TableTestTable>
+	</MudCardContent>
+</MudCard>
