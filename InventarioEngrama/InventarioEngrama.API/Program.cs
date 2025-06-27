@@ -1,11 +1,11 @@
 using EngramaCoreStandar.Extensions;
 
-using System.Reflection;
-
 using InventarioEngrama.API.EngramaLevels.Dominio.Core;
 using InventarioEngrama.API.EngramaLevels.Dominio.Interfaces;
 using InventarioEngrama.API.EngramaLevels.Infrastructure.Interfaces;
 using InventarioEngrama.API.EngramaLevels.Infrastructure.Repository;
+
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,8 +17,10 @@ builder.Services.AddEndpointsApiExplorer();
 
 
 builder.Services.AddScoped<ITestDominio, TestDominio>();
-builder.Services.AddScoped<ITestRepository, TestRepository>();
+builder.Services.AddScoped<IInventarioDominio, InventarioDominio>();
 
+builder.Services.AddScoped<ITestRepository, TestRepository>();
+builder.Services.AddScoped<IInventarioRepository, InventarioRepository>();
 
 // Ensure the AddEngramaDependenciesAPI method is defined in the above namespace
 builder.Services.AddEngramaDependenciesAPI();
