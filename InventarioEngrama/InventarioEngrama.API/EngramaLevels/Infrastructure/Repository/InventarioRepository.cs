@@ -3,7 +3,6 @@ using EngramaCoreStandar.Extensions;
 
 using InventarioEngrama.API.EngramaLevels.Infrastructure.Interfaces;
 using InventarioEngrama.Share.Entity.Inventario;
-using InventarioEngrama.Share.PostClass.Inventario;
 
 namespace InventarioEngrama.API.EngramaLevels.Infrastructure.Repository
 {
@@ -52,6 +51,29 @@ namespace InventarioEngrama.API.EngramaLevels.Infrastructure.Repository
 			}
 			return new List<spGetProveedor.Result>() { new() { bResult = false, vchMessage = $"[{(result.Ex.NotNull() ? result.Ex.Message : "")}] - [{result.Msg}]" } };
 		}
+
+
+		public async Task<spSavePedido.Result> spSavePedido(spSavePedido.Request PostModel)
+		{
+			var result = await _managerHelper.GetAsync<spSavePedido.Result, spSavePedido.Request>(PostModel);
+			if (result.Ok)
+			{
+				return result.Data;
+			}
+			return new() { bResult = false, vchMessage = $"[{(result.Ex.NotNull() ? result.Ex.Message : "")}] - [{result.Msg}]" };
+		}
+
+
+		public async Task<spSavePedidoDetalle.Result> spSavePedidoDetalle(spSavePedidoDetalle.Request PostModel)
+		{
+			var result = await _managerHelper.GetAsync<spSavePedidoDetalle.Result, spSavePedidoDetalle.Request>(PostModel);
+			if (result.Ok)
+			{
+				return result.Data;
+			}
+			return new() { bResult = false, vchMessage = $"[{(result.Ex.NotNull() ? result.Ex.Message : "")}] - [{result.Msg}]" };
+		}
+
 
 	}
 }

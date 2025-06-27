@@ -103,5 +103,48 @@ namespace InventarioEngrama.API.EngramaLevels.Dominio.Core
 			}
 		}
 
+
+		public async Task<Response<Pedido>> SavePedido(PostSavePedido PostModel)
+		{
+			try
+			{
+				var model = mapperHelper.Get<PostSavePedido, spSavePedido.Request>(PostModel);
+				var result = await inventarioRepository.spSavePedido(model);
+				var validation = responseHelper.Validacion<spSavePedido.Result, Pedido>(result);
+				if (validation.IsSuccess)
+				{
+					var ID = validation.Data.iIdPedido;
+					validation.Data = mapperHelper.Get<PostSavePedido, Pedido>(PostModel);
+					validation.Data.iIdPedido = ID;
+				}
+				return validation;
+			}
+			catch (Exception ex)
+			{
+				return Response<Pedido>.BadResult(ex.Message, new());
+			}
+		}
+
+		public async Task<Response<PedidoDetalle>> SavePedidoDetalle(PostSavePedidoDetalle PostModel)
+		{
+			try
+			{
+				var model = mapperHelper.Get<PostSavePedidoDetalle, spSavePedidoDetalle.Request>(PostModel);
+				var result = await inventarioRepository.spSavePedidoDetalle(model);
+				var validation = responseHelper.Validacion<spSavePedidoDetalle.Result, PedidoDetalle>(result);
+				if (validation.IsSuccess)
+				{
+					PostModel.iIdPedido = validation.Data.iIdPedido;
+					validation.Data = mapperHelper.Get<PostSavePedidoDetalle, PedidoDetalle>(PostModel);
+				}
+				return validation;
+			}
+			catch (Exception ex)
+			{
+				return Response<PedidoDetalle>.BadResult(ex.Message, new());
+			}
+		}
+
+
 	}
 }

@@ -83,5 +83,40 @@ namespace InventarioEngrama.API.Controllers
 			return BadRequest(result);
 		}
 
+		/// <summary>
+		/// Guardar un pedido en la base de datos
+		/// </summary>
+		/// <param name="postModel"></param>
+		/// <returns></returns>
+		[HttpPost("PostSavePedido")]
+		public async Task<IActionResult> PostSavePedido([FromBody] PostSavePedido postModel)
+		{
+			var result = await inventarioDominio.SavePedido(postModel);
+			if (result.IsSuccess)
+			{
+				return Ok(result);
+			}
+			return BadRequest(result);
+		}
+
+
+		/// <summary>
+		/// Agregar un detalle de pedido a la base de datos
+		/// </summary>
+		/// <param name="postModel"></param>
+		/// <returns></returns>
+		[HttpPost("PostSavePedidoDetalle")]
+		public async Task<IActionResult> PostSavePedidoDetalle([FromBody] PostSavePedidoDetalle postModel)
+		{
+			var result = await inventarioDominio.SavePedidoDetalle(postModel);
+			if (result.IsSuccess)
+			{
+				return Ok(result);
+			}
+			return BadRequest(result);
+		}
+
+
+
 	}
 }

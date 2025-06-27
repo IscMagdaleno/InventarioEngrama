@@ -1,6 +1,6 @@
 ﻿using EngramaCoreStandar.Dapper.Interfaces;
 
-namespace InventarioEngrama.Share.PostClass.Inventario
+namespace InventarioEngrama.Share.Entity.Inventario
 {
 	public class spSaveProveedor
 	{
