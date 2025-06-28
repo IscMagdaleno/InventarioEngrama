@@ -1,0 +1,43 @@
+﻿@using InventarioEngrama.PWA.Areas.Inventario.Utiles
+@using InventarioEngrama.Share.Objetos.Inventario
+@inherits EngramaComponent
+
+<MudTable Items="@Data.LstPedidosDetalle"
+		  T="@PedidoDetalle"
+		  Dense="@true"
+		  Hover="true"
+		  Filter="new Func<PedidoDetalle,bool>(FilterFunc1)">
+	<ToolBarContent>
+		<MudText Typo="Typo.h6">Tabla de PedidoDetalle</MudText>
+		<MudSpacer />
+		<MudTextField @bind-Value="searchStringFiltro" Placeholder="Search" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
+	</ToolBarContent>
+	<HeaderContent>
+		<MudTh>IdPeddoDetalle</MudTh>
+		<MudTh>Nombre Articulo</MudTh>
+		<MudTh>Precio Unitario</MudTh>
+		<MudTh>Cantidad</MudTh>
+	</HeaderContent>
+	<RowTemplate>
+		<MudTd DataLabel="iIdPedidoDetalle">@context.iIdPedidoDetalle</MudTd>
+		<MudTd DataLabel="nvchNombre">@context.Articulo.nvchNombre</MudTd>
+		<MudTd DataLabel="mPrecioUnitario">@context.mPrecioUnitario</MudTd>
+		<MudTd DataLabel="smCantidad">@context.smCantidad</MudTd>
+	</RowTemplate>
+	<PagerContent>
+		<MudTablePager />
+	</PagerContent>
+</MudTable>
+@code {
+
+	private string searchStringFiltro = "";
+	private bool FilterFunc1(PedidoDetalle element) => FilterFunc(element, searchStringFiltro);
+	private bool FilterFunc(PedidoDetalle element, string searchString)
+	{
+		if (string.IsNullOrWhiteSpace(searchString))
+			return true;
+		if (element.Articulo.nvchNombre.Contains(searchString, StringComparison.OrdinalIgnoreCase)) // Agrega el campo por el caul realizar el filtro
+			return true;
+		return false;
+	}
+}

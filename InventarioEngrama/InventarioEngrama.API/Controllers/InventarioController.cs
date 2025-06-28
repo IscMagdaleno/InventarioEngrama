@@ -1,4 +1,5 @@
 ﻿using InventarioEngrama.API.EngramaLevels.Dominio.Interfaces;
+using InventarioEngrama.Share.Objetos.Inventario;
 using InventarioEngrama.Share.PostClass.Inventario;
 
 using Microsoft.AspNetCore.Mvc;
@@ -117,6 +118,21 @@ namespace InventarioEngrama.API.Controllers
 		}
 
 
+		/// <summary>
+		/// Retona el detalle de un pedido con todos los articulos
+		/// </summary>
+		/// <param name="postModel"></param>
+		/// <returns></returns>
+		[HttpPost("PostGetPedidoDetalle")]
+		public async Task<IActionResult> PostGetPedidoDetalle([FromBody] PostGetPedidoDetalle postModel)
+		{
+			var result = await inventarioDominio.GetPedidoDetalle(postModel);
+			if (result.IsSuccess)
+			{
+				return Ok(result);
+			}
+			return BadRequest(result);
+		}
 
 	}
 }

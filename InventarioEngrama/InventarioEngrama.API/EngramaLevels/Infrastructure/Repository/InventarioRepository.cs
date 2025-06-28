@@ -74,6 +74,15 @@ namespace InventarioEngrama.API.EngramaLevels.Infrastructure.Repository
 			return new() { bResult = false, vchMessage = $"[{(result.Ex.NotNull() ? result.Ex.Message : "")}] - [{result.Msg}]" };
 		}
 
+		public async Task<IEnumerable<spGetPedidoDetalle.Result>> spGetPedidoDetalle(spGetPedidoDetalle.Request PostModel)
+		{
+			var result = await _managerHelper.GetAllAsync<spGetPedidoDetalle.Result, spGetPedidoDetalle.Request>(PostModel);
+			if (result.Ok)
+			{
+				return result.Data;
+			}
+			return new List<spGetPedidoDetalle.Result>() { new() { bResult = false, vchMessage = $"[{(result.Ex.NotNull() ? result.Ex.Message : "")}] - [{result.Msg}]" } };
+		}
 
 	}
 }

@@ -12,6 +12,17 @@
 			nvchNombre = string.Empty;
 			vchCodigo = string.Empty;
 		}
+		// Note: this is important so the select can compare pizzas
+		public override bool Equals(object o)
+		{
+			var other = o as Articulo;
+			return other?.nvchNombre == nvchNombre;
+		}
+
+		// Note: this is important so the select can compare pizzas
+		public override int GetHashCode() => nvchNombre.GetHashCode();
+
+		public override string ToString() => nvchNombre;
 
 	}
 }

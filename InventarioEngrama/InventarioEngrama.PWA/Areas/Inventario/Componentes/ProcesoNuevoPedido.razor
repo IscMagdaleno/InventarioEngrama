@@ -1,0 +1,55 @@
+﻿@using InventarioEngrama.Share.Objetos.Inventario
+@inherits EngramaComponent
+
+
+
+
+<MudGrid>
+
+	@if (Data.PedidoSelected.iIdPedido <= 0)
+	{
+		<MudItem sm="6">
+			<MudSelect T="Proveedor"
+					   Label="Proveedor"
+					   @bind-Value="Data.ProveedorSelected"
+					   Dense="true"
+					   Variant="Variant.Outlined">
+				@foreach (var p in Data.LstProveedores)
+				{
+					<MudSelectItem Value="@p">
+					</MudSelectItem>
+				}
+			</MudSelect>
+
+		</MudItem>
+		<MudItem sm="6">
+			<MudButton Variant="Variant.Filled"
+					   Color="Color.Primary"
+					   Class="mt-4"
+					   OnClick="OnCrearNuevoPedido">
+				Crear Pedido
+			</MudButton>
+		</MudItem>
+	}
+	else
+	{
+		<MudItem sm="12">
+			<MudText Typo="Typo.h5" GutterBottom="true">
+				Pedido: @Data.ProveedorSelected.nvchNombre
+			</MudText>
+		</MudItem>
+
+		<MudItem sm="12">
+			<FormPedidoDetalle Data="Data" OnPedidoDetalleSaved="OnPedidoDetalleSaved"></FormPedidoDetalle>
+		</MudItem>
+
+		<MudItem sm="12">
+			<TablaPedidoDetalles Data="Data"></TablaPedidoDetalles>
+		</MudItem>
+
+	}
+
+
+
+
+</MudGrid>

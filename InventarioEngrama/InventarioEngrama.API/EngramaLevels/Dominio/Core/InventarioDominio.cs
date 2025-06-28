@@ -134,8 +134,9 @@ namespace InventarioEngrama.API.EngramaLevels.Dominio.Core
 				var validation = responseHelper.Validacion<spSavePedidoDetalle.Result, PedidoDetalle>(result);
 				if (validation.IsSuccess)
 				{
-					PostModel.iIdPedido = validation.Data.iIdPedido;
+					var ID = validation.Data.iIdPedidoDetalle;
 					validation.Data = mapperHelper.Get<PostSavePedidoDetalle, PedidoDetalle>(PostModel);
+					validation.Data.iIdPedidoDetalle = ID;
 				}
 				return validation;
 			}
@@ -145,6 +146,29 @@ namespace InventarioEngrama.API.EngramaLevels.Dominio.Core
 			}
 		}
 
+		public async Task<Response<IEnumerable<PedidoDetalle>>> GetPedidoDetalle(PostGetPedidoDetalle PostModel)
+		{
+			try
+			{
+				var model = mapperHelper.Get<PostGetPedidoDetalle, spGetPedidoDetalle.Request>(PostModel);
+				var result = await inventarioRepository.spGetPedidoDetalle(model);
+				var validation = responseHelper.Validacion<spGetPedidoDetalle.Result, PedidoDetalle>(result);
+				if (validation.IsSuccess)
+				{
+
+					foreach (var item in validation.Data)
+					{
+						item.Articulo = mapperHelper.Get<spGetPedidoDetalle.Result, Articulo>(result.SingleOrDefault(e => e.iIdArticulo == item.iIdArticulo));
+					}
+				}
+
+				return validation;
+			}
+			catch (Exception ex)
+			{
+				return Response<IEnumerable<PedidoDetalle>>.BadResult(ex.Message, new List<PedidoDetalle>());
+			}
+		}
 
 	}
 }

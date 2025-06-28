@@ -7,6 +7,10 @@ namespace InventarioEngrama.Share.Objetos.Inventario
 		public int iIdPedido { get; set; }
 		public int iIdProveedor { get; set; }
 		public DateTime? dtFecha { get; set; }
+
+		public Proveedor Proveedor { get; set; }
+
+		public List<PedidoDetalle> Detalles { get; set; }
 		public Pedido()
 		{
 			dtFecha = Defaults.SqlMinDate();
