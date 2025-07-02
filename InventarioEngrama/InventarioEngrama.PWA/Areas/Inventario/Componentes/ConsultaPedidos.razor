@@ -1,0 +1,13 @@
+﻿@inherits EngramaComponent
+
+
+@if (ShowTabla.False())
+{
+
+	<GridPedidos Data="@Data" OnPedidoSelected="OnPedidoSelected" OnEditarPedido="OnEditarPedido"></GridPedidos>
+}
+else
+{
+	<MudFab Color="Color.Secondary" StartIcon="@Icons.Material.Filled.ArrowLeft" OnClick="OnVolverLista" />
+	<TablaPedidoDetalles Data="@Data" ShowEdit="false"></TablaPedidoDetalles>
+}

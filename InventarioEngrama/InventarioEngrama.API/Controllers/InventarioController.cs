@@ -135,5 +135,21 @@ namespace InventarioEngrama.API.Controllers
 			return BadRequest(result);
 		}
 
+		/// <summary>
+		/// Obtener todos los pedidos de la base de datos
+		/// </summary>
+		/// <param name="postModel"></param>
+		/// <returns></returns>
+		[HttpPost("PostGetPedido")]
+		public async Task<IActionResult> PostGetPedido([FromBody] PostGetPedido postModel)
+		{
+			var result = await inventarioDominio.GetPedido(postModel);
+			if (result.IsSuccess)
+			{
+				return Ok(result);
+			}
+			return BadRequest(result);
+		}
+
 	}
 }

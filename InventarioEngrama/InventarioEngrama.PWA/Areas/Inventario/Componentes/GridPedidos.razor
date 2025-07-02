@@ -1,0 +1,27 @@
+﻿@inherits EngramaComponent
+
+
+<MudGrid>
+	@foreach (var item in Data.LstPedidos)
+	{
+		<MudItem sm="3">
+
+			<MudCard>
+				<MudCardHeader>
+					<CardHeaderContent>
+						<MudText Typo="Typo.h6">@item.Proveedor.nvchNombre</MudText>
+					</CardHeaderContent>
+					<CardHeaderActions>
+						<MudFab StartIcon="@Icons.Material.Filled.Edit" Label="Editar" Color="Color.Success" OnClick="@(()=>OnClickEditarPedido(item))" />
+					</CardHeaderActions>
+				</MudCardHeader>
+				<MudCardContent>
+					<MudText>@item.dtFecha</MudText>
+				</MudCardContent>
+				<MudCardActions>
+					<MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="@(()=>OnClickPedidoSelected(item))">Abrir</MudButton>
+				</MudCardActions>
+			</MudCard>
+		</MudItem>
+	}
+</MudGrid>

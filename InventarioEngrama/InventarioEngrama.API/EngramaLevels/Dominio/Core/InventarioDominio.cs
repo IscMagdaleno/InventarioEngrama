@@ -158,7 +158,7 @@ namespace InventarioEngrama.API.EngramaLevels.Dominio.Core
 
 					foreach (var item in validation.Data)
 					{
-						item.Articulo = mapperHelper.Get<spGetPedidoDetalle.Result, Articulo>(result.SingleOrDefault(e => e.iIdArticulo == item.iIdArticulo));
+						item.Articulo = mapperHelper.Get<spGetPedidoDetalle.Result, Articulo>(result.FirstOrDefault(e => e.iIdArticulo == item.iIdArticulo));
 					}
 				}
 
@@ -169,6 +169,30 @@ namespace InventarioEngrama.API.EngramaLevels.Dominio.Core
 				return Response<IEnumerable<PedidoDetalle>>.BadResult(ex.Message, new List<PedidoDetalle>());
 			}
 		}
+
+		public async Task<Response<IEnumerable<Pedido>>> GetPedido(PostGetPedido PostModel)
+		{
+			try
+			{
+				var model = mapperHelper.Get<PostGetPedido, spGetPedido.Request>(PostModel);
+				var result = await inventarioRepository.spGetPedido(model);
+				var validation = responseHelper.Validacion<spGetPedido.Result, Pedido>(result);
+				if (validation.IsSuccess)
+				{
+					foreach (var item in validation.Data)
+					{
+						item.Proveedor = mapperHelper.Get<spGetPedido.Result, Proveedor>(result.FirstOrDefault(e => e.iIdProveedor == item.iIdProveedor));
+					}
+				}
+
+				return validation;
+			}
+			catch (Exception ex)
+			{
+				return Response<IEnumerable<Pedido>>.BadResult(ex.Message, new List<Pedido>());
+			}
+		}
+
 
 	}
 }

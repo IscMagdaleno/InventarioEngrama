@@ -1,6 +1,9 @@
 ﻿<MudNavMenu>
+
     <MudNavLink Href="" Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.Home">Home</MudNavLink>
-    <MudNavLink Href="PageCrudArticulos" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Add">Articulos</MudNavLink>
-    <MudNavLink Href="PageCrudProvedor" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Add">Provedores</MudNavLink>
-    <MudNavLink Href="PagePedidos" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Add">Pedidos</MudNavLink>
+            <MudNavGroup Title="Catalogos" Expanded="true">
+        <MudNavLink Href="PageCrudProvedor" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Warehouse">Provedores</MudNavLink>
+        <MudNavLink Href="PageCrudArticulos" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.AddBusiness">Articulos</MudNavLink>
+    </MudNavGroup>
+    <MudNavLink Href="PageGridPedidos" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.PostAdd">Lista Pedidos</MudNavLink>
 </MudNavMenu>

@@ -178,12 +178,25 @@ namespace InventarioEngrama.PWA.Areas.Inventario.Utiles
 		{
 			var APIUrl = url + "/PostGetPedidoDetalle";
 			var model = _mapper.Get<Pedido, PostGetPedidoDetalle>(PedidoSelected);
-			var response = await _httpService.Post<PostGetPedidoDetalle, Response<PedidoDetalle>>(APIUrl, model);
+			var response = await _httpService.Post<PostGetPedidoDetalle, Response<List<PedidoDetalle>>>(APIUrl, model);
 			var validacion = _validaServicioService.ValidadionServicio(response,
-			onSuccess: data => LstPedidosDetalle.Add(data));
+			onSuccess: data => LstPedidosDetalle = (data));
 			return validacion;
 
 		}
+
+		public async Task<SeverityMessage> PostGetPedido()
+		{
+			var APIUrl = url + "/PostGetPedido";
+
+			var model = _mapper.Get<Pedido, PostGetPedido>(PedidoSelected);
+			var response = await _httpService.Post<PostGetPedido, Response<List<Pedido>>>(APIUrl, model);
+			var validacion = _validaServicioService.ValidadionServicio(response,
+			onSuccess: data => LstPedidos = data);
+			return validacion;
+		}
+
+
 
 	}
 }

@@ -9,10 +9,9 @@ namespace InventarioEngrama.PWA.Areas.Inventario.Componentes
 	public partial class TablaPedidoDetalles : EngramaComponent
 	{
 		[Parameter] public MainInventario Data { get; set; }
+		[Parameter] public EventCallback OnDetallePedidoSelected { get; set; }
 
-
-		[Parameter]
-		public EventCallback OnDetallePedidoSelected { get; set; }
+		[Parameter] public bool ShowEdit { get; set; }
 		protected override async Task OnInitializedAsync()
 		{
 			Loading.Show();
@@ -23,8 +22,7 @@ namespace InventarioEngrama.PWA.Areas.Inventario.Componentes
 
 		private async Task OnClickRow(PedidoDetalle pedidoDetalle)
 		{
-
-			Data.ArticuloSelected = Data.LstArticulos.SingleOrDefault(e => e.iIdArticulo == pedidoDetalle.iIdArticulo);
+			Data.ArticuloSelected = Data.LstArticulos.FirstOrDefault(e => e.iIdArticulo == pedidoDetalle.iIdArticulo);
 			Data.PedidoDetalleSelected = pedidoDetalle;
 			await OnDetallePedidoSelected.InvokeAsync();
 		}

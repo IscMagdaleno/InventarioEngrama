@@ -1,0 +1,43 @@
+﻿@using InventarioEngrama.PWA.Areas.Inventario.Componentes
+@using InventarioEngrama.PWA.Shared.Common
+@inherits EngramaPage
+
+
+@page "/PageGridPedidos"
+
+
+
+<MudCard>
+	<MudCardHeader>
+		<CardHeaderContent>
+			<MudText Typo="Typo.h6">Pedidos</MudText>
+		</CardHeaderContent>
+		<CardHeaderActions>
+			@if (ShowNewProceso)
+			{
+				<MudButton Variant="Variant.Filled"
+						   Color="Color.Secondary" OnClick="OnClickCambiarPantalla">
+					Lista Procesos
+				</MudButton>
+			}
+			else
+			{
+				<MudButton Variant="Variant.Filled"
+						   Color="Color.Secondary" OnClick="OnClickCambiarPantalla">
+					Agregar nuevo Pedido
+				</MudButton>
+			}
+		</CardHeaderActions>
+	</MudCardHeader>
+	<MudCardContent>
+
+		@if (ShowNewProceso)
+		{
+			<ProcesoNuevoPedido Data="Data"></ProcesoNuevoPedido>
+		}
+		else
+		{
+			<ConsultaPedidos Data="Data" OnEditarPedido="OnClickCambiarPantalla"></ConsultaPedidos>
+		}
+	</MudCardContent>
+</MudCard>
