@@ -6,6 +6,8 @@ namespace InventarioEngrama.PWA.Areas.Inventario
 	public partial class PageCrudProvedor : EngramaPage
 	{
 		public MainInventario Data { get; set; }
+
+		public bool ShowForm { get; set; }
 		protected override void OnInitialized()
 		{
 			Data = new MainInventario(httpService, mapperHelper, validaServicioService);
@@ -16,6 +18,11 @@ namespace InventarioEngrama.PWA.Areas.Inventario
 		{
 			await Task.Delay(1);
 			StateHasChanged();
+		}
+
+		private async Task OnProveedorSelected()
+		{
+			ShowForm = true;
 		}
 
 	}

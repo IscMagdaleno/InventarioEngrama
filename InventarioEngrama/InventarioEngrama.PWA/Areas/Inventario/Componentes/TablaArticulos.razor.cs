@@ -1,5 +1,6 @@
 ﻿using InventarioEngrama.PWA.Areas.Inventario.Utiles;
 using InventarioEngrama.PWA.Shared.Common;
+using InventarioEngrama.Share.Objetos.Inventario;
 
 using Microsoft.AspNetCore.Components;
 
@@ -9,12 +10,21 @@ namespace InventarioEngrama.PWA.Areas.Inventario.Componentes
 	{
 
 		[Parameter] public MainInventario Data { get; set; }
+		[Parameter] public EventCallback OnArticuloSelected { get; set; }
 
 		protected override async Task OnInitializedAsync()
 		{
 			Loading.Show();
 			ShowSnake(await Data.PostGetArticulo());
 			Loading.Hide();
+		}
+
+
+		private async Task OnClickRow(Articulo articulo)
+		{
+
+			Data.ArticuloSelected = articulo;
+			await OnArticuloSelected.InvokeAsync();
 		}
 	}
 }

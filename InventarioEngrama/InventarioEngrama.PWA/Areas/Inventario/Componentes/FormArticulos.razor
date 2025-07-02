@@ -1,4 +1,5 @@
 ﻿@using InventarioEngrama.PWA.Shared.Common
+@using InventarioEngrama.Share.Objetos.Inventario
 
 @inherits EngramaComponent
 <EditForm Model="@Data.ArticuloSelected"
@@ -9,6 +10,17 @@
 
 		<MudGrid>
 			<MudItem sm="6">
+					<MudSelect T="Proveedor"
+							   Label="Proveedor"
+							   @bind-Value="Data.ProveedorSelected"
+							   Dense="true"
+							   Variant="Variant.Outlined">
+						@foreach (var p in Data.LstProveedores)
+						{
+							<MudSelectItem Value="@p">
+							</MudSelectItem>
+						}
+					</MudSelect>
 
 				<MudTextField @bind-Value="@Data.ArticuloSelected.nvchNombre"
 							  Label="Nombre"
@@ -25,12 +37,12 @@
 			</MudItem>
 			<MudItem sm="6">
 				<MudNumericField @bind-Value="Data.ArticuloSelected.mPrecioCompra"
-								 Label="PrecioCopra"
+								 Label="Precio Copra"
 								 Variant="Variant.Outlined" />
 
 
 				<MudNumericField @bind-Value="Data.ArticuloSelected.mPrecioVenta"
-								 Label="PrecioVenta"
+								 Label="Precio Venta"
 								 Variant="Variant.Outlined" />
 
 
@@ -38,8 +50,10 @@
 			<MudItem sm="12">
 				<MudButton Variant="Variant.Filled"
 						   ButtonType="ButtonType.Submit"
-						   Color="Color.Secondary">Save Articulo</MudButton>
+						   Color="Color.Success">Guardar</MudButton>
 			</MudItem>
+
+
 		</MudGrid>
 	</MudFocusTrap>
 </EditForm>

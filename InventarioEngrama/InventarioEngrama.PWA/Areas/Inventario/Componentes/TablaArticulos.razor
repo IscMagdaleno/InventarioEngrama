@@ -9,23 +9,23 @@
 		  Hover="true"
 		  Filter="new Func<Articulo,bool>(FilterFunc1)">
 	<ToolBarContent>
-		<MudText Typo="Typo.h6">Tabla de Articulo</MudText>
-		<MudSpacer />
 		<MudTextField @bind-Value="searchStringFiltro" Placeholder="Search" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
 	</ToolBarContent>
 	<HeaderContent>
-		<MudTh>IdArtculo</MudTh>
 		<MudTh>Nombre</MudTh>
 		<MudTh>Codigo</MudTh>
 		<MudTh>Precio Compra</MudTh>
 		<MudTh>Precio Venta</MudTh>
+		<MudTh></MudTh>
 	</HeaderContent>
 	<RowTemplate>
-		<MudTd DataLabel="iIdArticulo">@context.iIdArticulo</MudTd>
 		<MudTd DataLabel="nvchNombre">@context.nvchNombre</MudTd>
 		<MudTd DataLabel="vchCodigo">@context.vchCodigo</MudTd>
 		<MudTd DataLabel="mPrecioCompra">@context.mPrecioCompra</MudTd>
 		<MudTd DataLabel="mPrecioVenta">@context.mPrecioVenta</MudTd>
+		<MudTd DataLabel="mPrecioVenta">
+			<MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="@(()=>OnClickRow(context))">Editar</MudButton>
+		</MudTd>
 	</RowTemplate>
 	<PagerContent>
 		<MudTablePager />

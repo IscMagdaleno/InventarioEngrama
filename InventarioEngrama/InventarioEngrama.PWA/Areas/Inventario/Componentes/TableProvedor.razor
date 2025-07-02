@@ -8,21 +8,21 @@
 		  Hover="true"
 		  Filter="new Func<Proveedor,bool>(FilterFunc1)">
 	<ToolBarContent>
-		<MudText Typo="Typo.h6">Tabla de Proveedor</MudText>
-		<MudSpacer />
-		<MudTextField @bind-Value="searchStringFiltro" Placeholder="Search" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
+		<MudTextField @bind-Value="searchStringFiltro" Placeholder="Buscar" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
 	</ToolBarContent>
 	<HeaderContent>
-		<MudTh>IdProveedor</MudTh>
 		<MudTh>Nombre</MudTh>
 		<MudTh>Telefono</MudTh>
 		<MudTh>Direccion</MudTh>
+		<MudTh></MudTh>
 	</HeaderContent>
 	<RowTemplate>
-		<MudTd DataLabel="iIdProveedor">@context.iIdProveedor</MudTd>
 		<MudTd DataLabel="nvchNombre">@context.nvchNombre</MudTd>
 		<MudTd DataLabel="vchTelefono">@context.vchTelefono</MudTd>
 		<MudTd DataLabel="nvchDireccion">@context.nvchDireccion</MudTd>
+		<MudTd DataLabel="Editar">
+			<MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="@(()=>OnClickRow(context))">Editar</MudButton>
+		</MudTd>
 	</RowTemplate>
 	<PagerContent>
 		<MudTablePager />

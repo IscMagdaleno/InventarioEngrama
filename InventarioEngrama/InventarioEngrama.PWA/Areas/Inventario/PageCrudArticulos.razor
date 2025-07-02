@@ -13,12 +13,12 @@
 
 	</MudCardHeader>
 	<MudCardContent>
-        <MudExpansionPanels MultiExpansion="true">
-            <MudExpansionPanel Text="Formulario">
+        <MudExpansionPanels MultiExpansion="true" >
+            <MudExpansionPanel Text="Formulario" Expanded="ShowForm">
                 <FormArticulos Data="Data" OnDataSaved="OnDataSaved"></FormArticulos>
             </MudExpansionPanel>
-            <MudExpansionPanel Text="Lista Articulos">
-                <TablaArticulos Data="Data"></TablaArticulos>
+            <MudExpansionPanel Text="Lista Articulos" Expanded="true">
+                <TablaArticulos Data="Data" OnArticuloSelected="OnArticuloSelected"></TablaArticulos>
             </MudExpansionPanel>
            
         </MudExpansionPanels>

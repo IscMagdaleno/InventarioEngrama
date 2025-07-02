@@ -30,5 +30,11 @@ namespace InventarioEngrama.PWA.Areas.Inventario.Componentes
 			await Task.Delay(1);
 			StateHasChanged();
 		}
+
+		private async Task OnDetallePedidoSelected()
+		{
+			await Task.Delay(1);
+			StateHasChanged();
+		}
 	}
 }

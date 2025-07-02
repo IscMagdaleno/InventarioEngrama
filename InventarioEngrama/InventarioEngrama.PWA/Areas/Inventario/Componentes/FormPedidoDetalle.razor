@@ -12,7 +12,7 @@
 		<MudGrid>
 			<MudItem sm="3">
 				<MudSelect T="Articulo"
-						   Label="Aarticulos"
+						   Label="Articulos"
 						   @bind-Value="Data.ArticuloSelected"
 						   Dense="true"
 						   Variant="Variant.Outlined">
@@ -24,14 +24,14 @@
 			</MudItem>
 			<MudItem sm="3">
 				<MudNumericField @bind-Value="Data.PedidoDetalleSelected.smCantidad"
-								 Label="smCantidad"
+								 Label="Cantidad"
 								 Variant="Variant.Outlined" />
 			</MudItem>
 
 			<MudItem sm="3">
 
 				<MudNumericField @bind-Value="Data.PedidoDetalleSelected.mPrecioUnitario"
-								 Label="PrecioUnitario"
+								 Label="Precio Unitario"
 								 Variant="Variant.Outlined" />
 
 
@@ -40,7 +40,7 @@
 				<MudButton Variant="Variant.Filled"
 				Class="mt-4"
 						   ButtonType="ButtonType.Submit"
-						   Color="Color.Secondary">Save PedidoDetalle</MudButton>
+						   Color="Color.Success">Guardar</MudButton>
 			</MudItem>
 		</MudGrid>
 	</MudFocusTrap>

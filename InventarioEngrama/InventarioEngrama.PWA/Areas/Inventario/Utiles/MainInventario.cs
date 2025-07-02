@@ -50,12 +50,23 @@ namespace InventarioEngrama.PWA.Areas.Inventario.Utiles
 
 		public async Task<SeverityMessage> PostSaveArticulo()
 		{
+			ArticuloSelected.iIdProveedor = ProveedorSelected.iIdProveedor;
 			var APIUrl = url + "/PostSaveArticulo";
 			var model = _mapper.Get<Articulo, PostSaveArticulo>(ArticuloSelected);
 			var response = await _httpService.Post<PostSaveArticulo, Response<Articulo>>(APIUrl, model);
 			var validacion = _validaServicioService.ValidadionServicio(response,
-			onSuccess: data => LstArticulos.Add(data));
+			onSuccess: data => AfterSaveArticulo(data));
 			return validacion;
+
+		}
+		private void AfterSaveArticulo(Articulo data)
+		{
+			if (ArticuloSelected.iIdArticulo <= 0)
+			{
+				LstArticulos.Add(data);
+			}
+
+			ArticuloSelected = new Articulo();
 
 		}
 
@@ -70,16 +81,33 @@ namespace InventarioEngrama.PWA.Areas.Inventario.Utiles
 			return validacion;
 		}
 
+		public void FilterArticuloByProvedor()
+		{
+			LstArticulos = LstArticulos.Where(e => e.iIdProveedor == ProveedorSelected.iIdProveedor).ToList();
+
+		}
+
 		public async Task<SeverityMessage> PostSaveProveedor()
 		{
 			var APIUrl = url + "/PostSaveProveedor";
 			var model = _mapper.Get<Proveedor, PostSaveProveedor>(ProveedorSelected);
 			var response = await _httpService.Post<PostSaveProveedor, Response<Proveedor>>(APIUrl, model);
 			var validacion = _validaServicioService.ValidadionServicio(response,
-			onSuccess: data => LstProveedores.Add(data));
+			onSuccess: data => AfterSaveProveedor(data));
 			return validacion;
 
 		}
+
+		private void AfterSaveProveedor(Proveedor data)
+		{
+			if (ProveedorSelected.iIdProveedor <= 0)
+			{
+				LstProveedores.Add(data);
+			}
+
+			ProveedorSelected = new Proveedor();
+		}
+
 		public async Task<SeverityMessage> PostGetProveedor()
 		{
 			var APIUrl = url + "/PostGetProveedor";
@@ -134,8 +162,12 @@ namespace InventarioEngrama.PWA.Areas.Inventario.Utiles
 
 		private void AfterSavePedidoDetalle(PedidoDetalle data)
 		{
-			PedidoDetalleSelected.iIdPedidoDetalle = data.iIdPedidoDetalle;
-			LstPedidosDetalle.Add(PedidoDetalleSelected);
+			if (PedidoDetalleSelected.iIdPedidoDetalle <= 0)
+			{
+				PedidoDetalleSelected.iIdPedidoDetalle = data.iIdPedidoDetalle;
+				LstPedidosDetalle.Add(PedidoDetalleSelected);
+			}
+
 
 			ArticuloSelected = new Articulo();
 			PedidoDetalleSelected = new PedidoDetalle();

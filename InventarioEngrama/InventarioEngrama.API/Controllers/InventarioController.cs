@@ -103,6 +103,7 @@ namespace InventarioEngrama.API.Controllers
 
 		/// <summary>
 		/// Agregar un detalle de pedido a la base de datos
+		/// 
 		/// </summary>
 		/// <param name="postModel"></param>
 		/// <returns></returns>

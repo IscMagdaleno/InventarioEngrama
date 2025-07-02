@@ -13,16 +13,20 @@
 		<MudTextField @bind-Value="searchStringFiltro" Placeholder="Search" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
 	</ToolBarContent>
 	<HeaderContent>
-		<MudTh>IdPeddoDetalle</MudTh>
 		<MudTh>Nombre Articulo</MudTh>
 		<MudTh>Precio Unitario</MudTh>
 		<MudTh>Cantidad</MudTh>
+		<MudTh></MudTh>
 	</HeaderContent>
 	<RowTemplate>
 		<MudTd DataLabel="iIdPedidoDetalle">@context.iIdPedidoDetalle</MudTd>
 		<MudTd DataLabel="nvchNombre">@context.Articulo.nvchNombre</MudTd>
 		<MudTd DataLabel="mPrecioUnitario">@context.mPrecioUnitario</MudTd>
 		<MudTd DataLabel="smCantidad">@context.smCantidad</MudTd>
+		<MudTd DataLabel="Editar">
+			<MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="@(()=>OnClickRow(context))">Editar</MudButton>
+
+		</MudTd>
 	</RowTemplate>
 	<PagerContent>
 		<MudTablePager />

@@ -8,6 +8,7 @@ namespace InventarioEngrama.Share.Entity.Inventario
 		{
 			public string StoredProcedure { get => "spSaveArticulo"; }
 			public int iIdArticulo { get; set; }
+			public int iIdProveedor { get; set; }
 			public string nvchNombre { get; set; }
 			public string vchCodigo { get; set; }
 			public decimal mPrecioCompra { get; set; }

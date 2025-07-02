@@ -16,11 +16,11 @@
 	</MudCardHeader>
 	<MudCardContent>
         <MudExpansionPanels MultiExpansion="true">
-            <MudExpansionPanel Text="Formulario">
+            <MudExpansionPanel Text="Formulario" Expanded="@ShowForm">
                 <FormProvedores Data="Data" OnSaveProvedor="OnDataSaved"></FormProvedores>
             </MudExpansionPanel>
-            <MudExpansionPanel Text="Lista Provedores">
-                <TableProvedor Data="Data"></TableProvedor>
+            <MudExpansionPanel Text="Lista Provedores" Expanded="true">
+                <TableProvedor Data="Data" OnProveedorSelected="OnProveedorSelected"></TableProvedor>
             </MudExpansionPanel>
            
         </MudExpansionPanels>
