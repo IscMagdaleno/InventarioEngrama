@@ -10,11 +10,12 @@ namespace InventarioEngrama.PWA.Areas.InventarioArea.Componentes
 		[Parameter]
 		public MainInventario Data { get; set; }
 
-		protected override async Task OnInitializedAsync()
+		protected override void OnInitialized()
 		{
-			Loading.Show();
-			ShowSnake(await Data.PostGetProveedor());
-			Loading.Hide();
+			if (Data.PedidoSelected.iIdPedido > 0)
+			{
+				Data.ProveedorSelected = Data.PedidoSelected.Proveedor;
+			}
 		}
 
 		private async Task OnDataSaved()

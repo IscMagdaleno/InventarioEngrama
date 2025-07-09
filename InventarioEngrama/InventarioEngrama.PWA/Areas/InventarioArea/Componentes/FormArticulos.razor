@@ -10,29 +10,23 @@
 
 		<MudGrid>
 			<MudItem sm="6">
-					<MudSelect T="Proveedor"
-							   Label="Proveedor"
-							   @bind-Value="Data.ProveedorSelected"
-							   Dense="true"
-							   Variant="Variant.Outlined">
-						@foreach (var p in Data.LstProveedores)
-						{
-							<MudSelectItem Value="@p">
-							</MudSelectItem>
-						}
-					</MudSelect>
-
+				<MudSelect T="Proveedor"
+						   Label="Proveedor"
+						   @bind-Value="Data.ProveedorSelected"
+						   Dense="true"
+						   Variant="Variant.Outlined">
+					@foreach (var p in Data.LstProveedores)
+					{
+						<MudSelectItem Value="@p">
+						</MudSelectItem>
+					}
+				</MudSelect>
+			</MudItem>
+			<MudItem sm="6">
 				<MudTextField @bind-Value="@Data.ArticuloSelected.nvchNombre"
 							  Label="Nombre"
 							  MaxLength="200"
 							  Variant="Variant.Outlined" />
-
-
-				<MudTextField @bind-Value="@Data.ArticuloSelected.vchCodigo"
-							  Label="Codigo"
-							  MaxLength="50"
-							  Variant="Variant.Outlined" />
-
 
 			</MudItem>
 			<MudItem sm="6">
@@ -40,7 +34,8 @@
 								 Label="Precio Copra"
 								 Variant="Variant.Outlined" />
 
-
+			</MudItem>
+			<MudItem sm="6">
 				<MudNumericField @bind-Value="Data.ArticuloSelected.mPrecioVenta"
 								 Label="Precio Venta"
 								 Variant="Variant.Outlined" />
@@ -48,9 +43,17 @@
 
 			</MudItem>
 			<MudItem sm="12">
+				<MudTextField @bind-Value="@Data.ArticuloSelected.nvchDescripcion"
+							  Label="Codigo"
+							  MaxLength="50"
+							  Variant="Variant.Outlined" />
+
+
+			</MudItem>
+			<MudItem sm="12">
 				<MudButton Variant="Variant.Filled"
 						   ButtonType="ButtonType.Submit"
-						   Color="Color.Success">Guardar</MudButton>
+						   Color="Color.Success">Guardar Articulo</MudButton>
 			</MudItem>
 
 

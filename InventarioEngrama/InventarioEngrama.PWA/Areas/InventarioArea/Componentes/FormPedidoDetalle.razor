@@ -1,49 +1,91 @@
 ﻿@using InventarioEngrama.Share.Objetos.Inventario
 @inherits EngramaComponent
 
+<MudCard>
+	<MudCardContent>
+
+		<EditForm Model="@Data.PedidoDetalleSelected"
+				  OnValidSubmit="OnSubmint">
+			<DataAnnotationsValidator />
+
+			<MudFocusTrap>
+
+				<MudGrid>
+					<MudItem sm="12">
 
 
-<EditForm Model="@Data.PedidoDetalleSelected"
-		  OnValidSubmit="OnSubmint">
-	<DataAnnotationsValidator />
-
-	<MudFocusTrap>
-
-		<MudGrid>
-			<MudItem sm="3">
-				<MudSelect T="Articulo"
-						   Label="Articulos"
-						   @bind-Value="Data.ArticuloSelected"
-						   Dense="true"
-						   Variant="Variant.Outlined">
-					@foreach (var p in Data.LstArticulos)
-					{
-						<MudSelectItem Value="@p"></MudSelectItem>
-					}
-				</MudSelect>
-			</MudItem>
-			<MudItem sm="3">
-				<MudNumericField @bind-Value="Data.PedidoDetalleSelected.smCantidad"
-								 Label="Cantidad"
-								 Variant="Variant.Outlined" />
-			</MudItem>
-
-			<MudItem sm="3">
-
-				<MudNumericField @bind-Value="Data.PedidoDetalleSelected.mPrecioUnitario"
-								 Label="Precio Unitario"
-								 Variant="Variant.Outlined" />
 
 
-			</MudItem>
-			<MudItem sm="3">
-				<MudButton Variant="Variant.Filled"
-				Class="mt-4"
-						   ButtonType="ButtonType.Submit"
-						   Color="Color.Success">Guardar</MudButton>
-			</MudItem>
-		</MudGrid>
-	</MudFocusTrap>
-</EditForm>
+
+						@if (ShowFormProducto.False())
+						{
+							<MudGrid>
+								<MudItem sm="5">
+									<MudButton Variant="Variant.Filled"
+											   Color="Color.Success"
+											   OnClick="OnClickAddArticulo">
+										Nuevo Producto
+									</MudButton>
+									<MudSelect T="Articulo"
+											   Label="Articulos"
+											   @bind-Value="Data.ArticuloSelected"
+											   Dense="true"
+											   Variant="Variant.Outlined">
+										@foreach (var p in Data.LstArticulos)
+										{
+											<MudSelectItem Value="@p"></MudSelectItem>
+										}
+									</MudSelect>
+								</MudItem>
+
+								@if (Data.ArticuloSelected.iIdArticulo > 0)
+								{
+									<MudItem sm="7">
+										<CardArticulo Articulo="@Data.ArticuloSelected"></CardArticulo>
+									</MudItem>
+								}
+
+							</MudGrid>
 
 
+
+						}
+						else
+						{
+							<MudButton Variant="Variant.Filled"
+									   Color="Color.Secondary"
+									   OnClick="OnClickAddArticulo">
+								Ocultar Formulario
+							</MudButton>
+							<FormArticulos Data="Data" OnDataSaved="OnDataArticuloSaved"></FormArticulos>
+
+						}
+
+					</MudItem>
+					<MudItem sm="3">
+						<MudNumericField @bind-Value="Data.PedidoDetalleSelected.smCantidad"
+										 Label="Cantidad"
+										 Variant="Variant.Outlined" />
+					</MudItem>
+
+					<MudItem sm="3">
+
+						<MudNumericField @bind-Value="Data.PedidoDetalleSelected.mPrecioUnitario"
+										 Label="Precio Unitario"
+										 Variant="Variant.Outlined" />
+
+
+					</MudItem>
+					<MudItem sm="3">
+						<MudButton Variant="Variant.Filled"
+								   Class="mt-4"
+								   ButtonType="ButtonType.Submit"
+								   Color="Color.Success">Agregar al Pedido</MudButton>
+					</MudItem>
+				</MudGrid>
+			</MudFocusTrap>
+		</EditForm>
+
+
+	</MudCardContent>
+</MudCard>

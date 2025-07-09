@@ -25,30 +25,25 @@
 				<MudTextField @bind-Value="searchStringFiltro" Placeholder="Search" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
 			</ToolBarContent>
 			<HeaderContent>
-				<MudTh>IdInventaro</MudTh>
-				<MudTh>IdArtculo</MudTh>
-				<MudTh>smCantidad</MudTh>
-				<MudTh>nvchNombreArticulo</MudTh>
-				<MudTh>Codigo</MudTh>
-				<MudTh>PrecioCopra</MudTh>
-				<MudTh>PrecioVenta</MudTh>
-				<MudTh>IdProveedor</MudTh>
+
+				<MudTh>Nombre Articulo</MudTh>
+				<MudTh>Cantidad</MudTh>
+				<MudTh>Descripción</MudTh>
+				<MudTh>Precio Copra</MudTh>
+				<MudTh>Precio Venta</MudTh>
 				<MudTh>nvchNombreProveedor</MudTh>
 				<MudTh>Telefono</MudTh>
 				<MudTh>nvchDireccion</MudTh>
 			</HeaderContent>
 			<RowTemplate>
-				<MudTd DataLabel="iIdInventario">@context.iIdInventario</MudTd>
-				<MudTd DataLabel="iIdArticulo">@context.iIdArticulo</MudTd>
-				<MudTd DataLabel="smCantidad">@context.smCantidad</MudTd>
+
 				<MudTd DataLabel="nvchNombreArticulo">@context.Articulo.nvchNombre</MudTd>
-				<MudTd DataLabel="vchCodigo">@context.Articulo.vchCodigo</MudTd>
+				<MudTd DataLabel="smCantidad">@context.smCantidad</MudTd>
+				<MudTd DataLabel="vchCodigo">@context.Articulo.nvchDescripcion</MudTd>
 				<MudTd DataLabel="mPrecioCompra">@context.Articulo.mPrecioCompra</MudTd>
 				<MudTd DataLabel="mPrecioVenta">@context.Articulo.mPrecioVenta</MudTd>
-				<MudTd DataLabel="iIdProveedor">@context.Articulo.iIdProveedor</MudTd>
 				<MudTd DataLabel="nvchNombreProveedor">@context.Articulo.Proveedor.nvchNombre</MudTd>
-				<MudTd DataLabel="vchTelefono">@context.Articulo.Proveedor.vchTelefono</MudTd>
-				<MudTd DataLabel="nvchDireccion">@context.Articulo.Proveedor.nvchDireccion</MudTd>
+
 			</RowTemplate>
 			<PagerContent>
 				<MudTablePager />
