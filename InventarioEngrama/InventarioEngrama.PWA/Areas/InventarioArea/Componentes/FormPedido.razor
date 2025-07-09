@@ -1,0 +1,47 @@
+﻿@using InventarioEngrama.Share.Objetos.Inventario
+@inherits EngramaComponent
+
+<EditForm Model="@Data.PedidoSelected"
+		  OnValidSubmit="OnSubmint">
+	<DataAnnotationsValidator />
+
+	<MudFocusTrap>
+
+		<MudGrid>
+			<MudItem sm="6">
+
+				<MudSelect T="Proveedor"
+						   Label="Proveedor"
+						   @bind-Value="Data.ProveedorSelected"
+						   Dense="true"
+						   Variant="Variant.Outlined">
+					@foreach (var p in Data.LstProveedores)
+					{
+						<MudSelectItem Value="@p">
+						</MudSelectItem>
+					}
+				</MudSelect>
+
+
+			</MudItem>
+			<MudItem sm="6">
+				<MudTextField @bind-Value="@Data.PedidoSelected.nvchDescripcion"
+							  Label="Descripcion"
+							  MaxLength="3000"
+							  Variant="Variant.Outlined" />
+
+				<MudNumericField @bind-Value="Data.PedidoSelected.mEnvio"
+								 Label="Envio"
+								 Variant="Variant.Outlined" />
+
+
+			</MudItem>
+			<MudItem sm="12">
+				<MudButton Variant="Variant.Filled"
+						   ButtonType="ButtonType.Submit"
+						   Color="Color.Secondary">Save Pedido</MudButton>
+			</MudItem>
+		</MudGrid>
+	</MudFocusTrap>
+</EditForm>
+

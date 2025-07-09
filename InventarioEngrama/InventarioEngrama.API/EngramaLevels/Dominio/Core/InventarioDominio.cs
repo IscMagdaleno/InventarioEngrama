@@ -158,7 +158,7 @@ namespace InventarioEngrama.API.EngramaLevels.Dominio.Core
 
 					foreach (var item in validation.Data)
 					{
-						item.Articulo = mapperHelper.Get<spGetPedidoDetalle.Result, Articulo>(result.FirstOrDefault(e => e.iIdArticulo == item.iIdArticulo));
+						item.Articulo = mapperHelper.Get<spGetPedidoDetalle.Result, Articulo>(result.FirstOrDefault(e => e.iIdPedidoDetalle == item.iIdPedidoDetalle));
 					}
 				}
 
@@ -181,7 +181,7 @@ namespace InventarioEngrama.API.EngramaLevels.Dominio.Core
 				{
 					foreach (var item in validation.Data)
 					{
-						item.Proveedor = mapperHelper.Get<spGetPedido.Result, Proveedor>(result.FirstOrDefault(e => e.iIdProveedor == item.iIdProveedor));
+						item.Proveedor = mapperHelper.Get<spGetPedido.Result, Proveedor>(result.FirstOrDefault(e => e.iIdPedido == item.iIdPedido));
 					}
 				}
 
@@ -192,6 +192,34 @@ namespace InventarioEngrama.API.EngramaLevels.Dominio.Core
 				return Response<IEnumerable<Pedido>>.BadResult(ex.Message, new List<Pedido>());
 			}
 		}
+
+
+		public async Task<Response<IEnumerable<InventarioArticulos>>> GetInventario(PostGetInventario PostModel)
+		{
+			try
+			{
+				var model = mapperHelper.Get<PostGetInventario, spGetInventario.Request>(PostModel);
+				var result = await inventarioRepository.spGetInventario(model);
+				var validation = responseHelper.Validacion<spGetInventario.Result, InventarioArticulos>(result);
+				if (validation.IsSuccess)
+				{
+					foreach (var item in validation.Data)
+					{
+						var row = result.FirstOrDefault(e => e.iIdInventario == item.iIdInventario);
+						item.Articulo = mapperHelper.Get<spGetInventario.Result, Articulo>(row);
+						item.Articulo.nvchNombre = row.nvchNombreArticulo;
+						item.Articulo.Proveedor = mapperHelper.Get<spGetInventario.Result, Proveedor>(row);
+						item.Articulo.Proveedor.nvchNombre = row.nvchNombreProveedor;
+					}
+				}
+				return validation;
+			}
+			catch (Exception ex)
+			{
+				return Response<IEnumerable<InventarioArticulos>>.BadResult(ex.Message, new List<InventarioArticulos>());
+			}
+		}
+
 
 
 	}

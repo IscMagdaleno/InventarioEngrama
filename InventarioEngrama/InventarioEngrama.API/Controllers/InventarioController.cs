@@ -151,5 +151,22 @@ namespace InventarioEngrama.API.Controllers
 			return BadRequest(result);
 		}
 
+		/// <summary>
+		/// Consulta los articulos con existencia en el inventario
+		/// </summary>
+		/// <param name="postModel"></param>
+		/// <returns></returns>
+		[HttpPost("PostGetInventario")]
+		public async Task<IActionResult> PostGetInventario([FromBody] PostGetInventario postModel)
+		{
+			var result = await inventarioDominio.GetInventario(postModel);
+			if (result.IsSuccess)
+			{
+				return Ok(result);
+			}
+			return BadRequest(result);
+		}
+
+
 	}
 }

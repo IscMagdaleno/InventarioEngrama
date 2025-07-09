@@ -1,9 +1,9 @@
 ﻿using EngramaCoreStandar.Extensions;
 
-using InventarioEngrama.PWA.Areas.Inventario.Utiles;
+using InventarioEngrama.PWA.Areas.InventarioArea.Utiles;
 using InventarioEngrama.PWA.Shared.Common;
 
-namespace InventarioEngrama.PWA.Areas.Inventario
+namespace InventarioEngrama.PWA.Areas.InventarioArea
 {
 	public partial class PageGridPedidos : EngramaPage
 	{

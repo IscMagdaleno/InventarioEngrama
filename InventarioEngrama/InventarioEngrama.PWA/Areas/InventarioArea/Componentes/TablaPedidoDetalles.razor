@@ -1,4 +1,4 @@
-﻿@using InventarioEngrama.PWA.Areas.Inventario.Utiles
+﻿@using InventarioEngrama.PWA.Areas.InventarioArea.Utiles
 @using InventarioEngrama.Share.Objetos.Inventario
 @inherits EngramaComponent
 
@@ -14,8 +14,8 @@
 	</ToolBarContent>
 	<HeaderContent>
 		<MudTh>Nombre Articulo</MudTh>
-		<MudTh>Precio Unitario</MudTh>
 		<MudTh>Cantidad</MudTh>
+		<MudTh>Precio Unitario</MudTh>
 		@if (ShowEdit)
 		{
 			<MudTh></MudTh>
@@ -23,8 +23,8 @@
 	</HeaderContent>
 	<RowTemplate>
 		<MudTd DataLabel="nvchNombre">@context.Articulo.nvchNombre</MudTd>
-		<MudTd DataLabel="mPrecioUnitario">@context.mPrecioUnitario</MudTd>
 		<MudTd DataLabel="smCantidad">@context.smCantidad</MudTd>
+		<MudTd DataLabel="mPrecioUnitario">@context.mPrecioUnitario</MudTd>
 		@if (ShowEdit)
 		{
 

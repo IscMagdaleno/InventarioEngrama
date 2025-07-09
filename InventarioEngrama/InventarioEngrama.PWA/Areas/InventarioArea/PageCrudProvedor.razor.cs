@@ -1,9 +1,9 @@
-﻿using InventarioEngrama.PWA.Areas.Inventario.Utiles;
+﻿using InventarioEngrama.PWA.Areas.InventarioArea.Utiles;
 using InventarioEngrama.PWA.Shared.Common;
 
-namespace InventarioEngrama.PWA.Areas.Inventario
+namespace InventarioEngrama.PWA.Areas.InventarioArea
 {
-	public partial class PageCrudArticulos : EngramaPage
+	public partial class PageCrudProvedor : EngramaPage
 	{
 		public MainInventario Data { get; set; }
 
@@ -11,7 +11,6 @@ namespace InventarioEngrama.PWA.Areas.Inventario
 		protected override void OnInitialized()
 		{
 			Data = new MainInventario(httpService, mapperHelper, validaServicioService);
-			ShowForm = false;
 		}
 
 
@@ -21,11 +20,10 @@ namespace InventarioEngrama.PWA.Areas.Inventario
 			StateHasChanged();
 		}
 
-
-		private async Task OnArticuloSelected()
+		private async Task OnProveedorSelected()
 		{
 			ShowForm = true;
 		}
-	}
 
+	}
 }

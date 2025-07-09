@@ -8,6 +8,7 @@ namespace InventarioEngrama.API.EngramaLevels.Dominio.Interfaces
 	public interface IInventarioDominio
 	{
 		Task<Response<IEnumerable<Articulo>>> GetArticulo(PostGetArticulo PostModel);
+		Task<Response<IEnumerable<InventarioArticulos>>> GetInventario(PostGetInventario PostModel);
 		Task<Response<IEnumerable<Pedido>>> GetPedido(PostGetPedido PostModel);
 		Task<Response<IEnumerable<PedidoDetalle>>> GetPedidoDetalle(PostGetPedidoDetalle PostModel);
 		Task<Response<IEnumerable<Proveedor>>> GetProveedor(PostGetProveedor PostModel);

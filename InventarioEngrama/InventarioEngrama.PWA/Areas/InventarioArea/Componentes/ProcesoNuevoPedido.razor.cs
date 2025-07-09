@@ -1,9 +1,9 @@
-﻿using InventarioEngrama.PWA.Areas.Inventario.Utiles;
+﻿using InventarioEngrama.PWA.Areas.InventarioArea.Utiles;
 using InventarioEngrama.PWA.Shared.Common;
 
 using Microsoft.AspNetCore.Components;
 
-namespace InventarioEngrama.PWA.Areas.Inventario.Componentes
+namespace InventarioEngrama.PWA.Areas.InventarioArea.Componentes
 {
 	public partial class ProcesoNuevoPedido : EngramaComponent
 	{
@@ -17,10 +17,11 @@ namespace InventarioEngrama.PWA.Areas.Inventario.Componentes
 			Loading.Hide();
 		}
 
-		private async Task OnCrearNuevoPedido()
+		private async Task OnDataSaved()
 		{
 			Loading.Show();
-			ShowSnake(await Data.PostSavePedido());
+			await Task.Delay(1);
+			StateHasChanged();
 			Loading.Hide();
 		}
 

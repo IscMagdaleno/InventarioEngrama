@@ -8,12 +8,17 @@
 		public string vchCodigo { get; set; }
 		public decimal mPrecioCompra { get; set; }
 		public decimal mPrecioVenta { get; set; }
+		public Proveedor Proveedor { get; set; }
 
 		public Articulo()
 		{
 			nvchNombre = string.Empty;
 			vchCodigo = string.Empty;
+			Proveedor = new Proveedor();
 		}
+
+
+
 		// Note: this is important so the select can compare pizzas
 		public override bool Equals(object o)
 		{

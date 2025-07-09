@@ -3,6 +3,7 @@ using EngramaCoreStandar.Extensions;
 
 using InventarioEngrama.API.EngramaLevels.Infrastructure.Interfaces;
 using InventarioEngrama.Share.Entity.Inventario;
+using InventarioEngrama.Share.PostClass.Inventario;
 
 namespace InventarioEngrama.API.EngramaLevels.Infrastructure.Repository
 {
@@ -94,6 +95,16 @@ namespace InventarioEngrama.API.EngramaLevels.Infrastructure.Repository
 				return result.Data;
 			}
 			return new List<spGetPedido.Result>() { new() { bResult = false, vchMessage = $"[{(result.Ex.NotNull() ? result.Ex.Message : "")}] - [{result.Msg}]" } };
+		}
+
+		public async Task<IEnumerable<spGetInventario.Result>> spGetInventario(spGetInventario.Request PostModel)
+		{
+			var result = await _managerHelper.GetAllAsync<spGetInventario.Result, spGetInventario.Request>(PostModel);
+			if (result.Ok)
+			{
+				return result.Data;
+			}
+			return new List<spGetInventario.Result>() { new() { bResult = false, vchMessage = $"[{(result.Ex.NotNull() ? result.Ex.Message : "")}] - [{result.Msg}]" } };
 		}
 
 	}

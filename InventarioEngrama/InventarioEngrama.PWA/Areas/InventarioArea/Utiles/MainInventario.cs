@@ -6,7 +6,7 @@ using EngramaCoreStandar.Servicios;
 using InventarioEngrama.Share.Objetos.Inventario;
 using InventarioEngrama.Share.PostClass.Inventario;
 
-namespace InventarioEngrama.PWA.Areas.Inventario.Utiles
+namespace InventarioEngrama.PWA.Areas.InventarioArea.Utiles
 {
 	public class MainInventario
 	{
@@ -28,6 +28,9 @@ namespace InventarioEngrama.PWA.Areas.Inventario.Utiles
 		public Articulo ArticuloSelected { get; set; }
 		public IList<Articulo> LstArticulos { get; set; }
 
+		public IList<InventarioArticulos> LstArticulosInventario { get; set; }
+
+
 		public MainInventario(IHttpService httpService, MapperHelper mapper, IValidaServicioService validaServicioService)
 		{
 			_httpService = httpService;
@@ -45,6 +48,8 @@ namespace InventarioEngrama.PWA.Areas.Inventario.Utiles
 			PedidoDetalleSelected = new PedidoDetalle();
 			LstPedidos = new List<Pedido>();
 			LstPedidosDetalle = new List<PedidoDetalle>();
+
+			LstArticulosInventario = new List<InventarioArticulos>();
 		}
 
 
@@ -124,7 +129,8 @@ namespace InventarioEngrama.PWA.Areas.Inventario.Utiles
 		public async Task<SeverityMessage> PostSavePedido()
 		{
 			var APIUrl = url + "/PostSavePedido";
-			var model = _mapper.Get<Proveedor, PostSavePedido>(ProveedorSelected);
+			PedidoSelected.iIdProveedor = ProveedorSelected.iIdProveedor;
+			var model = _mapper.Get<Pedido, PostSavePedido>(PedidoSelected);
 			var response = await _httpService.Post<PostSavePedido, Response<Pedido>>(APIUrl, model);
 			var validacion = _validaServicioService.ValidadionServicio(response,
 			onSuccess: data => AfterSavePedido(data));
@@ -193,6 +199,17 @@ namespace InventarioEngrama.PWA.Areas.Inventario.Utiles
 			var response = await _httpService.Post<PostGetPedido, Response<List<Pedido>>>(APIUrl, model);
 			var validacion = _validaServicioService.ValidadionServicio(response,
 			onSuccess: data => LstPedidos = data);
+			return validacion;
+		}
+
+		public async Task<SeverityMessage> PostGetInventario()
+		{
+			var APIUrl = url + "/PostGetInventario";
+
+			var model = new PostGetInventario();
+			var response = await _httpService.Post<PostGetInventario, Response<List<InventarioArticulos>>>(APIUrl, model);
+			var validacion = _validaServicioService.ValidadionServicio(response,
+			onSuccess: data => LstArticulosInventario = data);
 			return validacion;
 		}
 

@@ -7,7 +7,10 @@ namespace InventarioEngrama.Share.Entity.Inventario
 		public class Request : SpRequest
 		{
 			public string StoredProcedure { get => "spSavePedido"; }
+			public int iIdPedido { get; set; }
 			public int iIdProveedor { get; set; }
+			public string nvchDescripcion { get; set; }
+			public decimal mEnvio { get; set; }
 		}
 		public class Result : DbResult
 		{
@@ -16,5 +19,6 @@ namespace InventarioEngrama.Share.Entity.Inventario
 			public int iIdPedido { get; set; }
 		}
 	}
+
 
 }

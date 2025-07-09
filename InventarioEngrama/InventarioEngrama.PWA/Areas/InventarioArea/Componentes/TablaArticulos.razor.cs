@@ -1,10 +1,10 @@
-﻿using InventarioEngrama.PWA.Areas.Inventario.Utiles;
+﻿using InventarioEngrama.PWA.Areas.InventarioArea.Utiles;
 using InventarioEngrama.PWA.Shared.Common;
 using InventarioEngrama.Share.Objetos.Inventario;
 
 using Microsoft.AspNetCore.Components;
 
-namespace InventarioEngrama.PWA.Areas.Inventario.Componentes
+namespace InventarioEngrama.PWA.Areas.InventarioArea.Componentes
 {
 	public partial class TablaArticulos : EngramaComponent
 	{
