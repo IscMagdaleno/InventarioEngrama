@@ -23,13 +23,19 @@ namespace InventarioEngrama.PWA.Areas.InventarioArea.Utiles
 		public IList<Pedido> LstPedidos { get; set; }
 		public IList<PedidoDetalle> LstPedidosDetalle { get; set; }
 
+
 		public Proveedor ProveedorSelected { get; set; }
 		public IList<Proveedor> LstProveedores { get; set; }
+
+
 		public Articulo ArticuloSelected { get; set; }
 		public IList<Articulo> LstArticulos { get; set; }
 
+
 		public IList<InventarioArticulos> LstArticulosInventario { get; set; }
 
+		public Venta VentaSelected { get; set; }
+		public IList<Venta> LstVentas { get; set; }
 
 		public MainInventario(IHttpService httpService, MapperHelper mapper, IValidaServicioService validaServicioService)
 		{
@@ -50,6 +56,9 @@ namespace InventarioEngrama.PWA.Areas.InventarioArea.Utiles
 			LstPedidosDetalle = new List<PedidoDetalle>();
 
 			LstArticulosInventario = new List<InventarioArticulos>();
+
+			VentaSelected = new Venta();
+			LstVentas = new List<Venta>();
 		}
 
 
@@ -213,6 +222,38 @@ namespace InventarioEngrama.PWA.Areas.InventarioArea.Utiles
 			return validacion;
 		}
 
+
+		public async Task<SeverityMessage> PostSaveVenta()
+		{
+			VentaSelected.iIdArticulo = ArticuloSelected.iIdArticulo;
+			VentaSelected.Articulo = ArticuloSelected;
+
+			var APIUrl = url + "/PostSaveVenta";
+			var model = _mapper.Get<Venta, PostSaveVenta>(VentaSelected);
+			var response = await _httpService.Post<PostSaveVenta, Response<Venta>>(APIUrl, model);
+			var validacion = _validaServicioService.ValidadionServicio(response,
+			onSuccess: data => AfterSaveVenta(data));
+			return validacion;
+
+		}
+
+		private void AfterSaveVenta(Venta data)
+		{
+			LstVentas.Add(data);
+			VentaSelected = new Venta();
+			ArticuloSelected = new Articulo();
+		}
+
+		public async Task<SeverityMessage> PostGetVenta()
+		{
+			var APIUrl = url + "/PostGetVenta";
+
+			var model = _mapper.Get<Venta, PostGetVenta>(VentaSelected);
+			var response = await _httpService.Post<PostGetVenta, Response<List<Venta>>>(APIUrl, model);
+			var validacion = _validaServicioService.ValidadionServicio(response,
+			onSuccess: data => LstVentas = (data));
+			return validacion;
+		}
 
 
 	}

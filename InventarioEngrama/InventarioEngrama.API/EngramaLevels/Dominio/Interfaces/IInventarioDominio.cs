@@ -12,9 +12,11 @@ namespace InventarioEngrama.API.EngramaLevels.Dominio.Interfaces
 		Task<Response<IEnumerable<Pedido>>> GetPedido(PostGetPedido PostModel);
 		Task<Response<IEnumerable<PedidoDetalle>>> GetPedidoDetalle(PostGetPedidoDetalle PostModel);
 		Task<Response<IEnumerable<Proveedor>>> GetProveedor(PostGetProveedor PostModel);
+		Task<Response<IEnumerable<Venta>>> GetVenta(PostGetVenta PostModel);
 		Task<Response<Articulo>> SaveArticulo(PostSaveArticulo PostModel);
 		Task<Response<Pedido>> SavePedido(PostSavePedido PostModel);
 		Task<Response<PedidoDetalle>> SavePedidoDetalle(PostSavePedidoDetalle PostModel);
 		Task<Response<Proveedor>> SaveProveedor(PostSaveProveedor PostModel);
+		Task<Response<Venta>> SaveVenta(PostSaveVenta PostModel);
 	}
 }

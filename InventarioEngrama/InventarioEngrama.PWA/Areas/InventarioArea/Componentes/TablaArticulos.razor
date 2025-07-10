@@ -21,9 +21,9 @@
 	<RowTemplate>
 		<MudTd DataLabel="nvchNombre">@context.nvchNombre</MudTd>
 		<MudTd DataLabel="nvchDescripcion">@context.nvchDescripcion</MudTd>
-		<MudTd DataLabel="mPrecioCompra">@context.mPrecioCompra</MudTd>
-		<MudTd DataLabel="mPrecioVenta">@context.mPrecioVenta</MudTd>
-		<MudTd DataLabel="mPrecioVenta">
+		<MudTd DataLabel="mPrecioCompra">@context.mPrecioCompra.ToString("C2")</MudTd>
+		<MudTd DataLabel="mPrecioVenta">@context.mPrecioVenta.ToString("C2")</MudTd>
+		<MudTd DataLabel="Primary">
 			<MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="@(()=>OnClickRow(context))">Editar</MudButton>
 		</MudTd>
 	</RowTemplate>

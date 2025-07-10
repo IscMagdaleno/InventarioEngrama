@@ -1,0 +1,45 @@
+﻿@inherits EngramaComponent
+
+<EditForm Model="@Data.VentaSelected"
+		  OnValidSubmit="OnSubmint">
+	<DataAnnotationsValidator />
+
+	<MudFocusTrap>
+
+		<MudGrid>
+			<MudItem sm="6">
+
+
+				<MudNumericField @bind-Value="Data.VentaSelected.iCantidad"
+								 Label="Cantdad"
+								 OnBlur="OnBlurCantidad"
+								 Variant="Variant.Outlined" />
+
+
+				<MudNumericField @bind-Value="Data.VentaSelected.mPrecioFinal"
+								 Label="Precio Final"
+								 Adornment="Adornment.Start"
+								 Format="c2"
+								 Variant="Variant.Outlined" />
+
+
+			</MudItem>
+			<MudItem sm="6">
+
+				<MudTextField @bind-Value="@Data.VentaSelected.vchReferenciaVenta"
+							  Label="ReferenciaVenta"
+							  MaxLength="100"
+							  Lines="4"
+							  Variant="Variant.Outlined" />
+
+
+			</MudItem>
+			<MudItem sm="12">
+
+				<MudButton Variant="Variant.Filled"
+						   ButtonType="ButtonType.Submit"
+						   Color="Color.Secondary">Guardar Venta</MudButton>
+			</MudItem>
+		</MudGrid>
+	</MudFocusTrap>
+</EditForm>

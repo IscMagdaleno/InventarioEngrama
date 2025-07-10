@@ -221,6 +221,51 @@ namespace InventarioEngrama.API.EngramaLevels.Dominio.Core
 		}
 
 
+		public async Task<Response<Venta>> SaveVenta(PostSaveVenta PostModel)
+		{
+			try
+			{
+				var model = mapperHelper.Get<PostSaveVenta, spSaveVenta.Request>(PostModel);
+				var result = await inventarioRepository.spSaveVenta(model);
+				var validation = responseHelper.Validacion<spSaveVenta.Result, Venta>(result);
+				if (validation.IsSuccess)
+				{
+					PostModel.iIdArticulo = validation.Data.iIdArticulo;
+					validation.Data = mapperHelper.Get<PostSaveVenta, Venta>(PostModel);
+				}
+				return validation;
+			}
+			catch (Exception ex)
+			{
+				return Response<Venta>.BadResult(ex.Message, new());
+			}
+		}
+
+
+		public async Task<Response<IEnumerable<Venta>>> GetVenta(PostGetVenta PostModel)
+		{
+			try
+			{
+				var model = mapperHelper.Get<PostGetVenta, spGetVenta.Request>(PostModel);
+				var result = await inventarioRepository.spGetVenta(model);
+				var validation = responseHelper.Validacion<spGetVenta.Result, Venta>(result);
+				if (validation.IsSuccess)
+				{
+					foreach (var item in validation.Data)
+					{
+						var row = result.FirstOrDefault(e => e.iIdVenta == item.iIdVenta);
+						item.Articulo = mapperHelper.Get<spGetVenta.Result, Articulo>(row);
+					}
+				}
+				return validation;
+			}
+			catch (Exception ex)
+			{
+				return Response<IEnumerable<Venta>>.BadResult(ex.Message, new List<Venta>());
+			}
+		}
+
+
 
 	}
 }

@@ -1,0 +1,38 @@
+﻿@inherits EngramaPage
+
+
+@page "/PageVenta"
+@using InventarioEngrama.PWA.Areas.InventarioArea.Componentes
+
+
+
+<MudCard>
+	<MudCardHeader>
+		<CardHeaderContent>
+			<MudText Typo="Typo.h6">Venta  </MudText>
+		</CardHeaderContent>
+		<CardHeaderActions>
+
+		</CardHeaderActions>
+	</MudCardHeader>
+	<MudCardContent>
+		<MudGrid>
+			<MudItem sm="12">
+				<TablaInventario Data="@Data" ShowSeleccionar="true" OnArticuloSelected="OnArticuloSelected"></TablaInventario>
+			</MudItem>
+			@if (ShowArticulo)
+			{
+				<MudItem sm="6">
+					<CardArticulo Articulo="@Data.ArticuloSelected"></CardArticulo>
+				</MudItem>
+				<MudItem sm="6">
+					<FormVenta Data="@Data" OnVentaSaved="OnVentaSaved"></FormVenta>
+				</MudItem>
+			}
+			<MudItem sm="12">
+				<TablaVentas Data="@Data"></TablaVentas>
+			</MudItem>
+		</MudGrid>
+
+	</MudCardContent>
+</MudCard>

@@ -10,9 +10,11 @@ namespace InventarioEngrama.API.EngramaLevels.Infrastructure.Interfaces
 		Task<IEnumerable<spGetPedido.Result>> spGetPedido(spGetPedido.Request PostModel);
 		Task<IEnumerable<spGetPedidoDetalle.Result>> spGetPedidoDetalle(spGetPedidoDetalle.Request PostModel);
 		Task<IEnumerable<spGetProveedor.Result>> spGetProveedor(spGetProveedor.Request PostModel);
+		Task<IEnumerable<spGetVenta.Result>> spGetVenta(spGetVenta.Request PostModel);
 		Task<spSaveArticulo.Result> spSaveArticulo(spSaveArticulo.Request PostModel);
 		Task<spSavePedido.Result> spSavePedido(spSavePedido.Request PostModel);
 		Task<spSavePedidoDetalle.Result> spSavePedidoDetalle(spSavePedidoDetalle.Request PostModel);
 		Task<spSaveProveedor.Result> spSaveProveedor(spSaveProveedor.Request PostModel);
+		Task<spSaveVenta.Result> spSaveVenta(spSaveVenta.Request PostModel);
 	}
 }

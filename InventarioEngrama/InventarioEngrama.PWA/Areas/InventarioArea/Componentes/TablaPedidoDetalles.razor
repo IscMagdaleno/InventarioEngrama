@@ -24,7 +24,7 @@
 	<RowTemplate>
 		<MudTd DataLabel="nvchNombre">@context.Articulo.nvchNombre</MudTd>
 		<MudTd DataLabel="smCantidad">@context.smCantidad</MudTd>
-		<MudTd DataLabel="mPrecioUnitario">@context.mPrecioUnitario</MudTd>
+		<MudTd DataLabel="mPrecioUnitario">@context.mPrecioUnitario.ToString("C2")</MudTd>
 		@if (ShowEdit)
 		{
 

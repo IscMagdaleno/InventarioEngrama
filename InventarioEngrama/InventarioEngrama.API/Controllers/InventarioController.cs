@@ -167,6 +167,32 @@ namespace InventarioEngrama.API.Controllers
 			return BadRequest(result);
 		}
 
+		/// <summary>
+		/// Guarda las ventas realizadas o las salidas de mercancias del inventario
+		/// </summary>
+		/// <param name="postModel"></param>
+		/// <returns></returns>
+		[HttpPost("PostSaveVenta")]
+		public async Task<IActionResult> PostSaveVenta([FromBody] PostSaveVenta postModel)
+		{
+			var result = await inventarioDominio.SaveVenta(postModel);
+			if (result.IsSuccess)
+			{
+				return Ok(result);
+			}
+			return BadRequest(result);
+		}
+
+		[HttpPost("PostGetVenta")]
+		public async Task<IActionResult> PostGetVenta([FromBody] PostGetVenta postModel)
+		{
+			var result = await inventarioDominio.GetVenta(postModel);
+			if (result.IsSuccess)
+			{
+				return Ok(result);
+			}
+			return BadRequest(result);
+		}
 
 	}
 }

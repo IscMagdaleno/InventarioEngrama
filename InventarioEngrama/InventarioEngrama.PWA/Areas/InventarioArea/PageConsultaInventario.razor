@@ -2,6 +2,7 @@
 
 
 @page "/PageConsultaInventario"
+@using InventarioEngrama.PWA.Areas.InventarioArea.Componentes
 @using InventarioEngrama.Share.Objetos.Inventario
 
 
@@ -13,57 +14,15 @@
 
 	</MudCardHeader>
 	<MudCardContent>
-        
-		<MudTable Items="@Data.LstArticulosInventario"
-				  T="@InventarioArticulos"
-				  Dense="@true"
-				  Hover="true"
-				  Filter="new Func<InventarioArticulos,bool>(FilterFunc1)">
-			<ToolBarContent>
-				<MudText Typo="Typo.h6">Tabla de Inventario</MudText>
-				<MudSpacer />
-				<MudTextField @bind-Value="searchStringFiltro" Placeholder="Search" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
-			</ToolBarContent>
-			<HeaderContent>
 
-				<MudTh>Nombre Articulo</MudTh>
-				<MudTh>Cantidad</MudTh>
-				<MudTh>Descripción</MudTh>
-				<MudTh>Precio Copra</MudTh>
-				<MudTh>Precio Venta</MudTh>
-				<MudTh>nvchNombreProveedor</MudTh>
-				<MudTh>Telefono</MudTh>
-				<MudTh>nvchDireccion</MudTh>
-			</HeaderContent>
-			<RowTemplate>
+		<MudGrid>
+			<MudItem sm="12">
+				<TablaInventario Data="@Data"></TablaInventario>
+			</MudItem>
+		</MudGrid>
 
-				<MudTd DataLabel="nvchNombreArticulo">@context.Articulo.nvchNombre</MudTd>
-				<MudTd DataLabel="smCantidad">@context.smCantidad</MudTd>
-				<MudTd DataLabel="vchCodigo">@context.Articulo.nvchDescripcion</MudTd>
-				<MudTd DataLabel="mPrecioCompra">@context.Articulo.mPrecioCompra</MudTd>
-				<MudTd DataLabel="mPrecioVenta">@context.Articulo.mPrecioVenta</MudTd>
-				<MudTd DataLabel="nvchNombreProveedor">@context.Articulo.Proveedor.nvchNombre</MudTd>
-
-			</RowTemplate>
-			<PagerContent>
-				<MudTablePager />
-			</PagerContent>
-		</MudTable>
-		
 
 
 	</MudCardContent>
 </MudCard>
 
-@code {
-	private string searchStringFiltro = "";
-	private bool FilterFunc1(InventarioArticulos element) => FilterFunc(element, searchStringFiltro);
-	private bool FilterFunc(InventarioArticulos element, string searchString)
-	{
-		if (string.IsNullOrWhiteSpace(searchString))
-			return true;
-		if (element.Articulo.nvchNombre.Contains(searchString, StringComparison.OrdinalIgnoreCase)) // Agrega el campo por el caul realizar el filtro
-			return true;
-		return false;
-	}
-		}
