@@ -11,6 +11,7 @@
 		public Articulo Articulo { get; set; }
 		public PedidoDetalle()
 		{
+			smCantidad = 1;
 			Articulo = new Articulo();
 		}
 

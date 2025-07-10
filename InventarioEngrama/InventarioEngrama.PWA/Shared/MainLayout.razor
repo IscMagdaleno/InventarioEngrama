@@ -1,7 +1,8 @@
-﻿@using InventarioEngrama.PWA.Shared.Common
+﻿@using InventarioEngrama.PWA.Areas.Login
+@using InventarioEngrama.PWA.Shared.Common
 @inherits LayoutComponentBase
 
-<MudThemeProvider  />
+<MudThemeProvider />
 <MudDialogProvider />
 <MudSnackbarProvider />
 <MudPopoverProvider />
@@ -10,30 +11,46 @@
 <div class="bg bg3"></div>
 
 <MudLayout>
-	<MudAppBar Dense="true" Elevation="0" Color="Color.Transparent">
-		<MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
-		<MudSpacer />
-		<MudIconButton Icon="@Icons.Custom.Brands.MudBlazor" Color="Color.Inherit" Link="https://mudblazor.com/" Target="_blank" />
-		<MudIconButton Icon="@Icons.Custom.Brands.GitHub" Color="Color.Inherit" Link="https://github.com/MudBlazor/MudBlazor/" Target="_blank" />
-	</MudAppBar>
-	<MudDrawer @bind-Open="_drawerOpen" Elevation="1">
-		<MudDrawerHeader>
-			<MudText Typo="Typo.h6">Inventario</MudText>
-		</MudDrawerHeader>
-		<NavMenu />
-	</MudDrawer>
-	<MudMainContent>
-		<MudContainer MaxWidth="MaxWidth.ExtraLarge" Class="my-5 ">
-			<Loading></Loading>
 
-			@Body
-		</MudContainer>
-	</MudMainContent>
-</MudLayout>
 
-@code {
+	@if (bShowPages.False())
+	{
+
+		<Login OnLoginSuccess="OnLoginSuccess"></Login>
+	}
+	else
+	{
+
+		<MudAppBar Dense="true" Elevation="0" Color="Color.Transparent">
+			<MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
+			<MudSpacer />
+			<MudIconButton Icon="@Icons.Custom.Brands.MudBlazor" Color="Color.Inherit" Link="https://mudblazor.com/" Target="_blank" />
+			<MudIconButton Icon="@Icons.Custom.Brands.GitHub" Color="Color.Inherit" Link="https://github.com/MudBlazor/MudBlazor/" Target="_blank" />
+		</MudAppBar>
+		<MudDrawer @bind-Open="_drawerOpen" Elevation="1" Class="fondo-background">
+			<MudDrawerHeader>
+				<MudText Typo="Typo.h6">Inventario</MudText>
+			</MudDrawerHeader>
+			<NavMenu />
+		</MudDrawer>
+		<MudMainContent>
+			<MudContainer MaxWidth="MaxWidth.ExtraLarge" Class="my-5 ">
+				<Loading></Loading>
+
+				@Body
+			</MudContainer>
+		</MudMainContent>
+	}
+	</MudLayout>
+
+	@code {
 	bool _drawerOpen = true;
+	bool bShowPages = false;
 
+	private void OnLoginSuccess(bool success)
+	{
+		bShowPages = success;
+	}
 	void DrawerToggle()
 	{
 		_drawerOpen = !_drawerOpen;

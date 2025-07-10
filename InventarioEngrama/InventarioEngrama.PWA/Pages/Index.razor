@@ -1,7 +1,21 @@
 ﻿@page "/"
 
-<PageTitle>Index</PageTitle>
 
-<MudText Typo="Typo.h3" GutterBottom="true">Hello, world!</MudText>
-<MudText Class="mb-8">Welcome to your new app, powered by MudBlazor!</MudText>
-<MudAlert Severity="Severity.Normal">You can find documentation and examples on our website here: <MudLink Href="https://mudblazor.com" Typo="Typo.body2" Color="Color.Inherit"><b>www.mudblazor.com</b></MudLink></MudAlert>
+<MudGrid Class="justify-center">
+	<MudItem sm="12">
+		<MudPaper Elevation="2" Class="pa-8 mb-2" Style="background:linear-gradient(150deg, #68906a 0%, #ffffff 100%) ">
+			<MudText Typo="Typo.h3" Color="Color.Surface" GutterBottom="true" Align="Align.Center">
+				Boste
+			</MudText>
+			<MudText Typo="Typo.h3" Color="Color.Surface" GutterBottom="true" Align="Align.Center">
+				Decoración y Hogar
+			</MudText>
+		</MudPaper>
+
+	</MudItem>
+	<MudItem sm="12">
+		<GridHome></GridHome>
+
+	</MudItem>
+</MudGrid>
+

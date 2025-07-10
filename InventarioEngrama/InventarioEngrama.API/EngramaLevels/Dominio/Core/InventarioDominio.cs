@@ -230,8 +230,9 @@ namespace InventarioEngrama.API.EngramaLevels.Dominio.Core
 				var validation = responseHelper.Validacion<spSaveVenta.Result, Venta>(result);
 				if (validation.IsSuccess)
 				{
-					PostModel.iIdArticulo = validation.Data.iIdArticulo;
+					var iIdVenta = validation.Data.iIdVenta;
 					validation.Data = mapperHelper.Get<PostSaveVenta, Venta>(PostModel);
+					validation.Data.iIdVenta = iIdVenta;
 				}
 				return validation;
 			}

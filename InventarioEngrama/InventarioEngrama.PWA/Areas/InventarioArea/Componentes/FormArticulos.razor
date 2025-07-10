@@ -2,64 +2,69 @@
 @using InventarioEngrama.Share.Objetos.Inventario
 
 @inherits EngramaComponent
-<EditForm Model="@Data.ArticuloSelected"
-		  OnValidSubmit="OnSubmint">
-	<DataAnnotationsValidator />
 
-	<MudFocusTrap>
+<MudCard>
 
-		<MudGrid>
-			<MudItem sm="6">
-				<MudSelect T="Proveedor"
-						   Label="Proveedor"
-						   @bind-Value="Data.ProveedorSelected"
-						   Dense="true"
-						   Variant="Variant.Outlined">
-					@foreach (var p in Data.LstProveedores)
-					{
-						<MudSelectItem Value="@p">
-						</MudSelectItem>
-					}
-				</MudSelect>
-			</MudItem>
-			<MudItem sm="6">
-				<MudTextField @bind-Value="@Data.ArticuloSelected.nvchNombre"
-							  Label="Nombre"
-							  MaxLength="200"
-							  Variant="Variant.Outlined" />
+	<EditForm Model="@Data.ArticuloSelected"
+			  OnValidSubmit="OnSubmint">
+		<DataAnnotationsValidator />
 
-			</MudItem>
-			<MudItem sm="6">
-				<MudNumericField @bind-Value="Data.ArticuloSelected.mPrecioCompra"
-								 Label="Precio Copra"
-								 Format="c2"
-								 Variant="Variant.Outlined" />
+		<MudFocusTrap>
 
-			</MudItem>
-			<MudItem sm="6">
-				<MudNumericField @bind-Value="Data.ArticuloSelected.mPrecioVenta"
-								 Label="Precio Venta"
-								 Format="c2"
-								 Variant="Variant.Outlined" />
+			<MudGrid>
+				<MudItem sm="6">
+					<MudSelect T="Proveedor"
+							   Label="Proveedor"
+							   @bind-Value="Data.ProveedorSelected"
+							   Dense="true"
+							   Variant="Variant.Outlined">
+						@foreach (var p in Data.LstProveedores)
+						{
+							<MudSelectItem Value="@p">
+							</MudSelectItem>
+						}
+					</MudSelect>
+				</MudItem>
+				<MudItem sm="6">
+					<MudTextField @bind-Value="@Data.ArticuloSelected.nvchNombre"
+								  Label="Nombre"
+								  MaxLength="200"
+								  Variant="Variant.Outlined" />
 
+				</MudItem>
+				<MudItem sm="6">
+					<MudNumericField @bind-Value="Data.ArticuloSelected.mPrecioCompra"
+									 Label="Precio Copra"
+									 Format="c2"
+									 Variant="Variant.Outlined" />
 
-			</MudItem>
-			<MudItem sm="12">
-				<MudTextField @bind-Value="@Data.ArticuloSelected.nvchDescripcion"
-							  Label="Codigo"
-							  MaxLength="50"
-							  Variant="Variant.Outlined" />
+				</MudItem>
+				<MudItem sm="6">
+					<MudNumericField @bind-Value="Data.ArticuloSelected.mPrecioVenta"
+									 Label="Precio Venta"
+									 Format="c2"
+									 Variant="Variant.Outlined" />
 
 
-			</MudItem>
-			<MudItem sm="12">
-				<MudButton Variant="Variant.Filled"
-						   ButtonType="ButtonType.Submit"
-						   Color="Color.Success">Guardar Articulo</MudButton>
-			</MudItem>
+				</MudItem>
+				<MudItem sm="12">
+					<MudTextField @bind-Value="@Data.ArticuloSelected.nvchDescripcion"
+								  Label="Descripción"
+								  MaxLength="50"
+								  Variant="Variant.Outlined" />
 
 
-		</MudGrid>
-	</MudFocusTrap>
-</EditForm>
+				</MudItem>
+				<MudItem sm="12">
+					<MudButton Variant="Variant.Filled"
+							   ButtonType="ButtonType.Submit"
+							   Color="Color.Success">Guardar Articulo</MudButton>
+				</MudItem>
 
+
+			</MudGrid>
+		</MudFocusTrap>
+	</EditForm>
+
+
+</MudCard>

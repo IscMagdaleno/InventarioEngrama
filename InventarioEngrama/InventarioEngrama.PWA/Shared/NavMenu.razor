@@ -13,16 +13,20 @@
 			Articulos
 		</MudNavLink>
 	</MudNavGroup>
-	<MudNavLink Href="PageGridPedidos"
-				Match="NavLinkMatch.Prefix"
-				Icon="@Icons.Material.Filled.PostAdd">
-		Lista Pedidos
-	</MudNavLink>
-	<MudNavLink Href="PageConsultaInventario"
-				Match="NavLinkMatch.Prefix"
-				Icon="@Icons.Material.Filled.FormatListNumbered">
-		Consulta Inventario
-	</MudNavLink>
+
+	<MudNavGroup Title="Almacen" Expanded="true">
+
+		<MudNavLink Href="PageGridPedidos"
+					Match="NavLinkMatch.Prefix"
+					Icon="@Icons.Material.Filled.PostAdd">
+			Lista Pedidos
+		</MudNavLink>
+		<MudNavLink Href="PageConsultaInventario"
+					Match="NavLinkMatch.Prefix"
+					Icon="@Icons.Material.Filled.FormatListNumbered">
+			Consulta Inventario
+		</MudNavLink>
+	</MudNavGroup>
 
 	<MudNavLink Href="PageVenta"
 				Match="NavLinkMatch.Prefix"

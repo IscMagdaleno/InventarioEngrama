@@ -156,6 +156,7 @@ namespace InventarioEngrama.PWA.Areas.InventarioArea.Utiles
 
 		public async Task<SeverityMessage> PostSavePedidoDetalle()
 		{
+			PedidoDetalleSelected.mPrecioUnitario = ArticuloSelected.mPrecioCompra;
 			PedidoDetalleSelected.iIdPedido = PedidoSelected.iIdPedido;
 			PedidoDetalleSelected.iIdArticulo = ArticuloSelected.iIdArticulo;
 			PedidoDetalleSelected.Articulo = ArticuloSelected;
@@ -239,7 +240,8 @@ namespace InventarioEngrama.PWA.Areas.InventarioArea.Utiles
 
 		private void AfterSaveVenta(Venta data)
 		{
-			LstVentas.Add(data);
+			VentaSelected.iIdVenta = data.iIdVenta;
+			LstVentas.Add(VentaSelected);
 			VentaSelected = new Venta();
 			ArticuloSelected = new Articulo();
 		}

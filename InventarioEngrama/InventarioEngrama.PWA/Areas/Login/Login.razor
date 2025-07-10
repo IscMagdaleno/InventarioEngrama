@@ -1,0 +1,40 @@
+﻿@page "/login"
+@using MudBlazor
+
+<MudContainer MaxWidth="MaxWidth.Small" Class="d-flex justify-center align-center" Style="height: 100vh;">
+    <MudCard Class="pa-6" Style="width: 100%; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+        <MudCardHeader>
+            <MudText Typo="Typo.h5" Align="Align.Center">Iniciar Sesión</MudText>
+        </MudCardHeader>
+
+        <MudCardContent>
+            <MudForm @ref="form">
+                <MudTextField @bind-Value="_username" Label="Usuario" Required="true" FullWidth="true" />
+                <MudTextField @bind-Value="_password" Label="Contraseña" InputType="InputType.Password" Required="true" FullWidth="true" Class="mt-4" />
+            </MudForm>
+        </MudCardContent>
+
+        <MudCardActions Class="d-flex justify-end mt-4">
+            <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="OnLogin">Ingresar</MudButton>
+        </MudCardActions>
+    </MudCard>
+</MudContainer>
+
+@code {
+    private MudForm form;
+    private string _username;
+    private string _password;
+
+    [Parameter] public EventCallback<bool> OnLoginSuccess { get; set; }
+
+    private async Task OnLogin()
+    {
+        await form.Validate();
+        if (form.IsValid)
+        {
+            if (_username == "Boste" && _password=="123"){
+                await OnLoginSuccess.InvokeAsync(true);
+            }
+        }
+    }
+}

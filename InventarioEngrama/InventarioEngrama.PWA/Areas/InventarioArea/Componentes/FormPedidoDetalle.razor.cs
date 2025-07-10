@@ -38,6 +38,8 @@ namespace InventarioEngrama.PWA.Areas.InventarioArea.Componentes
 			Loading.Hide();
 		}
 
+
+
 		private void OnClickAddArticulo()
 		{
 			Data.ArticuloSelected = new Articulo();

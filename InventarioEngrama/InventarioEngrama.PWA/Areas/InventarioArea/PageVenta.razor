@@ -17,18 +17,23 @@
 	</MudCardHeader>
 	<MudCardContent>
 		<MudGrid>
-			<MudItem sm="12">
+			<MudItem sm="6">
 				<TablaInventario Data="@Data" ShowSeleccionar="true" OnArticuloSelected="OnArticuloSelected"></TablaInventario>
 			</MudItem>
-			@if (ShowArticulo)
-			{
-				<MudItem sm="6">
-					<CardArticulo Articulo="@Data.ArticuloSelected"></CardArticulo>
-				</MudItem>
-				<MudItem sm="6">
-					<FormVenta Data="@Data" OnVentaSaved="OnVentaSaved"></FormVenta>
-				</MudItem>
-			}
+
+			<MudItem sm="6">
+				@if (ShowArticulo)
+				{
+					<MudGrid>
+						<MudItem sm="12">
+							<CardArticulo Articulo="@Data.ArticuloSelected"></CardArticulo>
+						</MudItem>
+						<MudItem sm="12">
+							<FormVenta Data="@Data" OnVentaSaved="OnVentaSaved"></FormVenta>
+						</MudItem>
+					</MudGrid>
+				}
+			</MudItem>
 			<MudItem sm="12">
 				<TablaVentas Data="@Data"></TablaVentas>
 			</MudItem>

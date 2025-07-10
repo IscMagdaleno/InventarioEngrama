@@ -1,0 +1,134 @@
+﻿<MudContainer Class="mt-16 px-8" MaxWidth="MaxWidth.False">
+	<MudGrid>
+		<MudItem sm="12">
+			<MudCard>
+				<MudCardHeader>
+					<CardHeaderContent>
+						<MudText Typo="Typo.h2">Catalogos</MudText>
+					</CardHeaderContent>
+				</MudCardHeader>
+				<MudCardContent>
+					<MudGrid>
+						<MudItem xs="12" sm="6" md="6">
+							<MudCard Style="height: 180px; display: flex; align-items: center; justify-content: center; ">
+								<MudCardContent>
+									<MudText Typo="Typo.h3" Align="Align.Center" Color="Color.Primary">Proveedores</MudText>
+									<MudText Typo="Typo.body1" Align="Align.Center">
+										Registra los proveedores de los que estaras reciviendo articulos.
+
+									</MudText>
+								</MudCardContent>
+								<MudCardActions>
+									<MudButton Variant="Variant.Filled" Color="Color.Secondary" Class="mt-4" Style="display: block; margin: 0 auto;" OnClick="@(()=>NavigateToPages("PageCrudProvedor"))">
+										Empezar
+									</MudButton>
+								</MudCardActions>
+							</MudCard>
+						</MudItem>
+						<MudItem xs="12" sm="6" md="6">
+							<MudCard Style="height: 180px; display: flex; align-items: center; justify-content: center; ">
+								<MudCardContent>
+									<MudText Typo="Typo.h3" Align="Align.Center" Color="Color.Primary">Artiuclos</MudText>
+									<MudText Typo="Typo.body1" Align="Align.Center">
+										Administra los productos que tienes registrados o registraa nuevos.
+
+									</MudText>
+								</MudCardContent>
+								<MudCardActions>
+									<MudButton Variant="Variant.Filled" Color="Color.Secondary" Class="mt-4" Style="display: block; margin: 0 auto;" OnClick="@(()=>NavigateToPages("PageCrudArticulos"))">
+										Empezar
+									</MudButton>
+								</MudCardActions>
+							</MudCard>
+						</MudItem>
+
+					</MudGrid>
+
+
+				</MudCardContent>
+			</MudCard>
+		</MudItem>
+
+		<MudItem xs="12" sm="6">
+			<MudGrid>
+				<MudItem sm="12">
+					<MudCard>
+						<MudCardHeader>
+							<CardHeaderContent>
+								<MudText Typo="Typo.h2">Movimientos</MudText>
+							</CardHeaderContent>
+						</MudCardHeader>
+						<MudCardContent>
+							<MudGrid>
+								<MudItem xs="12">
+									<MudCard Style="height: 180px; display: flex; align-items: center; justify-content: center; ">
+										<MudCardContent>
+											<MudText Typo="Typo.h3" Align="Align.Center" Color="Color.Primary">Pedidos</MudText>
+											<MudText Typo="Typo.body1" Align="Align.Center">
+												Administra los pedidos de mercancia que tienes registrados o registraa nuevos.
+
+											</MudText>
+										</MudCardContent>
+										<MudCardActions>
+											<MudButton Variant="Variant.Filled" Color="Color.Secondary" Class="mt-4" Style="display: block; margin: 0 auto;" OnClick="@(()=>NavigateToPages("PageGridPedidos"))">
+												Empezar
+											</MudButton>
+										</MudCardActions>
+									</MudCard>
+
+								</MudItem>
+
+								<MudItem xs="12">
+									<MudCard Style="height: 180px; display: flex; align-items: center; justify-content: center; ">
+										<MudCardContent>
+											<MudText Typo="Typo.h3" Align="Align.Center" Color="Color.Primary">Inventario</MudText>
+											<MudText Typo="Typo.body1" Align="Align.Center">
+												Vefirica las articulos que tienes en invetario
+											</MudText>
+										</MudCardContent>
+										<MudCardActions>
+											<MudButton Variant="Variant.Filled" Color="Color.Secondary" Class="mt-4" Style="display: block; margin: 0 auto;" OnClick="@(()=>NavigateToPages("PageConsultaInventario"))">
+												Empezar
+											</MudButton>
+										</MudCardActions>
+									</MudCard>
+								</MudItem>
+
+							</MudGrid>
+						</MudCardContent>
+					</MudCard>
+				</MudItem>
+
+			</MudGrid>
+		</MudItem>
+		<MudItem xs="12" sm="6">
+			<MudCard Style="height: 100%; display: flex; align-items: center; justify-content: center; ">
+				<MudImage Class="mt-2" Src="images/sales.png" Height="320" ObjectFit="@ObjectFit.Contain" />
+				<MudCardContent>
+					<MudText Typo="Typo.h3" Align="Align.Center" Color="Color.Primary">Ventas</MudText>
+					<MudText Typo="Typo.body1" Align="Align.Center">
+						Realiza las salidas de productos del inventario
+					</MudText>
+				</MudCardContent>
+				<MudCardActions>
+					<MudButton Variant="Variant.Filled" Color="Color.Secondary" Class="mt-4" Style="display: block; margin: 0 auto;" OnClick="@(()=>NavigateToPages("PageVenta"))">
+						Empezar
+					</MudButton>
+				</MudCardActions>
+			</MudCard>
+
+		</MudItem>
+
+
+	</MudGrid>
+</MudContainer>
+
+
+					@inject NavigationManager NavigationManager
+
+@code {
+	private void NavigateToPages(string page)
+	{
+		NavigationManager.NavigateTo("/" + page);
+	}
+}

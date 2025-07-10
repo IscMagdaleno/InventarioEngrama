@@ -1,8 +1,12 @@
 ﻿@using InventarioEngrama.Share.Objetos.Inventario
 @inherits EngramaComponent
 
+<MudCard>
+
 <EditForm Model="@Data.PedidoSelected"
+
 		  OnValidSubmit="OnSubmint">
+
 	<DataAnnotationsValidator />
 
 	<MudFocusTrap>
@@ -45,3 +49,5 @@
 	</MudFocusTrap>
 </EditForm>
 
+
+</MudCard>

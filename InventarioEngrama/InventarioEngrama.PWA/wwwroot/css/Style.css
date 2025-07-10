@@ -50,3 +50,19 @@ h1 {
 		transform: translateX(25%);
 	}
 }
+
+.mud-card {
+	background: #698f6bb5 0% !important;
+	display: flex;
+	flex-direction: column
+}
+.mud-table {
+	color: var(--mud-palette-text-primary);
+	background: #698f6bb5 0% !important;
+	border-radius: var(--mud-default-borderradius);
+	transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.fondo-background {
+	background: #698f6bb5 0% !important;
+}
