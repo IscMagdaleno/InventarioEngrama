@@ -228,6 +228,7 @@ namespace InventarioEngrama.PWA.Areas.InventarioArea.Utiles
 		{
 			VentaSelected.iIdArticulo = ArticuloSelected.iIdArticulo;
 			VentaSelected.Articulo = ArticuloSelected;
+			VentaSelected.dtFechaVenta = DateTime.UtcNow;
 
 			var APIUrl = url + "/PostSaveVenta";
 			var model = _mapper.Get<Venta, PostSaveVenta>(VentaSelected);
@@ -241,7 +242,10 @@ namespace InventarioEngrama.PWA.Areas.InventarioArea.Utiles
 		private void AfterSaveVenta(Venta data)
 		{
 			VentaSelected.iIdVenta = data.iIdVenta;
+
 			LstVentas.Add(VentaSelected);
+
+			LstVentas = LstVentas.OrderByDescending(e => e.dtFechaVenta).ToList();
 			VentaSelected = new Venta();
 			ArticuloSelected = new Articulo();
 		}
@@ -253,9 +257,17 @@ namespace InventarioEngrama.PWA.Areas.InventarioArea.Utiles
 			var model = _mapper.Get<Venta, PostGetVenta>(VentaSelected);
 			var response = await _httpService.Post<PostGetVenta, Response<List<Venta>>>(APIUrl, model);
 			var validacion = _validaServicioService.ValidadionServicio(response,
-			onSuccess: data => LstVentas = (data));
+			onSuccess: data => AfterGetVenta(data));
 			return validacion;
 		}
+
+		private void AfterGetVenta(List<Venta> data)
+		{
+
+			LstVentas = data.OrderByDescending(e => e.dtFechaVenta).ToList();
+
+		}
+
 
 
 	}

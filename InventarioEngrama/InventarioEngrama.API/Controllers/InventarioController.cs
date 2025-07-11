@@ -183,6 +183,11 @@ namespace InventarioEngrama.API.Controllers
 			return BadRequest(result);
 		}
 
+		/// <summary>
+		/// Consulta las ventas realizadas por medio de la aplicacion
+		/// </summary>
+		/// <param name="postModel"></param>
+		/// <returns></returns>
 		[HttpPost("PostGetVenta")]
 		public async Task<IActionResult> PostGetVenta([FromBody] PostGetVenta postModel)
 		{

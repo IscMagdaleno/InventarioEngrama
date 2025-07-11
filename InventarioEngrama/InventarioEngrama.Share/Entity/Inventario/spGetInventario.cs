@@ -16,6 +16,7 @@ namespace InventarioEngrama.Share.PostClass.Inventario
 			public int iIdArticulo { get; set; }
 			public int smCantidad { get; set; }
 			public string nvchNombreArticulo { get; set; }
+			public string nvchDescripcion { get; set; }
 			public string vchCodigo { get; set; }
 			public decimal mPrecioCompra { get; set; }
 			public decimal mPrecioVenta { get; set; }
