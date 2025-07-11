@@ -32,7 +32,7 @@
         await form.Validate();
         if (form.IsValid)
         {
-            if (_username == "Boste" && _password=="123"){
+            if (_username == "Admin" && _password=="123"){
                 await OnLoginSuccess.InvokeAsync(true);
             }
         }
