@@ -15,7 +15,7 @@ namespace InventarioEngrama.PWA.Areas.InventarioArea.Componentes
 		protected override async Task OnInitializedAsync()
 		{
 			Loading.Show();
-			ShowSnake(await Data.PostGetArticulo());
+			await Data.PostGetArticulo();
 			Loading.Hide();
 		}
 

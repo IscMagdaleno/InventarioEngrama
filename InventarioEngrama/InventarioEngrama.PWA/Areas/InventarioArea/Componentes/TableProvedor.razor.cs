@@ -17,7 +17,7 @@ namespace InventarioEngrama.PWA.Areas.InventarioArea.Componentes
 		{
 			Loading.Show();
 
-			ShowSnake(await Data.PostGetProveedor());
+			await Data.PostGetProveedor();
 			Loading.Hide();
 
 		}
