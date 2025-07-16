@@ -24,7 +24,7 @@
 		<MudTd DataLabel="mPrecioCompra">@context.mPrecioCompra.ToString("C2")</MudTd>
 		<MudTd DataLabel="mPrecioVenta">@context.mPrecioVenta.ToString("C2")</MudTd>
 		<MudTd DataLabel="Primary">
-			<MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="@(()=>OnClickRow(context))">Editar</MudButton>
+			<MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="@(()=>OnClickRow(context))">Seleccionar</MudButton>
 		</MudTd>
 	</RowTemplate>
 	<PagerContent>
@@ -38,7 +38,7 @@
 	{
 		if (string.IsNullOrWhiteSpace(searchString))
 			return true;
-		if (element.nvchNombre.Contains(searchString, StringComparison.OrdinalIgnoreCase)) // Agrega el campo por el caul realizar el filtro
+		if (element.nvchNombre.Contains(searchString, StringComparison.OrdinalIgnoreCase)) // Agrega el campo por el cual realizar el filtro
 			return true;
 		return false;
 	}

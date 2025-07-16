@@ -199,5 +199,38 @@ namespace InventarioEngrama.API.Controllers
 			return BadRequest(result);
 		}
 
+		/// <summary>
+		/// Guardar un producto Apartado
+		/// </summary>
+		/// <param name="postModel"></param>
+		/// <returns></returns>
+		[HttpPost("PostSaveApartado")]
+		public async Task<IActionResult> PostSaveApartado([FromBody] PostSaveApartado postModel)
+		{
+			var result = await inventarioDominio.SaveApartado(postModel);
+			if (result.IsSuccess)
+			{
+				return Ok(result);
+			}
+			return BadRequest(result);
+		}
+
+		/// <summary>
+		/// Consutal los ARticulos apartados de la base de datos
+		/// </summary>
+		/// <param name="postModel"></param>
+		/// <returns></returns>
+		[HttpPost("PostGetApartado")]
+		public async Task<IActionResult> PostGetApartado([FromBody] PostGetApartado postModel)
+		{
+			var result = await inventarioDominio.GetApartado(postModel);
+			if (result.IsSuccess)
+			{
+				return Ok(result);
+			}
+			return BadRequest(result);
+		}
+
+
 	}
 }

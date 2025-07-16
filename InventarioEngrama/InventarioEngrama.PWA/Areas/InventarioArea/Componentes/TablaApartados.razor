@@ -1,0 +1,50 @@
+﻿@using InventarioEngrama.Share.Objetos.Inventario
+@inherits EngramaComponent
+
+
+<MudTable Items="@Data.LstApartado"
+		  T="@Apartado"
+		  Dense="@true"
+		  Hover="true"
+		  Filter="new Func<Apartado,bool>(FilterFunc1)">
+	<ToolBarContent>
+		<MudText Typo="Typo.h6">Tabla de Apartado</MudText>
+		<MudSpacer />
+		<MudTextField @bind-Value="searchStringFiltro" Placeholder="Buscar" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
+	</ToolBarContent>
+	<HeaderContent>
+		<MudTh>IdApartado</MudTh>
+		<MudTh>NombreCliente</MudTh>
+		<MudTh>FechaApartado</MudTh>
+		<MudTh>Total</MudTh>
+		<MudTh>Pagado</MudTh>
+		<MudTh>Comentario</MudTh>
+		<MudTh></MudTh>
+	</HeaderContent>
+	<RowTemplate>
+		<MudTd DataLabel="iIdApartado">@context.iIdApartado</MudTd>
+		<MudTd DataLabel="nvchNombreCliente">@context.nvchNombreCliente</MudTd>
+		<MudTd DataLabel="dtFechaApartado">@context.dtFechaApartado</MudTd>
+		<MudTd DataLabel="mTotal">@context.mTotal</MudTd>
+		<MudTd DataLabel="bPagado">@context.bPagado</MudTd>
+		<MudTd DataLabel="nvchComentario">@context.nvchComentario</MudTd>
+		<MudTd DataLabel="btn">
+			<MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="@(()=>OnClickRow(context))">Seleccionar</MudButton>
+		</MudTd>
+	</RowTemplate>
+	<PagerContent>
+		<MudTablePager />
+	</PagerContent>
+</MudTable>
+@code {
+	private string searchStringFiltro = "";
+	private bool FilterFunc1(Apartado element) => FilterFunc(element, searchStringFiltro);
+	private bool FilterFunc(Apartado element, string searchString)
+	{
+		if (string.IsNullOrWhiteSpace(searchString))
+			return true;
+		if (element.nvchNombreCliente.Contains(searchString, StringComparison.OrdinalIgnoreCase)) // Agrega el campo por el cual realizar el filtro
+			return true;
+		return false;
+	}
+}

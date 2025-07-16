@@ -129,5 +129,27 @@ namespace InventarioEngrama.API.EngramaLevels.Infrastructure.Repository
 			return new List<spGetVenta.Result>() { new() { bResult = false, vchMessage = $"[{(result.Ex.NotNull() ? result.Ex.Message : "")}] - [{result.Msg}]" } };
 		}
 
+		public async Task<spSaveApartado.Result> spSaveApartado(spSaveApartado.Request PostModel)
+		{
+			var result = await _managerHelper.GetWithListAsync<spSaveApartado.Result, spSaveApartado.Request>(PostModel);
+			if (result.Ok)
+			{
+				return result.Data;
+			}
+			return new() { bResult = false, vchMessage = $"[{(result.Ex.NotNull() ? result.Ex.Message : "")}] - [{result.Msg}]" };
+		}
+
+
+		public async Task<IEnumerable<spGetApartado.Result>> spGetApartado(spGetApartado.Request PostModel)
+		{
+			var result = await _managerHelper.GetAllAsync<spGetApartado.Result, spGetApartado.Request>(PostModel);
+			if (result.Ok)
+			{
+				return result.Data;
+			}
+			return new List<spGetApartado.Result>() { new() { bResult = false, vchMessage = $"[{(result.Ex.NotNull() ? result.Ex.Message : "")}] - [{result.Msg}]" } };
+		}
+
+
 	}
 }

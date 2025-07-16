@@ -267,6 +267,63 @@ namespace InventarioEngrama.API.EngramaLevels.Dominio.Core
 		}
 
 
+		public async Task<Response<Apartado>> SaveApartado(PostSaveApartado PostModel)
+		{
+			try
+			{
+				var model = mapperHelper.Get<PostSaveApartado, spSaveApartado.Request>(PostModel);
+				List<DTApartadoDetalle> lista = new List<DTApartadoDetalle>();
+				foreach (var item in PostModel.LstDetalles)
+				{
+
+					lista.Add(mapperHelper.Get<ApartadoDetalle, DTApartadoDetalle>(item));
+				}
+				model.Detalles = lista;
+
+				var result = await inventarioRepository.spSaveApartado(model);
+				var validation = responseHelper.Validacion<spSaveApartado.Result, Apartado>(result);
+				if (validation.IsSuccess)
+				{
+					var id = validation.Data.iIdApartado;
+					validation.Data = mapperHelper.Get<PostSaveApartado, Apartado>(PostModel);
+					validation.Data.iIdApartado = id;
+				}
+				return validation;
+			}
+			catch (Exception ex)
+			{
+				return Response<Apartado>.BadResult(ex.Message, new());
+			}
+
+
+		}
+
+		public async Task<Response<IEnumerable<Apartado>>> GetApartado(PostGetApartado PostModel)
+		{
+			try
+			{
+				var model = mapperHelper.Get<PostGetApartado, spGetApartado.Request>(PostModel);
+				var result = await inventarioRepository.spGetApartado(model);
+				var validation = responseHelper.Validacion<spGetApartado.Result, Apartado>(result);
+				if (validation.IsSuccess)
+				{
+					foreach (var item in validation.Data)
+					{
+						var lstDetalle = result.Where(e => e.iIdApartado == item.iIdApartado);
+						foreach (var item1 in lstDetalle)
+						{
+							item.Detalles.Add(mapperHelper.Get<spGetApartado.Result, ApartadoDetalle>(item1));
+						}
+					}
+				}
+				return validation;
+			}
+			catch (Exception ex)
+			{
+				return Response<IEnumerable<Apartado>>.BadResult(ex.Message, new List<Apartado>());
+			}
+		}
+
 
 	}
 }

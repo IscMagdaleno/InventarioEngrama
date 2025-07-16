@@ -1,0 +1,44 @@
+﻿@inherits EngramaPage
+
+
+
+
+@page "/PageApartados"
+@using InventarioEngrama.PWA.Areas.InventarioArea.Componentes
+
+
+
+<MudCard>
+	<MudCardHeader>
+		<CardHeaderContent>
+			<MudText Typo="Typo.h6">Pedidos</MudText>
+		</CardHeaderContent>
+		<CardHeaderActions>
+			@if (ShowNewApartado)
+			{
+				<MudButton Variant="Variant.Filled"
+						   Color="Color.Secondary" OnClick="OnClickCambiarPantalla">
+					Lista Apartados
+				</MudButton>
+			}
+			else
+			{
+				<MudButton Variant="Variant.Filled"
+						   Color="Color.Secondary" OnClick="OnClickCambiarPantalla">
+					Agregar nuevo Apartado
+				</MudButton>
+			}
+		</CardHeaderActions>
+	</MudCardHeader>
+	<MudCardContent>
+
+		@if (ShowNewApartado)
+		{
+			<GridApartado Data="Data"></GridApartado>
+		}
+		else
+		{
+			<TablaApartados Data="Data"></TablaApartados>
+		}
+	</MudCardContent>
+</MudCard>

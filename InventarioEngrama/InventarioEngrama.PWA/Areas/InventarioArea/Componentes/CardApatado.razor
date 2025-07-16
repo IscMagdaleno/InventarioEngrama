@@ -1,0 +1,43 @@
+﻿@using InventarioEngrama.Share.Objetos.Inventario
+<MudCard>
+    <MudCardHeader>
+        <CardHeaderContent>
+            <MudText Typo="Typo.h6">Apartado #@Apartado.iIdApartado</MudText>
+            <MudText Typo="Typo.subtitle2">@Apartado.nvchNombreCliente</MudText>
+        </CardHeaderContent>
+    </MudCardHeader>
+
+    <MudCardContent>
+
+        <MudGrid>
+            <MudItem xs="6">
+                <MudText Typo="Typo.body2" Color="Color.Secondary">Fecha del apartado</MudText>
+                <MudText>@Apartado.dtFechaApartado.ToDateTime().ToString("dd/MM/yyyy")</MudText>
+            </MudItem>
+            <MudItem xs="6">
+                <MudText Typo="Typo.body2" Color="Color.Secondary">Total</MudText>
+                <MudText Color="Color.Primary">@Apartado.mTotal.ToString("C2")</MudText>
+            </MudItem>
+
+            <MudItem xs="12" Class="mt-2">
+                <MudText Typo="Typo.body2" Color="Color.Secondary">¿Pagado?</MudText>
+                <MudChip T="string" Color="@((Apartado.bPagado) ? Color.Success : Color.Warning)" Variant="Variant.Filled">
+                    @(Apartado.bPagado ? "Sí" : "No")
+                </MudChip>
+            </MudItem>
+
+            @if (!string.IsNullOrWhiteSpace(Apartado.nvchComentario))
+            {
+                <MudItem xs="12" Class="mt-4">
+                    <MudText Typo="Typo.body2" Color="Color.Secondary">Comentario</MudText>
+                    <MudText>@Apartado.nvchComentario</MudText>
+                </MudItem>
+            }
+        </MudGrid>
+
+    </MudCardContent>
+</MudCard>
+@code{
+    [Parameter] public Apartado Apartado { get; set; }
+
+}

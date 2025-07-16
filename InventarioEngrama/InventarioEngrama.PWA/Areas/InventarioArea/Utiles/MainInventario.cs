@@ -37,6 +37,13 @@ namespace InventarioEngrama.PWA.Areas.InventarioArea.Utiles
 		public Venta VentaSelected { get; set; }
 		public IList<Venta> LstVentas { get; set; }
 
+
+		public Apartado ApartadoSelected { get; set; }
+		public IList<Apartado> LstApartado { get; set; }
+
+
+
+
 		public MainInventario(IHttpService httpService, MapperHelper mapper, IValidaServicioService validaServicioService)
 		{
 			_httpService = httpService;
@@ -59,6 +66,9 @@ namespace InventarioEngrama.PWA.Areas.InventarioArea.Utiles
 
 			VentaSelected = new Venta();
 			LstVentas = new List<Venta>();
+
+			ApartadoSelected = new Apartado();
+			LstApartado = new List<Apartado>();
 		}
 
 
@@ -268,6 +278,17 @@ namespace InventarioEngrama.PWA.Areas.InventarioArea.Utiles
 
 		}
 
+
+		public async Task<SeverityMessage> PostGetApartado()
+		{
+			var APIUrl = url + "/PostGetApartado";
+
+			var model = _mapper.Get<Apartado, PostGetApartado>(ApartadoSelected);
+			var response = await _httpService.Post<PostGetApartado, Response<List<Apartado>>>(APIUrl, model);
+			var validacion = _validaServicioService.ValidadionServicio(response,
+			onSuccess: data => LstApartado = data);
+			return validacion;
+		}
 
 
 	}

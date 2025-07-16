@@ -1,0 +1,30 @@
+﻿@inherits EngramaComponent
+<MudGrid>
+	@if (ShowApartadoDetalle.False())
+	{
+
+		<MudItem sm="12">
+			<FormApartado Data="@Data" EC_ApartadoFilled="EC_ApartadoFilled" />
+		</MudItem>
+
+	}
+	else
+	{
+
+		<MudItem sm="6">
+			<CardApatado Apartado="@Data.ApartadoSelected"></CardApatado>
+		</MudItem>
+		<MudItem sm="6">
+			@if (Data.ArticuloSelected.iIdArticulo <= 0)
+			{
+
+				<TablaArticulos Data="@Data" OnArticuloSelected="OnArticuloSelected"></TablaArticulos>
+			}
+			else
+			{
+				<CardArticulo Articulo="Data.ArticuloSelected"></CardArticulo>
+			}
+
+		</MudItem>
+	}
+</MudGrid>
