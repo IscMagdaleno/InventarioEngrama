@@ -27,12 +27,10 @@ namespace InventarioEngrama.PWA.Areas.InventarioArea.Componentes
 		private async Task OnSubmint()
 		{
 			Loading.Show();
-			var result = await Data.PostSaveVenta();
-			ShowSnake(result);
-			if (result.bResult)
-			{
-				await OnVentaSaved.InvokeAsync();
-			}
+			Data.PostSaveVentaLocal();
+
+			await OnVentaSaved.InvokeAsync();
+
 
 			Loading.Hide();
 		}

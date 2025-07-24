@@ -69,6 +69,7 @@ namespace InventarioEngrama.PWA.Areas.InventarioArea.Utiles
 
 			ApartadoSelected = new Apartado();
 			LstApartado = new List<Apartado>();
+
 		}
 
 
@@ -233,12 +234,20 @@ namespace InventarioEngrama.PWA.Areas.InventarioArea.Utiles
 			return validacion;
 		}
 
-
-		public async Task<SeverityMessage> PostSaveVenta()
+		public void PostSaveVentaLocal()
 		{
 			VentaSelected.iIdArticulo = ArticuloSelected.iIdArticulo;
 			VentaSelected.Articulo = ArticuloSelected;
 			VentaSelected.dtFechaVenta = DateTime.UtcNow;
+
+			var APIUrl = url + "/PostSaveVenta";
+			var model = _mapper.Get<Venta, PostSaveVenta>(VentaSelected);
+
+
+		}
+
+		public async Task<SeverityMessage> PostSaveVenta()
+		{
 
 			var APIUrl = url + "/PostSaveVenta";
 			var model = _mapper.Get<Venta, PostSaveVenta>(VentaSelected);
@@ -291,5 +300,47 @@ namespace InventarioEngrama.PWA.Areas.InventarioArea.Utiles
 		}
 
 
+		public void AddArticuloToApartado()
+		{
+			if (ApartadoSelected.ArticulosApartados == null)
+			{
+				ApartadoSelected.ArticulosApartados = new List<ApartadoDetalle>();
+			}
+			var apartadoArticulo = new ApartadoDetalle
+			{
+				iIdApartado = ApartadoSelected.iIdApartado,
+				iIdArticulo = ArticuloSelected.iIdArticulo,
+				mPrecioFinal = VentaSelected.mPrecioFinal,
+				iCantidad = VentaSelected.iCantidad,
+				Articulo = ArticuloSelected,
+				vchReferenciaVenta = VentaSelected.vchReferenciaVenta
+			};
+			ApartadoSelected.ArticulosApartados.Add(apartadoArticulo);
+			ApartadoSelected.mTotal += VentaSelected.mPrecioFinal;
+			ArticuloSelected = new Articulo();
+			VentaSelected = new Venta();
+		}
+
+		public async Task<SeverityMessage> PostSaveApartado()
+		{
+			var APIUrl = url + "/PostSaveApartado";
+
+			var model = _mapper.Get<Apartado, PostSaveApartado>(ApartadoSelected);
+			var response = await _httpService.Post<PostSaveApartado, Response<Apartado>>(APIUrl, model);
+			var validacion = _validaServicioService.ValidadionServicio(response,
+			onSuccess: data => AfterSaveApartado(data), ContinueWarning: false);
+
+			return validacion;
+		}
+
+		private void AfterSaveApartado(Apartado data)
+		{
+
+
+			ApartadoSelected.iIdApartado = data.iIdApartado;
+			LstApartado.Add(ApartadoSelected);
+
+
+		}
 	}
 }

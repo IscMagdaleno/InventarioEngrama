@@ -2,6 +2,7 @@
 
 using InventarioEngrama.PWA.Areas.InventarioArea.Utiles;
 using InventarioEngrama.PWA.Shared.Common;
+using InventarioEngrama.Share.Objetos.Inventario;
 
 namespace InventarioEngrama.PWA.Areas.InventarioArea
 {
@@ -22,6 +23,7 @@ namespace InventarioEngrama.PWA.Areas.InventarioArea
 
 		private void OnClickCambiarPantalla()
 		{
+			Data.ApartadoSelected = new Apartado();
 			ShowNewApartado = ShowNewApartado.False();
 		}
 	}

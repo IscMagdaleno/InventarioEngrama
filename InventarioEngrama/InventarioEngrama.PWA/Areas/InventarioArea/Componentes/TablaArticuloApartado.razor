@@ -1,0 +1,55 @@
+﻿@using InventarioEngrama.Share.Objetos.Inventario
+@inherits EngramaComponent
+
+@if (ArticulosApartados.Any())
+{
+	<MudTable Items="@ArticulosApartados"
+			  T="@ApartadoDetalle"
+			  Dense="@true"
+			  Hover="true"
+			  Filter="new Func<ApartadoDetalle,bool>(FilterFunc1)">
+		<ToolBarContent>
+			<MudText Typo="Typo.h6">Tabla de Artículos Apartados</MudText>
+			<MudSpacer />
+			<MudTextField @bind-Value="searchStringFiltro"
+						  Placeholder="Buscar"
+						  Adornment="Adornment.Start"
+						  AdornmentIcon="@Icons.Material.Filled.Search"
+						  IconSize="Size.Medium"
+						  Class="mt-0">
+			</MudTextField>
+		</ToolBarContent>
+		<HeaderContent>
+			<MudTh>Nombre</MudTh>
+			<MudTh>Descripción</MudTh>
+			<MudTh>Cantidad</MudTh>
+			<MudTh>PrecioFinal</MudTh>
+
+		</HeaderContent>
+		<RowTemplate>
+
+			<MudTd DataLabel="nvchNombre">@context.Articulo.nvchNombre</MudTd>
+			<MudTd DataLabel="nvchDescripcion">@context.Articulo.nvchDescripcion</MudTd>
+			<MudTd DataLabel="iCantidad">@context.iCantidad</MudTd>
+			<MudTd DataLabel="mPrecioFinal">@context.mPrecioFinal.ToString("C2")</MudTd>
+
+		</RowTemplate>
+		<PagerContent>
+			<MudTablePager />
+		</PagerContent>
+	</MudTable>
+}
+@code {
+	[Parameter] public IList<ApartadoDetalle> ArticulosApartados { get; set; }
+
+	private string searchStringFiltro = "";
+	private bool FilterFunc1(ApartadoDetalle element) => FilterFunc(element, searchStringFiltro);
+	private bool FilterFunc(ApartadoDetalle element, string searchString)
+	{
+		if (string.IsNullOrWhiteSpace(searchString))
+			return true;
+		if (element.Articulo.nvchNombre.Contains(searchString, StringComparison.OrdinalIgnoreCase)) // Agrega el campo por el caul realizar el filtro
+			return true;
+		return false;
+	}
+}

@@ -18,13 +18,24 @@
 			@if (Data.ArticuloSelected.iIdArticulo <= 0)
 			{
 
-				<TablaArticulos Data="@Data" OnArticuloSelected="OnArticuloSelected"></TablaArticulos>
+				<TablaInventario Data="@Data" ShowSeleccionar="true" OnArticuloSelected="OnArticuloSelected"></TablaInventario>
 			}
 			else
 			{
-				<CardArticulo Articulo="Data.ArticuloSelected"></CardArticulo>
+				<GridSeleccionArticulo Data="Data" OnProductSaved="OnVentaSaved"></GridSeleccionArticulo>
+
 			}
 
+		</MudItem>
+		<MudItem sm="12">
+			<TablaArticuloApartado ArticulosApartados="Data.ApartadoSelected.ArticulosApartados"></TablaArticuloApartado>
+		</MudItem>
+		<MudItem sm="12">
+			<MudButton Variant="Variant.Filled"
+					   Color="Color.Success"
+					   OnClick="OnClickGuradarApartado">
+				Guardar Apartado de Artículos
+			</MudButton>
 		</MudItem>
 	}
 </MudGrid>

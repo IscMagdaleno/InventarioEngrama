@@ -216,7 +216,7 @@ namespace InventarioEngrama.API.Controllers
 		}
 
 		/// <summary>
-		/// Consutal los ARticulos apartados de la base de datos
+		/// Consulta los ARticulos apartados de la base de datos
 		/// </summary>
 		/// <param name="postModel"></param>
 		/// <returns></returns>

@@ -1,0 +1,11 @@
+﻿@inherits EngramaComponent
+
+
+<MudGrid>
+	<MudItem sm="12">
+		<CardArticulo Articulo="@Data.ArticuloSelected"></CardArticulo>
+	</MudItem>
+	<MudItem sm="12">
+		<FormVenta Data="@Data" OnVentaSaved="OnVentaSaved"></FormVenta>
+	</MudItem>
+</MudGrid>

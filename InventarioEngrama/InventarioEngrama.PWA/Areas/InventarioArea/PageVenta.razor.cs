@@ -22,9 +22,15 @@ namespace InventarioEngrama.PWA.Areas.InventarioArea
 
 		private async Task OnVentaSaved()
 		{
-			await Task.Delay(1);
-			StateHasChanged();
+			Loading.Show();
+			var result = await Data.PostSaveVenta();
+			ShowSnake(result);
+			if (result.bResult)
+			{
+				ShowArticulo = false;
+			}
 
+			Loading.Hide();
 		}
 
 	}

@@ -9,6 +9,7 @@ namespace InventarioEngrama.PWA.Areas.InventarioArea.Componentes
 	{
 
 		[Parameter] public MainInventario Data { get; set; }
+		[Parameter] public EventCallback EC_ApartadorSaved { get; set; }
 
 		public bool ShowApartadoDetalle { get; set; }
 
@@ -21,6 +22,27 @@ namespace InventarioEngrama.PWA.Areas.InventarioArea.Componentes
 		private async Task OnArticuloSelected()
 		{
 
+			await Task.Delay(1);
+			StateHasChanged();
+
+		}
+		private void OnVentaSaved()
+		{
+
+			Data.AddArticuloToApartado();
+		}
+
+		private async Task OnClickGuradarApartado()
+		{
+			Loading.Show();
+			var result = await Data.PostSaveApartado();
+			ShowSnake(result);
+			if (result.bResult)
+			{
+				await EC_ApartadorSaved.InvokeAsync();
+			}
+
+			Loading.Hide();
 		}
 	}
 }

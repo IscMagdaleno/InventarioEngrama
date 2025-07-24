@@ -17,7 +17,6 @@ BEGIN
         mTotal MONEY               DEFAULT (0),
         bPagado BIT                DEFAULT (0),
         nvchComentario NVARCHAR(2000) DEFAULT(''),
-        -- Campos de ApartadoDetalle
         iIdApartadoDetalle INT     DEFAULT(-1),
         iIdArticulo INT            DEFAULT(-1),
         iCantidad INT              DEFAULT(-1),

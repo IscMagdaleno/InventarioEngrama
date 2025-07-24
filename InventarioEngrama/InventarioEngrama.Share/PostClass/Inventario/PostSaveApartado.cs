@@ -6,10 +6,11 @@ namespace InventarioEngrama.Share.PostClass.Inventario
 	{
 
 		public string nvchNombreCliente { get; set; }
+		public DateTime? dtFechaApartado { get; set; }
 		public decimal mTotal { get; set; }
 		public bool bPagado { get; set; }
 		public string nvchComentario { get; set; }
-		public IList<ApartadoDetalle> LstDetalles { get; set; }
+		public IList<ApartadoDetalle> ArticulosApartados { get; set; }
 	}
 
 }

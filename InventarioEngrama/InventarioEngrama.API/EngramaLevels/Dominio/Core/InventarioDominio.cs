@@ -273,7 +273,7 @@ namespace InventarioEngrama.API.EngramaLevels.Dominio.Core
 			{
 				var model = mapperHelper.Get<PostSaveApartado, spSaveApartado.Request>(PostModel);
 				List<DTApartadoDetalle> lista = new List<DTApartadoDetalle>();
-				foreach (var item in PostModel.LstDetalles)
+				foreach (var item in PostModel.ArticulosApartados)
 				{
 
 					lista.Add(mapperHelper.Get<ApartadoDetalle, DTApartadoDetalle>(item));
@@ -312,7 +312,7 @@ namespace InventarioEngrama.API.EngramaLevels.Dominio.Core
 						var lstDetalle = result.Where(e => e.iIdApartado == item.iIdApartado);
 						foreach (var item1 in lstDetalle)
 						{
-							item.Detalles.Add(mapperHelper.Get<spGetApartado.Result, ApartadoDetalle>(item1));
+							item.ArticulosApartados.Add(mapperHelper.Get<spGetApartado.Result, ApartadoDetalle>(item1));
 						}
 					}
 				}

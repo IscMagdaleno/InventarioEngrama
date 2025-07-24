@@ -24,14 +24,7 @@
 			<MudItem sm="6">
 				@if (ShowArticulo)
 				{
-					<MudGrid>
-						<MudItem sm="12">
-							<CardArticulo Articulo="@Data.ArticuloSelected"></CardArticulo>
-						</MudItem>
-						<MudItem sm="12">
-							<FormVenta Data="@Data" OnVentaSaved="OnVentaSaved"></FormVenta>
-						</MudItem>
-					</MudGrid>
+					<GridSeleccionArticulo Data="Data" OnProductSaved="OnVentaSaved"></GridSeleccionArticulo>
 				}
 			</MudItem>
 			<MudItem sm="12">
