@@ -276,7 +276,7 @@ namespace InventarioEngrama.API.EngramaLevels.Dominio.Core
 				foreach (var item in PostModel.ArticulosApartados)
 				{
 
-					lista.Add(mapperHelper.Get<ApartadoDetalle, DTApartadoDetalle>(item));
+					lista.Add(mapperHelper.Get<ArticulosApartados, DTApartadoDetalle>(item));
 				}
 				model.Detalles = lista;
 
@@ -312,7 +312,7 @@ namespace InventarioEngrama.API.EngramaLevels.Dominio.Core
 						var lstDetalle = result.Where(e => e.iIdApartado == item.iIdApartado);
 						foreach (var item1 in lstDetalle)
 						{
-							item.ArticulosApartados.Add(mapperHelper.Get<spGetApartado.Result, ApartadoDetalle>(item1));
+							item.ArticulosApartados.Add(mapperHelper.Get<spGetApartado.Result, ArticulosApartados>(item1));
 						}
 					}
 				}
@@ -321,6 +321,70 @@ namespace InventarioEngrama.API.EngramaLevels.Dominio.Core
 			catch (Exception ex)
 			{
 				return Response<IEnumerable<Apartado>>.BadResult(ex.Message, new List<Apartado>());
+			}
+		}
+
+		public async Task<Response<AbonoApartado>> SaveAbonoApartado(PostSaveAbonoApartado PostModel)
+		{
+			try
+			{
+				var model = mapperHelper.Get<PostSaveAbonoApartado, spSaveAbonoApartado.Request>(PostModel);
+				var result = await inventarioRepository.spSaveAbonoApartado(model);
+				var validation = responseHelper.Validacion<spSaveAbonoApartado.Result, AbonoApartado>(result);
+				if (validation.IsSuccess)
+				{
+					PostModel.iIdAbonoApartado = validation.Data.iIdAbonoApartado;
+					validation.Data = mapperHelper.Get<PostSaveAbonoApartado, AbonoApartado>(PostModel);
+				}
+				return validation;
+			}
+			catch (Exception ex)
+			{
+				return Response<AbonoApartado>.BadResult(ex.Message, new());
+			}
+		}
+
+		public async Task<Response<IEnumerable<AbonoApartado>>> GetAbonoApartado(PostGetAbonoApartado PostModel)
+		{
+			try
+			{
+				var model = mapperHelper.Get<PostGetAbonoApartado, spGetAbonoApartado.Request>(PostModel);
+				var result = await inventarioRepository.spGetAbonoApartado(model);
+				var validation = responseHelper.Validacion<spGetAbonoApartado.Result, AbonoApartado>(result);
+				if (validation.IsSuccess)
+				{
+					validation.Data = validation.Data;
+				}
+				return validation;
+			}
+			catch (Exception ex)
+			{
+				return Response<IEnumerable<AbonoApartado>>.BadResult(ex.Message, new List<AbonoApartado>());
+			}
+		}
+
+		public async Task<Response<IEnumerable<ArticulosApartados>>> GetApartadoDetalle(PostGetApartadoDetalle PostModel)
+		{
+			try
+			{
+				var model = mapperHelper.Get<PostGetApartadoDetalle, spGetApartadoDetalle.Request>(PostModel);
+				var result = await inventarioRepository.spGetApartadoDetalle(model);
+				var validation = responseHelper.Validacion<spGetApartadoDetalle.Result, ArticulosApartados>(result);
+				if (validation.IsSuccess)
+				{
+					foreach (var item in validation.Data)
+					{
+						var row = result.FirstOrDefault(e => e.iIdApartadoDetalle == item.iIdApartadoDetalle);
+						item.Articulo = mapperHelper.Get<spGetApartadoDetalle.Result, Articulo>(row);
+						item.Articulo.nvchNombre = row.nvchNombreArticulo;
+
+					}
+				}
+				return validation;
+			}
+			catch (Exception ex)
+			{
+				return Response<IEnumerable<ArticulosApartados>>.BadResult(ex.Message, new List<ArticulosApartados>());
 			}
 		}
 

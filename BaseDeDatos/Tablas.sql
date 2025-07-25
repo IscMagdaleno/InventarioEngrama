@@ -136,6 +136,3 @@ GO
 ALTER TABLE [dbo].[Venta]  WITH CHECK ADD CHECK  (([iCantidad]>(0)))
 GO
 
-
-
-

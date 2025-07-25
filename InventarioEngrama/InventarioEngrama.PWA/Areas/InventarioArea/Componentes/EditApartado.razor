@@ -1,0 +1,21 @@
+﻿@inherits EngramaComponent
+
+
+<MudGrid>
+	<MudItem sm="6">
+		<CardApatado Apartado="@Data.ApartadoSelected"></CardApatado>
+	</MudItem>
+
+	<MudItem sm="6">
+		@if (Data.ApartadoSelected.bPagado.False())
+		{
+			<FormAbonoApartado Data="Data" OnDataSaved="OnDataSaved"></FormAbonoApartado>
+		}
+	</MudItem>
+	<MudItem sm="6">
+		<TablaArticuloApartado ArticulosApartados="Data.ApartadoSelected.ArticulosApartados"></TablaArticuloApartado>
+	</MudItem>
+	<MudItem sm="6">
+		<TablaAbonoApartado Data="Data"></TablaAbonoApartado>
+	</MudItem>
+</MudGrid>

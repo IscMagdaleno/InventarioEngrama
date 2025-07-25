@@ -1,0 +1,42 @@
+﻿@using InventarioEngrama.Share.Objetos.Inventario
+@inherits EngramaComponent
+
+
+<MudTable Items="@Data.LstAbonoApartados"
+		  T="@AbonoApartado"
+		  Dense="@true"
+		  Hover="true"
+		  Filter="new Func<AbonoApartado,bool>(FilterFunc1)">
+	<ToolBarContent>
+		<MudText Typo="Typo.h6">Tabla de AbonoApartado</MudText>
+		<MudSpacer />
+		<MudTextField @bind-Value="searchStringFiltro" Placeholder="Search" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
+	</ToolBarContent>
+	<HeaderContent>
+		<MudTh>IdAbonoApartado</MudTh>
+		<MudTh>IdApartado</MudTh>
+		<MudTh>Abono</MudTh>
+		<MudTh>FechaAbono</MudTh>
+	</HeaderContent>
+	<RowTemplate>
+		<MudTd DataLabel="iIdAbonoApartado">@context.iIdAbonoApartado</MudTd>
+		<MudTd DataLabel="iIdApartado">@context.iIdApartado</MudTd>
+		<MudTd DataLabel="mAbono">@context.mAbono</MudTd>
+		<MudTd DataLabel="dtFechaAbono">@context.dtFechaAbono</MudTd>
+	</RowTemplate>
+	<PagerContent>
+		<MudTablePager />
+	</PagerContent>
+</MudTable>
+@code {
+	private string searchStringFiltro = "";
+	private bool FilterFunc1(AbonoApartado element) => FilterFunc(element, searchStringFiltro);
+	private bool FilterFunc(AbonoApartado element, string searchString)
+	{
+		if (string.IsNullOrWhiteSpace(searchString))
+			return true;
+		if (element.mAbono.ToString().Contains(searchString, StringComparison.OrdinalIgnoreCase)) // Agrega el campo por el caul realizar el filtro
+			return true;
+		return false;
+	}
+}

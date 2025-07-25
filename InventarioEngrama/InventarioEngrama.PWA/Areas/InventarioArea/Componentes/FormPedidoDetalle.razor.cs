@@ -53,7 +53,7 @@ namespace InventarioEngrama.PWA.Areas.InventarioArea.Componentes
 
 			Data.PedidoDetalleSelected.mPrecioUnitario = Data.ArticuloSelected.mPrecioCompra;
 
-			ShowFormProducto.False();
+			ShowFormProducto = ShowFormProducto.False();
 			await Task.Delay(1);
 			StateHasChanged();
 		}

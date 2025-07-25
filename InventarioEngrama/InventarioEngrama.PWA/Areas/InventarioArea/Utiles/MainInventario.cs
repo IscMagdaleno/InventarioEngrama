@@ -42,7 +42,8 @@ namespace InventarioEngrama.PWA.Areas.InventarioArea.Utiles
 		public IList<Apartado> LstApartado { get; set; }
 
 
-
+		public AbonoApartado AbonoApartadoSelected { get; set; }
+		public IList<AbonoApartado> LstAbonoApartados { get; set; }
 
 		public MainInventario(IHttpService httpService, MapperHelper mapper, IValidaServicioService validaServicioService)
 		{
@@ -70,6 +71,8 @@ namespace InventarioEngrama.PWA.Areas.InventarioArea.Utiles
 			ApartadoSelected = new Apartado();
 			LstApartado = new List<Apartado>();
 
+			AbonoApartadoSelected = new AbonoApartado();
+			LstAbonoApartados = new List<AbonoApartado>();
 		}
 
 
@@ -304,9 +307,9 @@ namespace InventarioEngrama.PWA.Areas.InventarioArea.Utiles
 		{
 			if (ApartadoSelected.ArticulosApartados == null)
 			{
-				ApartadoSelected.ArticulosApartados = new List<ApartadoDetalle>();
+				ApartadoSelected.ArticulosApartados = new List<ArticulosApartados>();
 			}
-			var apartadoArticulo = new ApartadoDetalle
+			var apartadoArticulo = new ArticulosApartados
 			{
 				iIdApartado = ApartadoSelected.iIdApartado,
 				iIdArticulo = ArticuloSelected.iIdArticulo,
@@ -342,5 +345,41 @@ namespace InventarioEngrama.PWA.Areas.InventarioArea.Utiles
 
 
 		}
+
+		public async Task<SeverityMessage> PostSaveAbonoApartado()
+		{
+			AbonoApartadoSelected.iIdApartado = ApartadoSelected.iIdApartado;
+			AbonoApartadoSelected.dtFechaAbono = DateTime.UtcNow;
+			var APIUrl = url + "/PostSaveAbonoApartado";
+			var model = _mapper.Get<AbonoApartado, PostSaveAbonoApartado>(AbonoApartadoSelected);
+			var response = await _httpService.Post<PostSaveAbonoApartado, Response<AbonoApartado>>(APIUrl, model);
+			var validacion = _validaServicioService.ValidadionServicio(response,
+			onSuccess: data => LstAbonoApartados.Add(data));
+			return validacion;
+
+		}
+
+		public async Task<SeverityMessage> PostGetAbonoApartado()
+		{
+			var APIUrl = url + "/PostGetAbonoApartado";
+
+			var model = _mapper.Get<Apartado, PostGetAbonoApartado>(ApartadoSelected);
+			var response = await _httpService.Post<PostGetAbonoApartado, Response<List<AbonoApartado>>>(APIUrl, model);
+			var validacion = _validaServicioService.ValidadionServicio(response,
+			onSuccess: data => LstAbonoApartados = data);
+			return validacion;
+		}
+
+		public async Task<SeverityMessage> PostGetArticulosApartados()
+		{
+			var APIUrl = url + "/PostGetApartadoDetalle";
+
+			var model = _mapper.Get<Apartado, PostGetApartadoDetalle>(ApartadoSelected);
+			var response = await _httpService.Post<PostGetApartadoDetalle, Response<List<ArticulosApartados>>>(APIUrl, model);
+			var validacion = _validaServicioService.ValidadionServicio(response,
+			onSuccess: data => ApartadoSelected.ArticulosApartados = data);
+			return validacion;
+		}
+
 	}
 }

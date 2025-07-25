@@ -10,12 +10,12 @@ namespace InventarioEngrama.Share.Objetos.Inventario
 		public decimal mTotal { get; set; }
 		public bool bPagado { get; set; }
 		public string nvchComentario { get; set; }
-		public IList<ApartadoDetalle> ArticulosApartados { get; set; }
+		public IList<ArticulosApartados> ArticulosApartados { get; set; }
 		public Apartado()
 		{
 			dtFechaApartado = Defaults.SqlMinDate();
 			nvchComentario = string.Empty;
-			ArticulosApartados = new List<ApartadoDetalle>();
+			ArticulosApartados = new List<ArticulosApartados>();
 		}
 
 	}

@@ -150,6 +150,35 @@ namespace InventarioEngrama.API.EngramaLevels.Infrastructure.Repository
 			return new List<spGetApartado.Result>() { new() { bResult = false, vchMessage = $"[{(result.Ex.NotNull() ? result.Ex.Message : "")}] - [{result.Msg}]" } };
 		}
 
+		public async Task<spSaveAbonoApartado.Result> spSaveAbonoApartado(spSaveAbonoApartado.Request PostModel)
+		{
+			var result = await _managerHelper.GetAsync<spSaveAbonoApartado.Result, spSaveAbonoApartado.Request>(PostModel);
+			if (result.Ok)
+			{
+				return result.Data;
+			}
+			return new() { bResult = false, vchMessage = $"[{(result.Ex.NotNull() ? result.Ex.Message : "")}] - [{result.Msg}]" };
+		}
+
+		public async Task<IEnumerable<spGetAbonoApartado.Result>> spGetAbonoApartado(spGetAbonoApartado.Request PostModel)
+		{
+			var result = await _managerHelper.GetAllAsync<spGetAbonoApartado.Result, spGetAbonoApartado.Request>(PostModel);
+			if (result.Ok)
+			{
+				return result.Data;
+			}
+			return new List<spGetAbonoApartado.Result>() { new() { bResult = false, vchMessage = $"[{(result.Ex.NotNull() ? result.Ex.Message : "")}] - [{result.Msg}]" } };
+		}
+
+		public async Task<IEnumerable<spGetApartadoDetalle.Result>> spGetApartadoDetalle(spGetApartadoDetalle.Request PostModel)
+		{
+			var result = await _managerHelper.GetAllAsync<spGetApartadoDetalle.Result, spGetApartadoDetalle.Request>(PostModel);
+			if (result.Ok)
+			{
+				return result.Data;
+			}
+			return new List<spGetApartadoDetalle.Result>() { new() { bResult = false, vchMessage = $"[{(result.Ex.NotNull() ? result.Ex.Message : "")}] - [{result.Msg}]" } };
+		}
 
 	}
 }

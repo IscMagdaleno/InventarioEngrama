@@ -38,6 +38,7 @@
 									<MudButton Variant="Variant.Filled" Color="Color.Secondary" Class="mt-4" Style="display: block; margin: 0 auto;" OnClick="@(()=>NavigateToPages("PageCrudArticulos"))">
 										Empezar
 									</MudButton>
+
 								</MudCardActions>
 							</MudCard>
 						</MudItem>
@@ -102,20 +103,41 @@
 			</MudGrid>
 		</MudItem>
 		<MudItem xs="12" sm="6">
-			<MudCard Style="height: 100%; display: flex; align-items: center; justify-content: center; ">
-				<MudImage Class="mt-2" Src="images/sales.png" Height="320" ObjectFit="@ObjectFit.Contain" />
-				<MudCardContent>
-					<MudText Typo="Typo.h3" Align="Align.Center" Color="Color.Primary">Ventas</MudText>
-					<MudText Typo="Typo.body1" Align="Align.Center">
-						Realiza las salidas de productos del inventario
-					</MudText>
-				</MudCardContent>
-				<MudCardActions>
-					<MudButton Variant="Variant.Filled" Color="Color.Secondary" Class="mt-4" Style="display: block; margin: 0 auto;" OnClick="@(()=>NavigateToPages("PageVenta"))">
-						Empezar
-					</MudButton>
-				</MudCardActions>
-			</MudCard>
+			<MudGrid>
+				<MudItem sm="6">
+					<MudCard Style="height: 100%; display: flex; align-items: center; justify-content: center; ">
+						<MudImage Class="mt-2" Src="images/sales.png" Height="320" ObjectFit="@ObjectFit.Contain" />
+						<MudCardContent>
+							<MudText Typo="Typo.h3" Align="Align.Center" Color="Color.Primary">Ventas</MudText>
+							<MudText Typo="Typo.body1" Align="Align.Center">
+								Realiza las salidas de productos del inventario
+							</MudText>
+						</MudCardContent>
+						<MudCardActions>
+							<MudButton Variant="Variant.Filled" Color="Color.Secondary" Class="mt-4" Style="display: block; margin: 0 auto;" OnClick="@(()=>NavigateToPages("PageVenta"))">
+								Empezar
+							</MudButton>
+						</MudCardActions>
+					</MudCard>
+				</MudItem>
+				<MudItem sm="6">
+					<MudCard Style="height: 100%; display: flex; align-items: center; justify-content: center; ">
+						<MudImage Class="mt-2" Src="images/sales.png" Height="320" ObjectFit="@ObjectFit.Contain" />
+						<MudCardContent>
+							<MudText Typo="Typo.h3" Align="Align.Center" Color="Color.Primary">Apartados</MudText>
+							<MudText Typo="Typo.body1" Align="Align.Center">
+								Aparta los productos para los clientes y administra los abonos
+							</MudText>
+						</MudCardContent>
+						<MudCardActions>
+							<MudButton Variant="Variant.Filled" Color="Color.Secondary" Class="mt-4" Style="display: block; margin: 0 auto;" OnClick="@(()=>NavigateToPages("PageApartados"))">
+								Empezar
+							</MudButton>
+						</MudCardActions>
+					</MudCard>
+				</MudItem>
+			</MudGrid>
+			
 
 		</MudItem>
 

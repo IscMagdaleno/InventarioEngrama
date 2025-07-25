@@ -231,6 +231,39 @@ namespace InventarioEngrama.API.Controllers
 			return BadRequest(result);
 		}
 
+		[HttpPost("PostSaveAbonoApartado")]
+		public async Task<IActionResult> PostSaveAbonoApartado([FromBody] PostSaveAbonoApartado postModel)
+		{
+			var result = await inventarioDominio.SaveAbonoApartado(postModel);
+			if (result.IsSuccess)
+			{
+				return Ok(result);
+			}
+			return BadRequest(result);
+		}
+
+		[HttpPost("PostGetAbonoApartado")]
+		public async Task<IActionResult> PostGetAbonoApartado([FromBody] PostGetAbonoApartado postModel)
+		{
+			var result = await inventarioDominio.GetAbonoApartado(postModel);
+			if (result.IsSuccess)
+			{
+				return Ok(result);
+			}
+			return BadRequest(result);
+		}
+
+		[HttpPost("PostGetApartadoDetalle")]
+		public async Task<IActionResult> PostGetApartadoDetalle([FromBody] PostGetApartadoDetalle postModel)
+		{
+			var result = await inventarioDominio.GetApartadoDetalle(postModel);
+			if (result.IsSuccess)
+			{
+				return Ok(result);
+			}
+			return BadRequest(result);
+		}
+
 
 	}
 }

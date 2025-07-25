@@ -1,6 +1,6 @@
 ﻿namespace InventarioEngrama.Share.Objetos.Inventario
 {
-	public class ApartadoDetalle
+	public class ArticulosApartados
 	{
 		public int iIdApartadoDetalle { get; set; }
 		public int iIdApartado { get; set; }
@@ -12,7 +12,7 @@
 		public Articulo Articulo { get; set; }
 
 
-		public ApartadoDetalle()
+		public ArticulosApartados()
 		{
 			Articulo = new Articulo();
 

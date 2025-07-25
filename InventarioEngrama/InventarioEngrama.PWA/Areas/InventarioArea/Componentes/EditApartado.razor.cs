@@ -1,32 +1,24 @@
 ﻿using InventarioEngrama.PWA.Areas.InventarioArea.Utiles;
 using InventarioEngrama.PWA.Shared.Common;
-using InventarioEngrama.Share.Objetos.Inventario;
 
 using Microsoft.AspNetCore.Components;
 
 namespace InventarioEngrama.PWA.Areas.InventarioArea.Componentes
 {
-	public partial class TablaApartados : EngramaComponent
+	public partial class EditApartado : EngramaComponent
 	{
-
 		[Parameter] public MainInventario Data { get; set; }
-
-		[Parameter]
-		public EventCallback EC_ApartadoSelected { get; set; }
 
 		protected override async Task OnInitializedAsync()
 		{
 			Loading.Show();
-			await Data.PostGetApartado();
+			await Data.PostGetArticulosApartados();
 			Loading.Hide();
 		}
-
-
-
-		private async Task OnClickRow(Apartado apartado)
+		private async Task OnDataSaved()
 		{
-			Data.ApartadoSelected = apartado;
-			await EC_ApartadoSelected.InvokeAsync();
+			await Task.Delay(1);
+			StateHasChanged();
 		}
 	}
 }

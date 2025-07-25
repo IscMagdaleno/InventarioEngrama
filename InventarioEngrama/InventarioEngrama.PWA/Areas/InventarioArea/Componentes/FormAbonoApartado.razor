@@ -1,0 +1,29 @@
+﻿@inherits EngramaComponent
+
+
+<EditForm Model="@Data.AbonoApartadoSelected"
+		  OnValidSubmit="OnSubmint">
+	<DataAnnotationsValidator />
+
+	<MudFocusTrap>
+
+		<MudGrid>
+			<MudItem sm="12">
+				<MudNumericField @bind-Value="Data.AbonoApartadoSelected.mAbono"
+								 Label="Abono"
+								 Variant="Variant.Outlined" />
+
+
+			</MudItem>
+			<MudItem sm="12">
+				<MudButton Variant="Variant.Filled"
+						   ButtonType="ButtonType.Submit"
+						   Color="Color.Secondary">Guardar Abono</MudButton>
+			</MudItem>
+		</MudGrid>
+	</MudFocusTrap>
+</EditForm>
+
+@code {
+
+}

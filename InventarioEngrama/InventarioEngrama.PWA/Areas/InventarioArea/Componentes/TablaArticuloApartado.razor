@@ -4,10 +4,10 @@
 @if (ArticulosApartados.Any())
 {
 	<MudTable Items="@ArticulosApartados"
-			  T="@ApartadoDetalle"
+			  T="@ArticulosApartados"
 			  Dense="@true"
 			  Hover="true"
-			  Filter="new Func<ApartadoDetalle,bool>(FilterFunc1)">
+			  Filter="new Func<ArticulosApartados,bool>(FilterFunc1)">
 		<ToolBarContent>
 			<MudText Typo="Typo.h6">Tabla de Artículos Apartados</MudText>
 			<MudSpacer />
@@ -40,11 +40,11 @@
 	</MudTable>
 }
 @code {
-	[Parameter] public IList<ApartadoDetalle> ArticulosApartados { get; set; }
+	[Parameter] public IList<ArticulosApartados> ArticulosApartados { get; set; }
 
 	private string searchStringFiltro = "";
-	private bool FilterFunc1(ApartadoDetalle element) => FilterFunc(element, searchStringFiltro);
-	private bool FilterFunc(ApartadoDetalle element, string searchString)
+	private bool FilterFunc1(ArticulosApartados element) => FilterFunc(element, searchStringFiltro);
+	private bool FilterFunc(ArticulosApartados element, string searchString)
 	{
 		if (string.IsNullOrWhiteSpace(searchString))
 			return true;
