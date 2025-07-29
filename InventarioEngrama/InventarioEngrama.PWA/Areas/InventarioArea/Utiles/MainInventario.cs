@@ -78,7 +78,7 @@ namespace InventarioEngrama.PWA.Areas.InventarioArea.Utiles
 
 		public async Task<SeverityMessage> PostSaveArticulo()
 		{
-			ArticuloSelected.iIdProveedor = ProveedorSelected.iIdProveedor;
+			ArticuloSelected.iIdProveedor = ArticuloSelected.Proveedor.iIdProveedor;
 			var APIUrl = url + "/PostSaveArticulo";
 			var model = _mapper.Get<Articulo, PostSaveArticulo>(ArticuloSelected);
 			var response = await _httpService.Post<PostSaveArticulo, Response<Articulo>>(APIUrl, model);
@@ -91,10 +91,10 @@ namespace InventarioEngrama.PWA.Areas.InventarioArea.Utiles
 		{
 			if (ArticuloSelected.iIdArticulo <= 0)
 			{
+				ArticuloSelected.iIdArticulo = data.iIdArticulo;
 				LstArticulos.Add(data);
 			}
 
-			ArticuloSelected = new Articulo();
 
 		}
 
@@ -170,10 +170,10 @@ namespace InventarioEngrama.PWA.Areas.InventarioArea.Utiles
 
 		public async Task<SeverityMessage> PostSavePedidoDetalle()
 		{
-			PedidoDetalleSelected.mPrecioUnitario = ArticuloSelected.mPrecioCompra;
+			PedidoDetalleSelected.mPrecioUnitario = PedidoDetalleSelected.Articulo.mPrecioCompra;
+
 			PedidoDetalleSelected.iIdPedido = PedidoSelected.iIdPedido;
-			PedidoDetalleSelected.iIdArticulo = ArticuloSelected.iIdArticulo;
-			PedidoDetalleSelected.Articulo = ArticuloSelected;
+			PedidoDetalleSelected.iIdArticulo = PedidoDetalleSelected.Articulo.iIdArticulo;
 			PedidoSelected.Proveedor = ProveedorSelected;
 
 			var APIUrl = url + "/PostSavePedidoDetalle";
@@ -380,6 +380,18 @@ namespace InventarioEngrama.PWA.Areas.InventarioArea.Utiles
 			onSuccess: data => ApartadoSelected.ArticulosApartados = data);
 			return validacion;
 		}
+
+
+		public async Task<SeverityMessage> PostDeletePedidoDetalle()
+		{
+			var APIUrl = url + "/PostDeletePedidoDetalle";
+			var model = _mapper.Get<PedidoDetalle, PostDeletePedidoDetalle>(PedidoDetalleSelected);
+			var response = await _httpService.Post<PostDeletePedidoDetalle, Response<GenericResponse>>(APIUrl, model);
+			var validacion = _validaServicioService.ValidadionServicio(response);
+			return validacion;
+
+		}
+
 
 	}
 }

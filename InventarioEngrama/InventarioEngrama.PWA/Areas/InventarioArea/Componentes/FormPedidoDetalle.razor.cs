@@ -48,14 +48,18 @@ namespace InventarioEngrama.PWA.Areas.InventarioArea.Componentes
 
 		}
 
-		private async Task OnDataArticuloSaved()
+		private async Task OnDataArticuloSaved(Articulo articulo)
 		{
 
-			Data.PedidoDetalleSelected.mPrecioUnitario = Data.ArticuloSelected.mPrecioCompra;
+			Data.PedidoDetalleSelected.mPrecioUnitario = articulo.mPrecioCompra;
+			Data.PedidoDetalleSelected.Articulo = articulo;
+			Data.PedidoDetalleSelected.iIdArticulo = articulo.iIdArticulo;
 
 			ShowFormProducto = ShowFormProducto.False();
 			await Task.Delay(1);
 			StateHasChanged();
 		}
+
+
 	}
 }

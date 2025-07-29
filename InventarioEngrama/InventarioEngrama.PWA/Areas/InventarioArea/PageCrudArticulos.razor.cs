@@ -24,6 +24,11 @@ namespace InventarioEngrama.PWA.Areas.InventarioArea
 
 		private async Task OnArticuloSelected()
 		{
+
+			if (Data.ArticuloSelected.iIdArticulo > 0 && Data.LstProveedores.Any())
+			{
+				Data.ArticuloSelected.Proveedor = Data.LstProveedores.SingleOrDefault(x => x.iIdProveedor == Data.ArticuloSelected.iIdProveedor);
+			}
 			ShowForm = true;
 		}
 	}

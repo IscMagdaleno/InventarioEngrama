@@ -264,6 +264,16 @@ namespace InventarioEngrama.API.Controllers
 			return BadRequest(result);
 		}
 
+		[HttpPost("PostDeletePedidoDetalle")]
+		public async Task<IActionResult> PostDeletePedidoDetalle([FromBody] PostDeletePedidoDetalle postModel)
+		{
+			var result = await inventarioDominio.DeletePedidoDetalle(postModel);
+			if (result.IsSuccess)
+			{
+				return Ok(result);
+			}
+			return BadRequest(result);
+		}
 
 	}
 }

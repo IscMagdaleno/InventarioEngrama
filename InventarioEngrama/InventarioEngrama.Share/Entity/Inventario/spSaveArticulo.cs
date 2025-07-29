@@ -12,9 +12,10 @@ namespace InventarioEngrama.Share.Entity.Inventario
 			public string nvchNombre { get; set; }
 			public string vchCodigo { get; set; }
 			public string nvchDescripcion { get; set; }
-
 			public decimal mPrecioCompra { get; set; }
 			public decimal mPrecioVenta { get; set; }
+			public int smCantidad { get; set; }
+
 		}
 		public class Result : DbResult
 		{

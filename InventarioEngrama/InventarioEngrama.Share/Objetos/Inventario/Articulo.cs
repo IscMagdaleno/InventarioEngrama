@@ -9,6 +9,7 @@
 		public string nvchDescripcion { get; set; }
 		public decimal mPrecioCompra { get; set; }
 		public decimal mPrecioVenta { get; set; }
+		public int smCantidad { get; set; }
 		public Proveedor Proveedor { get; set; }
 
 		public Articulo()

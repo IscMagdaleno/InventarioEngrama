@@ -1,4 +1,5 @@
-﻿using EngramaCoreStandar.Mapper;
+﻿using EngramaCoreStandar.Dapper.Results;
+using EngramaCoreStandar.Mapper;
 using EngramaCoreStandar.Results;
 
 using InventarioEngrama.API.EngramaLevels.Dominio.Interfaces;
@@ -388,6 +389,21 @@ namespace InventarioEngrama.API.EngramaLevels.Dominio.Core
 			}
 		}
 
+		public async Task<Response<GenericResponse>> DeletePedidoDetalle(PostDeletePedidoDetalle PostModel)
+		{
+			try
+			{
+				var model = mapperHelper.Get<PostDeletePedidoDetalle, spDeletePedidoDetalle.Request>(PostModel);
+				var result = await inventarioRepository.spDeletePedidoDetalle(model);
+				var validation = responseHelper.Validacion<spDeletePedidoDetalle.Result, GenericResponse>(result);
+
+				return validation;
+			}
+			catch (Exception ex)
+			{
+				return Response<GenericResponse>.BadResult(ex.Message, new());
+			}
+		}
 
 	}
 }

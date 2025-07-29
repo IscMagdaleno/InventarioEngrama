@@ -1,4 +1,5 @@
-﻿using EngramaCoreStandar.Results;
+﻿using EngramaCoreStandar.Dapper.Results;
+using EngramaCoreStandar.Results;
 
 using InventarioEngrama.Share.Objetos.Inventario;
 using InventarioEngrama.Share.PostClass.Inventario;
@@ -7,6 +8,7 @@ namespace InventarioEngrama.API.EngramaLevels.Dominio.Interfaces
 {
 	public interface IInventarioDominio
 	{
+		Task<Response<GenericResponse>> DeletePedidoDetalle(PostDeletePedidoDetalle PostModel);
 		Task<Response<IEnumerable<AbonoApartado>>> GetAbonoApartado(PostGetAbonoApartado PostModel);
 		Task<Response<IEnumerable<Apartado>>> GetApartado(PostGetApartado PostModel);
 		Task<Response<IEnumerable<ArticulosApartados>>> GetApartadoDetalle(PostGetApartadoDetalle PostModel);

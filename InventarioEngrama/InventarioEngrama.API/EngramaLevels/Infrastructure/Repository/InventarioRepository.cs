@@ -180,5 +180,15 @@ namespace InventarioEngrama.API.EngramaLevels.Infrastructure.Repository
 			return new List<spGetApartadoDetalle.Result>() { new() { bResult = false, vchMessage = $"[{(result.Ex.NotNull() ? result.Ex.Message : "")}] - [{result.Msg}]" } };
 		}
 
+		public async Task<spDeletePedidoDetalle.Result> spDeletePedidoDetalle(spDeletePedidoDetalle.Request PostModel)
+		{
+			var result = await _managerHelper.GetAsync<spDeletePedidoDetalle.Result, spDeletePedidoDetalle.Request>(PostModel);
+			if (result.Ok)
+			{
+				return result.Data;
+			}
+			return new() { bResult = false, vchMessage = $"[{(result.Ex.NotNull() ? result.Ex.Message : "")}] - [{result.Msg}]" };
+		}
+
 	}
 }

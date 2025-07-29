@@ -5,6 +5,7 @@ namespace InventarioEngrama.API.EngramaLevels.Infrastructure.Interfaces
 {
 	public interface IInventarioRepository
 	{
+		Task<spDeletePedidoDetalle.Result> spDeletePedidoDetalle(spDeletePedidoDetalle.Request PostModel);
 		Task<IEnumerable<spGetAbonoApartado.Result>> spGetAbonoApartado(spGetAbonoApartado.Request PostModel);
 		Task<IEnumerable<spGetApartado.Result>> spGetApartado(spGetApartado.Request PostModel);
 		Task<IEnumerable<spGetApartadoDetalle.Result>> spGetApartadoDetalle(spGetApartadoDetalle.Request PostModel);

@@ -22,9 +22,22 @@ namespace InventarioEngrama.PWA.Areas.InventarioArea.Componentes
 
 		private async Task OnClickRow(PedidoDetalle pedidoDetalle)
 		{
-			Data.ArticuloSelected = Data.LstArticulos.FirstOrDefault(e => e.iIdArticulo == pedidoDetalle.iIdArticulo);
 			Data.PedidoDetalleSelected = pedidoDetalle;
+			Data.PedidoDetalleSelected.Articulo = Data.LstArticulos.FirstOrDefault(e => e.iIdArticulo == pedidoDetalle.iIdArticulo);
 			await OnDetallePedidoSelected.InvokeAsync();
+		}
+
+		private async Task OnClickDeleteRow(PedidoDetalle pedidoDetalle)
+		{
+			Loading.Show();
+			Data.PedidoDetalleSelected = pedidoDetalle;
+			var resultado = await Data.PostDeletePedidoDetalle();
+			ShowSnake(resultado);
+			if (resultado.bResult)
+			{
+				await Data.PostGetPedidoDetalle();
+			}
+			Loading.Hide();
 		}
 	}
 
