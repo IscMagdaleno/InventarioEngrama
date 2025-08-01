@@ -354,9 +354,23 @@ namespace InventarioEngrama.PWA.Areas.InventarioArea.Utiles
 			var model = _mapper.Get<AbonoApartado, PostSaveAbonoApartado>(AbonoApartadoSelected);
 			var response = await _httpService.Post<PostSaveAbonoApartado, Response<AbonoApartado>>(APIUrl, model);
 			var validacion = _validaServicioService.ValidadionServicio(response,
-			onSuccess: data => LstAbonoApartados.Add(data));
+			onSuccess: data => AfterSaveAbonoApartado(data));
 			return validacion;
 
+		}
+
+
+		private void AfterSaveAbonoApartado(AbonoApartado data)
+		{
+			LstAbonoApartados.Add(data);
+
+
+			ApartadoSelected.mTotal -= AbonoApartadoSelected.mAbono;
+
+			if (ApartadoSelected.mTotal <= 0)
+			{
+				ApartadoSelected.bPagado = true;
+			}
 		}
 
 		public async Task<SeverityMessage> PostGetAbonoApartado()
@@ -391,6 +405,7 @@ namespace InventarioEngrama.PWA.Areas.InventarioArea.Utiles
 			return validacion;
 
 		}
+
 
 
 	}

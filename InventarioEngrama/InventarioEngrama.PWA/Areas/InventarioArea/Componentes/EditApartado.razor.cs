@@ -17,6 +17,8 @@ namespace InventarioEngrama.PWA.Areas.InventarioArea.Componentes
 		}
 		private async Task OnDataSaved()
 		{
+
+
 			await Task.Delay(1);
 			StateHasChanged();
 		}
