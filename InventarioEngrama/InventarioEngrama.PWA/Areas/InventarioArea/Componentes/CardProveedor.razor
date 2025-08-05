@@ -1,0 +1,23 @@
+﻿@using InventarioEngrama.Share.Objetos.Inventario
+<MudCard>
+	<MudCardHeader>
+		<CardHeaderContent>
+			<MudText Typo="Typo.h6" Color="Color.Primary">@Proveedor.nvchNombre</MudText>
+		</CardHeaderContent>
+		<CardHeaderActions>
+			<MudFab Color="Color.Primary" StartIcon="@Icons.Material.Filled.TouchApp" IconSize="Size.Small" OnClick="@(()=>OnClickCard())" />
+		</CardHeaderActions>
+	</MudCardHeader>
+</MudCard>
+@code {
+
+	[Parameter] public Proveedor Proveedor { get; set; }
+	[Parameter] public EventCallback<Proveedor> EC_ProveedorSelected { get; set; }
+
+	private async Task OnClickCard()
+	{
+		await EC_ProveedorSelected.InvokeAsync(Proveedor);
+	}
+
+
+}

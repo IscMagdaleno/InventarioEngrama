@@ -4,17 +4,33 @@
 			<MudCard>
 				<MudCardHeader>
 					<CardHeaderContent>
-						<MudText Typo="Typo.h2">Catalogos</MudText>
+						<MudText Typo="Typo.h2">Catálogos</MudText>
 					</CardHeaderContent>
 				</MudCardHeader>
 				<MudCardContent>
 					<MudGrid>
-						<MudItem xs="12" sm="6" md="6">
+						<MudItem xs="12" sm="4">
+							<MudCard Style="height: 180px; display: flex; align-items: center; justify-content: center; ">
+								<MudCardContent>
+									<MudText Typo="Typo.h3" Align="Align.Center" Color="Color.Primary">Buscar Artículo </MudText>
+									<MudText Typo="Typo.body1" Align="Align.Center">
+										Busca los articulo de una manera rápida.
+
+									</MudText>
+								</MudCardContent>
+								<MudCardActions>
+									<MudButton Variant="Variant.Filled" Color="Color.Secondary" Class="mt-4" Style="display: block; margin: 0 auto;" OnClick="@(()=>NavigateToPages("PageConsultaRapida"))">
+										Empezar
+									</MudButton>
+								</MudCardActions>
+							</MudCard>
+						</MudItem>
+						<MudItem xs="12" sm="4" >
 							<MudCard Style="height: 180px; display: flex; align-items: center; justify-content: center; ">
 								<MudCardContent>
 									<MudText Typo="Typo.h3" Align="Align.Center" Color="Color.Primary">Proveedores</MudText>
 									<MudText Typo="Typo.body1" Align="Align.Center">
-										Registra los proveedores de los que estaras reciviendo articulos.
+										Registra los proveedores de los que estarás recibiendo artículos.
 
 									</MudText>
 								</MudCardContent>
@@ -25,12 +41,12 @@
 								</MudCardActions>
 							</MudCard>
 						</MudItem>
-						<MudItem xs="12" sm="6" md="6">
+						<MudItem xs="12" sm="4" >
 							<MudCard Style="height: 180px; display: flex; align-items: center; justify-content: center; ">
 								<MudCardContent>
 									<MudText Typo="Typo.h3" Align="Align.Center" Color="Color.Primary">Artiuclos</MudText>
 									<MudText Typo="Typo.body1" Align="Align.Center">
-										Administra los productos que tienes registrados o registraa nuevos.
+										Administra los productos que tienes registrados o registrar nuevos.
 
 									</MudText>
 								</MudCardContent>
@@ -66,7 +82,7 @@
 										<MudCardContent>
 											<MudText Typo="Typo.h3" Align="Align.Center" Color="Color.Primary">Pedidos</MudText>
 											<MudText Typo="Typo.body1" Align="Align.Center">
-												Administra los pedidos de mercancia que tienes registrados o registraa nuevos.
+												Administra los pedidos de mercancía que tienes registrados o registrar nuevos.
 
 											</MudText>
 										</MudCardContent>
@@ -84,7 +100,7 @@
 										<MudCardContent>
 											<MudText Typo="Typo.h3" Align="Align.Center" Color="Color.Primary">Inventario</MudText>
 											<MudText Typo="Typo.body1" Align="Align.Center">
-												Vefirica las articulos que tienes en invetario
+												Verifica las artículos que tienes en inventario.
 											</MudText>
 										</MudCardContent>
 										<MudCardActions>

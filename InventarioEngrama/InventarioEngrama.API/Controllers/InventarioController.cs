@@ -19,7 +19,7 @@ namespace InventarioEngrama.API.Controllers
 
 
 		/// <summary>
-		/// Guardar los Articulos en la base de datos
+		/// Guardar los Artículos en la base de datos
 		/// </summary>
 		/// <param name="postModel"></param>
 		/// <returns></returns>
@@ -35,7 +35,7 @@ namespace InventarioEngrama.API.Controllers
 		}
 
 		/// <summary>
-		/// Obtener los articulos de la base de datos
+		/// Obtener los artículos de la base de datos
 		/// </summary>
 		/// <param name="postModel"></param>
 		/// <returns></returns>
@@ -52,7 +52,7 @@ namespace InventarioEngrama.API.Controllers
 
 
 		/// <summary>
-		/// Guardar provedores en base de datos
+		/// Guardar proveedores en base de datos
 		/// </summary>
 		/// <param name="postModel"></param>
 		/// <returns></returns>
@@ -69,7 +69,7 @@ namespace InventarioEngrama.API.Controllers
 
 
 		/// <summary>
-		/// Obtener los provedores de la base de datos
+		/// Obtener los proveedores de la base de datos
 		/// </summary>
 		/// <param name="postModel"></param>
 		/// <returns></returns>
@@ -120,7 +120,7 @@ namespace InventarioEngrama.API.Controllers
 
 
 		/// <summary>
-		/// Retona el detalle de un pedido con todos los articulos
+		/// Retorna el detalle de un pedido con todos los artículos
 		/// </summary>
 		/// <param name="postModel"></param>
 		/// <returns></returns>
@@ -152,7 +152,7 @@ namespace InventarioEngrama.API.Controllers
 		}
 
 		/// <summary>
-		/// Consulta los articulos con existencia en el inventario
+		/// Consulta los artículos con existencia en el inventario
 		/// </summary>
 		/// <param name="postModel"></param>
 		/// <returns></returns>
@@ -168,7 +168,7 @@ namespace InventarioEngrama.API.Controllers
 		}
 
 		/// <summary>
-		/// Guarda las ventas realizadas o las salidas de mercancias del inventario
+		/// Guarda las ventas realizadas o las salidas de mercancías del inventario
 		/// </summary>
 		/// <param name="postModel"></param>
 		/// <returns></returns>
@@ -184,7 +184,7 @@ namespace InventarioEngrama.API.Controllers
 		}
 
 		/// <summary>
-		/// Consulta las ventas realizadas por medio de la aplicacion
+		/// Consulta las ventas realizadas por medio de la aplicación
 		/// </summary>
 		/// <param name="postModel"></param>
 		/// <returns></returns>
@@ -231,6 +231,11 @@ namespace InventarioEngrama.API.Controllers
 			return BadRequest(result);
 		}
 
+		/// <summary>
+		/// Guarda los abonos en la base de datos
+		/// </summary>
+		/// <param name="postModel"></param>
+		/// <returns></returns>
 		[HttpPost("PostSaveAbonoApartado")]
 		public async Task<IActionResult> PostSaveAbonoApartado([FromBody] PostSaveAbonoApartado postModel)
 		{
@@ -242,6 +247,11 @@ namespace InventarioEngrama.API.Controllers
 			return BadRequest(result);
 		}
 
+		/// <summary>
+		/// Retorna los abonos realizados a los apartados
+		/// </summary>
+		/// <param name="postModel"></param>
+		/// <returns></returns>
 		[HttpPost("PostGetAbonoApartado")]
 		public async Task<IActionResult> PostGetAbonoApartado([FromBody] PostGetAbonoApartado postModel)
 		{
@@ -253,6 +263,11 @@ namespace InventarioEngrama.API.Controllers
 			return BadRequest(result);
 		}
 
+		/// <summary>
+		/// Obtiene los artículos apartados registrados el base de datos
+		/// </summary>
+		/// <param name="postModel"></param>
+		/// <returns></returns>
 		[HttpPost("PostGetApartadoDetalle")]
 		public async Task<IActionResult> PostGetApartadoDetalle([FromBody] PostGetApartadoDetalle postModel)
 		{
@@ -264,6 +279,11 @@ namespace InventarioEngrama.API.Controllers
 			return BadRequest(result);
 		}
 
+		/// <summary>
+		/// Elimina los artículos erróneos de un pedido
+		/// </summary>
+		/// <param name="postModel"></param>
+		/// <returns></returns>
 		[HttpPost("PostDeletePedidoDetalle")]
 		public async Task<IActionResult> PostDeletePedidoDetalle([FromBody] PostDeletePedidoDetalle postModel)
 		{

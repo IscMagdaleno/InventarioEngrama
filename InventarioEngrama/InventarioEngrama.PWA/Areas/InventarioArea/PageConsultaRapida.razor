@@ -1,0 +1,39 @@
+﻿@using InventarioEngrama.PWA.Areas.InventarioArea.Componentes
+@using InventarioEngrama.PWA.Shared.Common
+@inherits EngramaPage
+
+@page "/PageConsultaRapida"
+
+
+<MudCard>
+	<MudCardHeader>
+		<CardHeaderContent>
+			<MudText Typo="Typo.h6">Consulta Artículos</MudText>
+		</CardHeaderContent>
+
+	</MudCardHeader>
+	<MudCardContent>
+		<MudGrid>
+			<MudItem sm="12" xs="12">
+				<MudGrid>
+					@foreach (var item in Data.LstProveedores)
+					{
+						<MudItem sm="4" xs="12">
+							<CardProveedor Proveedor="@item" EC_ProveedorSelected="EC_ProveedorSelected"></CardProveedor>
+						</MudItem>
+					}
+				</MudGrid>
+			</MudItem>
+			<MudItem sm="6" xs="12">
+				<TablaArticulosBusqueda Data="@Data" OnArticuloSelected="OnArticuloSelected"></TablaArticulosBusqueda>
+			</MudItem>
+			@if (Data.ArticuloSelected.iIdArticulo > 0)
+			{
+				<MudItem sm="6" xs="12">
+					<CardArticulo Articulo="@Data.ArticuloSelected"></CardArticulo>
+				</MudItem>
+			}
+		</MudGrid>
+
+	</MudCardContent>
+</MudCard>

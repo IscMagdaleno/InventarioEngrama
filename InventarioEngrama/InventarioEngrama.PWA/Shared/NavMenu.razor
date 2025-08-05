@@ -1,20 +1,26 @@
 ﻿<MudNavMenu>
 
 	<MudNavLink Href="" Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.Home">Home</MudNavLink>
-	<MudNavGroup Title="Catalogos" Expanded="true">
+	<MudNavGroup Title="Catálogos" Expanded="true">
 		<MudNavLink Href="PageCrudProvedor"
 					Match="NavLinkMatch.Prefix"
 					Icon="@Icons.Material.Filled.Warehouse">
-			Provedores
+			Proveedores
 		</MudNavLink>
 		<MudNavLink Href="PageCrudArticulos"
 					Match="NavLinkMatch.Prefix"
 					Icon="@Icons.Material.Filled.AddBusiness">
-			Articulos
+			Artículos
+		</MudNavLink>
+
+		<MudNavLink Href="PageConsultaRapida"
+					Match="NavLinkMatch.Prefix"
+					Icon="@Icons.Material.Filled.Search">
+			Consulta Artículos
 		</MudNavLink>
 	</MudNavGroup>
 
-	<MudNavGroup Title="Almacen" Expanded="true">
+	<MudNavGroup Title="Almacén" Expanded="true">
 
 		<MudNavLink Href="PageGridPedidos"
 					Match="NavLinkMatch.Prefix"

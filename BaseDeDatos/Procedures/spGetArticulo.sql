@@ -61,7 +61,7 @@ BEGIN
         PRINT CONCAT(ERROR_PROCEDURE(), ' : ', ERROR_MESSAGE(), ' - ', ERROR_LINE());
     END CATCH
 
-    SELECT * FROM #Result;
+    SELECT * FROM #Result ORDER BY nvchNombre, mPrecioVenta DESC;
 
     DROP TABLE #Result;
 END

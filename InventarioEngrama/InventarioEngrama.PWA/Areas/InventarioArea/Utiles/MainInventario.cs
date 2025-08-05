@@ -30,6 +30,7 @@ namespace InventarioEngrama.PWA.Areas.InventarioArea.Utiles
 
 		public Articulo ArticuloSelected { get; set; }
 		public IList<Articulo> LstArticulos { get; set; }
+		public IList<Articulo> LstTmpArticulos { get; set; }
 
 
 		public IList<InventarioArticulos> LstArticulosInventario { get; set; }
@@ -57,6 +58,7 @@ namespace InventarioEngrama.PWA.Areas.InventarioArea.Utiles
 
 			ArticuloSelected = new Articulo();
 			LstArticulos = new List<Articulo>();
+			LstTmpArticulos = new List<Articulo>();
 
 			PedidoSelected = new Pedido();
 			PedidoDetalleSelected = new PedidoDetalle();
@@ -106,12 +108,20 @@ namespace InventarioEngrama.PWA.Areas.InventarioArea.Utiles
 			var response = await _httpService.Post<PostGetArticulo, Response<List<Articulo>>>(APIUrl, model);
 			var validacion = _validaServicioService.ValidadionServicio(response,
 			onSuccess: data => LstArticulos = data);
+
+			LstTmpArticulos = LstArticulos;
 			return validacion;
 		}
 
 		public void FilterArticuloByProvedor()
 		{
 			LstArticulos = LstArticulos.Where(e => e.iIdProveedor == ProveedorSelected.iIdProveedor).ToList();
+
+		}
+
+		public void FilterTmpArticuloByProvedor()
+		{
+			LstTmpArticulos = LstArticulos.Where(e => e.iIdProveedor == ProveedorSelected.iIdProveedor).ToList();
 
 		}
 
@@ -279,15 +289,8 @@ namespace InventarioEngrama.PWA.Areas.InventarioArea.Utiles
 			var model = _mapper.Get<Venta, PostGetVenta>(VentaSelected);
 			var response = await _httpService.Post<PostGetVenta, Response<List<Venta>>>(APIUrl, model);
 			var validacion = _validaServicioService.ValidadionServicio(response,
-			onSuccess: data => AfterGetVenta(data));
+			onSuccess: data => LstVentas = (data));
 			return validacion;
-		}
-
-		private void AfterGetVenta(List<Venta> data)
-		{
-
-			LstVentas = data.OrderByDescending(e => e.dtFechaVenta).ToList();
-
 		}
 
 
@@ -405,6 +408,7 @@ namespace InventarioEngrama.PWA.Areas.InventarioArea.Utiles
 			return validacion;
 
 		}
+
 
 
 

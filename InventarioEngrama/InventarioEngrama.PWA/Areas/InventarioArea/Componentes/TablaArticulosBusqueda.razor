@@ -1,27 +1,28 @@
-﻿@using InventarioEngrama.PWA.Shared.Common
-@using InventarioEngrama.Share.Objetos.Inventario
+﻿@using InventarioEngrama.Share.Objetos.Inventario
 @inherits EngramaComponent
 
-
-<MudTable Items="@Data.LstArticulos"
+<MudTable Items="@Data.LstTmpArticulos"
 		  T="@Articulo"
 		  Dense="@true"
+		  RowsPerPage="5"
 		  Hover="true"
 		  Filter="new Func<Articulo,bool>(FilterFunc1)">
 	<ToolBarContent>
-		<MudTextField @bind-Value="searchStringFiltro" Placeholder="Buscar" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
+		<MudTextField @bind-Value="searchStringFiltro"
+					  Placeholder="Buscar"
+					  Adornment="Adornment.Start"
+					  AdornmentIcon="@Icons.Material.Filled.Search"
+					  IconSize="Size.Medium"
+					  Class="mt-0">
+		</MudTextField>
 	</ToolBarContent>
 	<HeaderContent>
 		<MudTh>Nombre</MudTh>
-		<MudTh>Descripción</MudTh>
-		<MudTh>Precio Compra</MudTh>
 		<MudTh>Precio Venta</MudTh>
 		<MudTh></MudTh>
 	</HeaderContent>
 	<RowTemplate>
 		<MudTd DataLabel="Nombre">@context.nvchNombre</MudTd>
-		<MudTd DataLabel="Descripción">@context.nvchDescripcion</MudTd>
-		<MudTd DataLabel="P Compra">@context.mPrecioCompra.ToString("C2")</MudTd>
 		<MudTd DataLabel="P Venta">@context.mPrecioVenta.ToString("C2")</MudTd>
 		<MudTd DataLabel="">
 			<MudFab Color="Color.Primary" StartIcon="@Icons.Material.Filled.TouchApp" OnClick="@(()=>OnClickRow(context))" />
@@ -31,6 +32,7 @@
 		<MudTablePager />
 	</PagerContent>
 </MudTable>
+
 @code {
 	private string searchStringFiltro = "";
 	private bool FilterFunc1(Articulo element) => FilterFunc(element, searchStringFiltro);
@@ -47,5 +49,4 @@
 		return false;
 	}
 }
-
 
