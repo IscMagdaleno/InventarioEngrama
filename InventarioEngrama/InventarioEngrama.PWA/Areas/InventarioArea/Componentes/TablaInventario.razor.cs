@@ -24,7 +24,7 @@ namespace InventarioEngrama.PWA.Areas.InventarioArea.Componentes
 
 		}
 
-		private async Task OnClickArticulo(InventarioArticulos inventarioArticulos)
+		private async Task OnClickRow(InventarioArticulos inventarioArticulos)
 		{
 			if (Data.ArticuloSelected != null)
 			{

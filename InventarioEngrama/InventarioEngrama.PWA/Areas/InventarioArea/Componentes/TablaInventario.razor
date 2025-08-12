@@ -32,9 +32,7 @@
 		{
 
 			<MudTd DataLabel="botón">
-				<MudButton Variant="Variant.Filled"
-						   Color="Color.Primary"
-						   OnClick="@(()=>OnClickArticulo(context))">Seleccionar</MudButton>
+				<MudFab Color="Color.Primary" StartIcon="@Icons.Material.Filled.TouchApp" OnClick="@(()=>OnClickRow(context))" />
 
 			</MudTd>
 

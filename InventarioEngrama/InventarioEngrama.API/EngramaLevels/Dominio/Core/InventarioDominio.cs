@@ -308,14 +308,39 @@ namespace InventarioEngrama.API.EngramaLevels.Dominio.Core
 				var validation = responseHelper.Validacion<spGetApartado.Result, Apartado>(result);
 				if (validation.IsSuccess)
 				{
-					foreach (var item in validation.Data)
-					{
-						var lstDetalle = result.Where(e => e.iIdApartado == item.iIdApartado);
-						foreach (var item1 in lstDetalle)
+
+
+					// Agrupamos por Apartado
+					var apartados = result
+						.GroupBy(d => new
 						{
-							item.ArticulosApartados.Add(mapperHelper.Get<spGetApartado.Result, ArticulosApartados>(item1));
-						}
-					}
+							d.iIdApartado,
+							d.nvchNombreCliente,
+							d.dtFechaApartado,
+							d.mTotal,
+							d.bPagado,
+							d.nvchComentario
+						})
+						.Select(g => new Apartado
+						{
+							iIdApartado = g.Key.iIdApartado,
+							nvchNombreCliente = g.Key.nvchNombreCliente,
+							dtFechaApartado = g.Key.dtFechaApartado,
+							mTotal = g.Key.mTotal,
+							bPagado = g.Key.bPagado,
+							nvchComentario = g.Key.nvchComentario,
+							ArticulosApartados = g.Select(a => new ArticulosApartados
+							{
+								iIdApartadoDetalle = a.iIdApartadoDetalle,
+								iIdApartado = a.iIdApartado,
+								iIdArticulo = a.iIdArticulo,
+								iCantidad = a.iCantidad,
+								mPrecioFinal = a.mPrecioFinal
+							}).ToList()
+						})
+						.ToList();
+
+					validation.Data = apartados;
 				}
 				return validation;
 			}
