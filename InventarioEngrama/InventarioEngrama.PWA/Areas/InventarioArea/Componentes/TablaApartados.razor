@@ -13,23 +13,23 @@
 		<MudTextField @bind-Value="searchStringFiltro" Placeholder="Buscar" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
 	</ToolBarContent>
 	<HeaderContent>
-		<MudTh>IdApartado</MudTh>
-		<MudTh>NombreCliente</MudTh>
-		<MudTh>FechaApartado</MudTh>
+		<MudTh>Id Apartado</MudTh>
+		<MudTh>Nombre Cliente</MudTh>
+		<MudTh>Fecha Apartado</MudTh>
 		<MudTh>Total</MudTh>
 		<MudTh>Pagado</MudTh>
 		<MudTh>Comentario</MudTh>
 		<MudTh></MudTh>
 	</HeaderContent>
 	<RowTemplate>
-		<MudTd DataLabel="iIdApartado">@context.iIdApartado</MudTd>
-		<MudTd DataLabel="nvchNombreCliente">@context.nvchNombreCliente</MudTd>
-		<MudTd DataLabel="dtFechaApartado">@context.dtFechaApartado</MudTd>
-		<MudTd DataLabel="mTotal">@context.mTotal</MudTd>
-		<MudTd DataLabel="bPagado">@context.bPagado</MudTd>
-		<MudTd DataLabel="nvchComentario">@context.nvchComentario</MudTd>
-		<MudTd DataLabel="btn">
-			<MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="@(()=>OnClickRow(context))">Seleccionar</MudButton>
+		<MudTd DataLabel="Id">@context.iIdApartado</MudTd>
+		<MudTd DataLabel="Nombre Cliente">@context.nvchNombreCliente</MudTd>
+		<MudTd DataLabel="Fecha Apartado">@context.dtFechaApartado</MudTd>
+		<MudTd DataLabel="Total">@context.mTotal</MudTd>
+		<MudTd DataLabel="Pagado">@context.bPagado</MudTd>
+		<MudTd DataLabel="Comentario">@context.nvchComentario</MudTd>
+		<MudTd DataLabel="">
+			<MudFab Color="Color.Primary" StartIcon="@Icons.Material.Filled.TouchApp" OnClick="@(()=>OnClickRow(context))" />
 		</MudTd>
 	</RowTemplate>
 	<PagerContent>

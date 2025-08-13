@@ -10,19 +10,19 @@
 	<ToolBarContent>
 		<MudText Typo="Typo.h6">Tabla de AbonoApartado</MudText>
 		<MudSpacer />
-		<MudTextField @bind-Value="searchStringFiltro" Placeholder="Search" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
+		<MudTextField @bind-Value="searchStringFiltro" 
+		Placeholder="Buscar" 
+		Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
 	</ToolBarContent>
 	<HeaderContent>
-		<MudTh>IdAbonoApartado</MudTh>
-		<MudTh>IdApartado</MudTh>
+		<MudTh>ID</MudTh>
 		<MudTh>Abono</MudTh>
-		<MudTh>FechaAbono</MudTh>
+		<MudTh>Fecha Abono</MudTh>
 	</HeaderContent>
 	<RowTemplate>
-		<MudTd DataLabel="iIdAbonoApartado">@context.iIdAbonoApartado</MudTd>
-		<MudTd DataLabel="iIdApartado">@context.iIdApartado</MudTd>
-		<MudTd DataLabel="mAbono">@context.mAbono</MudTd>
-		<MudTd DataLabel="dtFechaAbono">@context.dtFechaAbono</MudTd>
+		<MudTd DataLabel="Id">@context.iIdAbonoApartado</MudTd>
+		<MudTd DataLabel="Abono">@context.mAbono</MudTd>
+		<MudTd DataLabel="Fecha Abono">@context.dtFechaAbono</MudTd>
 	</RowTemplate>
 	<PagerContent>
 		<MudTablePager />

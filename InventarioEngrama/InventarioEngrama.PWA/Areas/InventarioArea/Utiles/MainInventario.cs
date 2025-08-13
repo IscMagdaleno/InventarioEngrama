@@ -378,8 +378,8 @@ namespace InventarioEngrama.PWA.Areas.InventarioArea.Utiles
 
 		public async Task<SeverityMessage> PostGetAbonoApartado()
 		{
-			var APIUrl = url + "/PostGetAbonoApartado";
 
+			var APIUrl = url + "/PostGetAbonoApartado";
 			var model = _mapper.Get<Apartado, PostGetAbonoApartado>(ApartadoSelected);
 			var response = await _httpService.Post<PostGetAbonoApartado, Response<List<AbonoApartado>>>(APIUrl, model);
 			var validacion = _validaServicioService.ValidadionServicio(response,

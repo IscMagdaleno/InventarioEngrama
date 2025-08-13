@@ -11,25 +11,31 @@
 		<ToolBarContent>
 			<MudText Typo="Typo.h6">Tabla de Venta</MudText>
 			<MudSpacer />
-			<MudTextField @bind-Value="searchStringFiltro" Placeholder="Search" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
+			<MudTextField @bind-Value="searchStringFiltro"
+						  Placeholder="Buscar..."
+						  Adornment="Adornment.Start"
+						  AdornmentIcon="@Icons.Material.Filled.Search"
+						  IconSize="Size.Medium"
+						  Class="mt-0">
+			</MudTextField>
 		</ToolBarContent>
 		<HeaderContent>
 			<MudTh>Nombre</MudTh>
-			<MudTh>Descripcion</MudTh>
-			<MudTh>Cantdad</MudTh>
-			<MudTh>PrecioFinal</MudTh>
-			<MudTh>FechaVenta</MudTh>
-			<MudTh>ReferenciaVenta</MudTh>
+			<MudTh>Descripción</MudTh>
+			<MudTh>Cantidad</MudTh>
+			<MudTh>Precio Final</MudTh>
+			<MudTh>Fecha Venta</MudTh>
+			<MudTh>Referencia</MudTh>
 
 		</HeaderContent>
 		<RowTemplate>
 
-			<MudTd DataLabel="nvchNombre">@context.Articulo.nvchNombre</MudTd>
-			<MudTd DataLabel="nvchDescripcion">@context.Articulo.nvchDescripcion</MudTd>
-			<MudTd DataLabel="iCantidad">@context.iCantidad</MudTd>
-			<MudTd DataLabel="mPrecioFinal">@context.mPrecioFinal.ToString("C2")</MudTd>
-			<MudTd DataLabel="dtFechaVenta">@context.dtFechaVenta</MudTd>
-			<MudTd DataLabel="vchReferenciaVenta">@context.vchReferenciaVenta</MudTd>
+			<MudTd DataLabel="Nombre">@context.Articulo.nvchNombre</MudTd>
+			<MudTd DataLabel="Descripción">@context.Articulo.nvchDescripcion</MudTd>
+			<MudTd DataLabel="Cantidad">@context.iCantidad</MudTd>
+			<MudTd DataLabel="Precio Final">@context.mPrecioFinal.ToString("C2")</MudTd>
+			<MudTd DataLabel="Fecha Venta">@context.dtFechaVenta</MudTd>
+			<MudTd DataLabel="Referencia">@context.vchReferenciaVenta</MudTd>
 
 		</RowTemplate>
 		<PagerContent>

@@ -10,7 +10,13 @@
 	<ToolBarContent>
 		<MudText Typo="Typo.h6">Tabla de PedidoDetalle</MudText>
 		<MudSpacer />
-		<MudTextField @bind-Value="searchStringFiltro" Placeholder="Search" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
+		<MudTextField @bind-Value="searchStringFiltro"
+					  Placeholder="Buscar..."
+					  Adornment="Adornment.Start"
+					  AdornmentIcon="@Icons.Material.Filled.Search"
+					  IconSize="Size.Medium"
+					  Class="mt-0">
+		</MudTextField>
 	</ToolBarContent>
 	<HeaderContent>
 		<MudTh>Nombre Articulo</MudTh>
@@ -22,17 +28,17 @@
 		}
 	</HeaderContent>
 	<RowTemplate>
-		<MudTd DataLabel="nvchNombre">@context.Articulo.nvchNombre</MudTd>
-		<MudTd DataLabel="smCantidad">@context.smCantidad</MudTd>
-		<MudTd DataLabel="mPrecioUnitario">@context.mPrecioUnitario.ToString("C2")</MudTd>
+		<MudTd DataLabel="Nombre">@context.Articulo.nvchNombre</MudTd>
+		<MudTd DataLabel="Cantidad">@context.smCantidad</MudTd>
+		<MudTd DataLabel="Precio Unitario">@context.mPrecioUnitario.ToString("C2")</MudTd>
 		@if (ShowEdit)
 		{
 
 			<MudTd DataLabel="Editar">
-				<MudButton Variant="Variant.Filled" Color="Color.Warning" OnClick="@(()=>OnClickRow(context))">Editar</MudButton>
 
+				<MudFab Color="Color.Warning" StartIcon="@Icons.Material.Filled.Edit" OnClick="@(()=>OnClickRow(context))" />
+				<MudFab Color="Color.Error" StartIcon="@Icons.Material.Filled.Delete" OnClick="@(()=>OnClickDeleteRow(context))" />
 
-				<MudButton Variant="Variant.Filled" Color="Color.Error" OnClick="@(()=>OnClickDeleteRow(context))">Editar</MudButton>
 
 			</MudTd>
 		}

@@ -17,14 +17,16 @@
 			@if (ShowNewApartado || ShowEditApartado)
 			{
 				<MudButton Variant="Variant.Filled"
-						   Color="Color.Secondary" OnClick="OnClickCambiarPantalla">
-					Lista Apartados
+						   Color="Color.Secondary"
+						   StartIcon="@Icons.Material.Filled.ArrowLeft"
+						   OnClick="OnClickCambiarPantalla">
+					Volver Lista
 				</MudButton>
 			}
 			else
 			{
 				<MudButton Variant="Variant.Filled"
-						   Color="Color.Secondary" OnClick="OnClickAddApartado">
+						   Color="Color.Success" OnClick="OnClickAddApartado">
 					Agregar nuevo Apartado
 				</MudButton>
 			}

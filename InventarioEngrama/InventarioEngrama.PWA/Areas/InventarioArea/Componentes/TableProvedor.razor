@@ -8,7 +8,12 @@
 		  Hover="true"
 		  Filter="new Func<Proveedor,bool>(FilterFunc1)">
 	<ToolBarContent>
-		<MudTextField @bind-Value="searchStringFiltro" Placeholder="Buscar" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
+		<MudTextField @bind-Value="searchStringFiltro"
+					  Placeholder="Buscar..."
+					  Adornment="Adornment.Start"
+					  AdornmentIcon="@Icons.Material.Filled.Search"
+					  IconSize="Size.Medium" Class="mt-0">
+		</MudTextField>
 	</ToolBarContent>
 	<HeaderContent>
 		<MudTh>Nombre</MudTh>
@@ -17,11 +22,12 @@
 		<MudTh></MudTh>
 	</HeaderContent>
 	<RowTemplate>
-		<MudTd DataLabel="nvchNombre">@context.nvchNombre</MudTd>
-		<MudTd DataLabel="vchTelefono">@context.vchTelefono</MudTd>
-		<MudTd DataLabel="nvchDireccion">@context.nvchDireccion</MudTd>
-		<MudTd DataLabel="Editar">
-			<MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="@(()=>OnClickRow(context))">Editar</MudButton>
+		<MudTd DataLabel="Nombre">@context.nvchNombre</MudTd>
+		<MudTd DataLabel="Teléfono">@context.vchTelefono</MudTd>
+		<MudTd DataLabel="Dirección">@context.nvchDireccion</MudTd>
+		<MudTd DataLabel="">
+			<MudFab Color="Color.Warning" StartIcon="@Icons.Material.Filled.Edit" OnClick="@(()=>OnClickRow(context))" />
+
 		</MudTd>
 	</RowTemplate>
 	<PagerContent>
