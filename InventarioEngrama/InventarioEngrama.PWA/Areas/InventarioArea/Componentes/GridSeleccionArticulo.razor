@@ -2,10 +2,10 @@
 
 
 <MudGrid>
-	<MudItem sm="12">
+	<MudItem sm="12" xs="12">
 		<CardArticulo Articulo="@Data.ArticuloSelected"></CardArticulo>
 	</MudItem>
-	<MudItem sm="12">
-		<FormVenta Data="@Data" OnVentaSaved="OnVentaSaved"></FormVenta>
+	<MudItem sm="12" xs="12">
+		<FormVenta Data="@Data" OnVentaSaved="OnVentaSaved" OnCancelVenta="OnCancelVenta"></FormVenta>
 	</MudItem>
 </MudGrid>

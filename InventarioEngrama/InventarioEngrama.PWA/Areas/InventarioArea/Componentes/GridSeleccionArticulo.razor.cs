@@ -11,6 +11,7 @@ namespace InventarioEngrama.PWA.Areas.InventarioArea.Componentes
 
 		[Parameter] public MainInventario Data { get; set; }
 		[Parameter] public EventCallback OnProductSaved { get; set; }
+		[Parameter] public EventCallback OnCancelVenta { get; set; }
 
 		public bool ShowArticulo { get; set; }
 		protected override void OnInitialized()

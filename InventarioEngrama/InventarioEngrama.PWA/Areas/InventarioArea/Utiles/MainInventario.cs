@@ -321,8 +321,18 @@ namespace InventarioEngrama.PWA.Areas.InventarioArea.Utiles
 				Articulo = ArticuloSelected,
 				vchReferenciaVenta = VentaSelected.vchReferenciaVenta
 			};
+			apartadoArticulo.iIdApartadoDetalle = ApartadoSelected.ArticulosApartados.Count() * -1;
 			ApartadoSelected.ArticulosApartados.Add(apartadoArticulo);
 			ApartadoSelected.mTotal += VentaSelected.mPrecioFinal;
+			ArticuloSelected = new Articulo();
+			VentaSelected = new Venta();
+		}
+
+		public void DeleteArticuloToApartado(ArticulosApartados articulosApartados)
+		{
+
+			ApartadoSelected.ArticulosApartados = ApartadoSelected.ArticulosApartados.Where(e => e.iIdApartadoDetalle != articulosApartados.iIdApartadoDetalle).ToList();
+			ApartadoSelected.mTotal -= VentaSelected.mPrecioFinal;
 			ArticuloSelected = new Articulo();
 			VentaSelected = new Venta();
 		}

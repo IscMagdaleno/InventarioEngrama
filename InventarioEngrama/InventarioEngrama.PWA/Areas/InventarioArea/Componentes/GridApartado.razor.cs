@@ -1,5 +1,6 @@
 ﻿using InventarioEngrama.PWA.Areas.InventarioArea.Utiles;
 using InventarioEngrama.PWA.Shared.Common;
+using InventarioEngrama.Share.Objetos.Inventario;
 
 using Microsoft.AspNetCore.Components;
 
@@ -30,6 +31,18 @@ namespace InventarioEngrama.PWA.Areas.InventarioArea.Componentes
 		{
 
 			Data.AddArticuloToApartado();
+		}
+
+		private async Task OnCancelVenta()
+		{
+
+			await Task.Delay(1);
+			StateHasChanged();
+		}
+
+		private void EC_EliminarArticuloApartado(ArticulosApartados articulosApartados)
+		{
+			Data.DeleteArticuloToApartado(articulosApartados);
 		}
 
 		private async Task OnClickGuradarApartado()

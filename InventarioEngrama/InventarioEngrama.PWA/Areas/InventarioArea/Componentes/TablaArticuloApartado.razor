@@ -4,19 +4,19 @@
 @if (ArticulosApartados.Any())
 {
 	<MudTable Items="@ArticulosApartados"
-			  T="@ArticulosApartados"
-			  Dense="@true"
-			  Hover="true"
-			  Filter="new Func<ArticulosApartados,bool>(FilterFunc1)">
+	T="@ArticulosApartados"
+	Dense="@true"
+	Hover="true"
+	Filter="new Func<ArticulosApartados,bool>(FilterFunc1)">
 		<ToolBarContent>
 			<MudText Typo="Typo.h6">Tabla de Artículos Apartados</MudText>
 			<MudSpacer />
 			<MudTextField @bind-Value="searchStringFiltro"
-						  Placeholder="Buscar"
-						  Adornment="Adornment.Start"
-						  AdornmentIcon="@Icons.Material.Filled.Search"
-						  IconSize="Size.Medium"
-						  Class="mt-0">
+			Placeholder="Buscar"
+			Adornment="Adornment.Start"
+			AdornmentIcon="@Icons.Material.Filled.Search"
+			IconSize="Size.Medium"
+			Class="mt-0">
 			</MudTextField>
 		</ToolBarContent>
 		<HeaderContent>
@@ -24,6 +24,7 @@
 			<MudTh>Descripción</MudTh>
 			<MudTh>Cantidad</MudTh>
 			<MudTh>Precio Final</MudTh>
+			<MudTh></MudTh>
 
 		</HeaderContent>
 		<RowTemplate>
@@ -32,7 +33,9 @@
 			<MudTd DataLabel="Descripción">@context.Articulo.nvchDescripcion</MudTd>
 			<MudTd DataLabel="Cantidad">@context.iCantidad</MudTd>
 			<MudTd DataLabel="Precio Final">@context.mPrecioFinal.ToString("C2")</MudTd>
-
+			<MudTd DataLabel="">
+				<MudFab Color="Color.Error" StartIcon="@Icons.Material.Filled.Delete" OnClick="@(()=>OnClickDelete(context))" />
+			</MudTd>
 		</RowTemplate>
 		<PagerContent>
 			<MudTablePager />
@@ -41,6 +44,14 @@
 }
 @code {
 	[Parameter] public IList<ArticulosApartados> ArticulosApartados { get; set; }
+
+	[Parameter] public EventCallback<ArticulosApartados> EC_EliminarArticuloApartado { get; set; }
+
+
+	private  async Task OnClickDelete(ArticulosApartados articulosApartados)
+	{
+		await EC_EliminarArticuloApartado.InvokeAsync(articulosApartados);
+	}
 
 	private string searchStringFiltro = "";
 	private bool FilterFunc1(ArticulosApartados element) => FilterFunc(element, searchStringFiltro);

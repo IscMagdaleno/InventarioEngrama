@@ -1,5 +1,4 @@
-﻿
-@inherits EngramaComponent
+﻿@inherits EngramaComponent
 <MudGrid>
 	@if (ShowApartadoDetalle.False())
 	{
@@ -12,10 +11,10 @@
 	else
 	{
 
-		<MudItem sm="6">
+		<MudItem sm="6" xs="12">
 			<CardApatado Apartado="@Data.ApartadoSelected"></CardApatado>
 		</MudItem>
-		<MudItem sm="6">
+		<MudItem sm="6" xs="12">
 			@if (Data.ArticuloSelected.iIdArticulo <= 0)
 			{
 
@@ -23,20 +22,23 @@
 			}
 			else
 			{
-				<GridSeleccionArticulo Data="Data" OnProductSaved="OnVentaSaved"></GridSeleccionArticulo>
+				<GridSeleccionArticulo Data="Data" OnProductSaved="OnVentaSaved" OnCancelVenta="OnCancelVenta"></GridSeleccionArticulo>
 
 			}
 
 		</MudItem>
-		<MudItem sm="12">
-			<TablaArticuloApartado ArticulosApartados="Data.ApartadoSelected.ArticulosApartados"></TablaArticuloApartado>
-		</MudItem>
-		<MudItem sm="12">
-			<MudButton Variant="Variant.Filled"
-					   Color="Color.Success"
-					   OnClick="OnClickGuradarApartado">
-				Guardar Apartado de Artículos
-			</MudButton>
-		</MudItem>
+		@if (Data.ApartadoSelected.ArticulosApartados.NotEmpty())
+		{
+			<MudItem sm="12">
+				<TablaArticuloApartado ArticulosApartados="Data.ApartadoSelected.ArticulosApartados" EC_EliminarArticuloApartado="EC_EliminarArticuloApartado"></TablaArticuloApartado>
+			</MudItem>
+			<MudItem sm="12">
+				<MudButton Variant="Variant.Filled"
+						   Color="Color.Success"
+						   OnClick="OnClickGuradarApartado">
+					Guardar Apartado de Artículos
+				</MudButton>
+			</MudItem>
+		}
 	}
 </MudGrid>

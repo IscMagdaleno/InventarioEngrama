@@ -1,46 +1,56 @@
 ﻿@inherits EngramaComponent
 <MudCard>
-<EditForm Model="@Data.VentaSelected"
-		  OnValidSubmit="OnSubmint">
-	<DataAnnotationsValidator />
+	<EditForm Model="@Data.VentaSelected"
+			  OnValidSubmit="OnSubmint">
+		<DataAnnotationsValidator />
 
-	<MudFocusTrap>
+		<MudFocusTrap>
 
-		<MudGrid>
-			<MudItem sm="6">
-
-
-				<MudNumericField @bind-Value="Data.VentaSelected.iCantidad"
-								 Label="Cantdad"
-								 OnBlur="OnBlurCantidad"
-								 Variant="Variant.Outlined" />
+			<MudGrid>
+				<MudItem sm="6" xs="12">
 
 
-				<MudNumericField @bind-Value="Data.VentaSelected.mPrecioFinal"
-								 Label="Precio Final"
-								 Adornment="Adornment.Start"
-								 Format="c2"
-								 Variant="Variant.Outlined" />
+					<MudNumericField @bind-Value="Data.VentaSelected.iCantidad"
+									 Label="Cantidad"
+									 OnBlur="OnBlurCantidad"
+									 Variant="Variant.Outlined" />
+
+				</MudItem>
+				<MudItem sm="6" xs="12">
+					<MudNumericField @bind-Value="Data.VentaSelected.mPrecioFinal"
+									 Label="Precio Final"
+									 Adornment="Adornment.Start"
+									 Format="c2"
+									 Variant="Variant.Outlined" />
 
 
-			</MudItem>
-			<MudItem sm="6">
+				</MudItem>
+				<MudItem sm="6" xs="12">
 
-				<MudTextField @bind-Value="@Data.VentaSelected.vchReferenciaVenta"
-							  Label="ReferenciaVenta"
-							  MaxLength="100"
-							  Lines="4"
-							  Variant="Variant.Outlined" />
+					<MudTextField @bind-Value="@Data.VentaSelected.vchReferenciaVenta"
+								  Label="ReferenciaVenta"
+								  MaxLength="100"
+								  Lines="4"
+								  Variant="Variant.Outlined" />
 
 
-			</MudItem>
-			<MudItem sm="12">
+				</MudItem>
+				<MudItem sm="12">
 
-				<MudButton Variant="Variant.Filled"
-						   ButtonType="ButtonType.Submit"
-						   Color="Color.Secondary">Seleccionar articulo</MudButton>
-			</MudItem>
-		</MudGrid>
-	</MudFocusTrap>
-</EditForm>
+					<MudButton Variant="Variant.Filled"
+							   ButtonType="ButtonType.Submit"
+							   Color="Color.Secondary">
+						Seleccionar artículo
+					</MudButton>
+					
+					<MudButton Variant="Variant.Filled"
+							   ButtonType="ButtonType.Button"
+							   OnClick="OnClickCancelar"
+							   Color="Color.Error">
+						Cancelar
+					</MudButton>
+				</MudItem>
+			</MudGrid>
+		</MudFocusTrap>
+	</EditForm>
 </MudCard>
