@@ -11,8 +11,7 @@ namespace InventarioEngrama.PWA.Areas.InventarioArea.Componentes
 
 		[Parameter] public MainInventario Data { get; set; }
 
-		[Parameter]
-		public EventCallback EC_ApartadoSelected { get; set; }
+		[Parameter] public EventCallback EC_ApartadoSelected { get; set; }
 
 		protected override async Task OnInitializedAsync()
 		{

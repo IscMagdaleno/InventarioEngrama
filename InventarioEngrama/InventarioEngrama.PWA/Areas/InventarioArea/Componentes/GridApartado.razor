@@ -30,7 +30,10 @@
 		@if (Data.ApartadoSelected.ArticulosApartados.NotEmpty())
 		{
 			<MudItem sm="12">
-				<TablaArticuloApartado ArticulosApartados="Data.ApartadoSelected.ArticulosApartados" EC_EliminarArticuloApartado="EC_EliminarArticuloApartado"></TablaArticuloApartado>
+				<TablaArticuloApartado ArticulosApartados="Data.ApartadoSelected.ArticulosApartados"
+									   EC_EliminarArticuloApartado="EC_EliminarArticuloApartado"
+									   ShowDelete="true">
+				</TablaArticuloApartado>
 			</MudItem>
 			<MudItem sm="12">
 				<MudButton Variant="Variant.Filled"

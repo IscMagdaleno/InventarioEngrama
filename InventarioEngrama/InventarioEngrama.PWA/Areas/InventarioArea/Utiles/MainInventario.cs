@@ -332,7 +332,7 @@ namespace InventarioEngrama.PWA.Areas.InventarioArea.Utiles
 		{
 
 			ApartadoSelected.ArticulosApartados = ApartadoSelected.ArticulosApartados.Where(e => e.iIdApartadoDetalle != articulosApartados.iIdApartadoDetalle).ToList();
-			ApartadoSelected.mTotal -= VentaSelected.mPrecioFinal;
+			ApartadoSelected.mTotal -= articulosApartados.mPrecioFinal;
 			ArticuloSelected = new Articulo();
 			VentaSelected = new Venta();
 		}
@@ -384,6 +384,8 @@ namespace InventarioEngrama.PWA.Areas.InventarioArea.Utiles
 			{
 				ApartadoSelected.bPagado = true;
 			}
+
+			AbonoApartadoSelected = new AbonoApartado();
 		}
 
 		public async Task<SeverityMessage> PostGetAbonoApartado()
